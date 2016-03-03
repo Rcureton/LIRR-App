@@ -12,8 +12,62 @@
     tools:context="com.example.mom.lirrapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:src="@drawable/train"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/textView"
+        android:text="iLIRR"
+        android:textStyle="bold"
+        android:textColor="#014cbc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
+    <ImageButton
+        android:id="@+id/monthlyCard"
+        android:src="@drawable/ic_local_movies_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="51dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Montly Pass"
+        android:id="@+id/textView2"
+        android:textColor="#104d93"
+        android:textSize="10dp"
+        android:layout_below="@+id/monthlyCard"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:id="@+id/schedule"
+        android:src="@drawable/ic_directions_transit_black_24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/monthlyCard"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Train Schedule"
+        android:textColor="#104d93"
+        android:textSize="10dp"
+        android:id="@+id/textView3"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
