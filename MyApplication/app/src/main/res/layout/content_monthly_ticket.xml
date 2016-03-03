@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.mom.lirrapp.MonthlyTickey"
-    tools:showIn="@layout/activity_monthly_tickey">
+    tools:context=".MonthlyTicket"
+    tools:showIn="@layout/activity_monthly_ticket">
 
     <TextView
         android:id="@+id/month"
@@ -30,5 +30,12 @@
         android:layout_centerHorizontal="true"
         android:scaleType="centerCrop"
         android:layout_marginTop="128dp" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@+id/monthlyPass"/>
 
 </RelativeLayout>
