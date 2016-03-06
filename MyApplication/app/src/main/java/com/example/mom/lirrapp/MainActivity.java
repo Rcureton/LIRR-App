@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.net.URL;
 
+import com.example.mom.lirrapp.Social.Twitter;
 import com.google.transit.realtime.GtfsRealtime.FeedEntity;
 import com.google.transit.realtime.GtfsRealtime.FeedMessage;
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity
 
 
     TextView mTextview;
-    ImageButton mMonthlyPass;
+    ImageButton mMonthlyPass,mAlerts, mTwitter;
 
 
     @Override
@@ -37,6 +38,25 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         mTextview=(TextView)findViewById(R.id.textView);
         mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
+        mAlerts=(ImageButton)findViewById(R.id.delay);
+        mTwitter=(ImageButton)findViewById(R.id.Twitter);
+
+        mTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, Twitter.class);
+                startActivity(intent);
+            }
+        });
+
+
+        mAlerts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, ReportDelayActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mMonthlyPass.setOnClickListener(new View.OnClickListener() {
             @Override

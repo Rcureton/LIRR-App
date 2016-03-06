@@ -1,5 +1,24 @@
 <resources>
     <string name="app_name">LIRRApp</string>
+    <string-array name="branches">
+        <item>@string/feedbacktype1</item>
+        <item>@string/feedbacktype2</item>
+        <item>@string/feedbacktype3</item>
+        <item>@string/feedbacktype4</item>
+        <item>@string/feedbacktype5</item>
+        <item>@string/feedbacktype6</item>
+        <item>@string/feedbacktype7</item>
+        <item>@string/feedbacktype8</item>
+    </string-array>
+
+    <string name="feedbacktype1">Babylon</string>
+    <string name="feedbacktype2">Hempstead</string>
+    <string name="feedbacktype3">Ronkonkoma</string>
+    <string name="feedbacktype4">Port Washington</string>
+    <string name="feedbacktype5">Oyster Bay</string>
+    <string name="feedbacktype6">Long Beach</string>
+    <string name="feedbacktype7">West Hempstead</string>
+    <string name="feedbacktype8">Far Rockaway</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
