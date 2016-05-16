@@ -11,6 +11,10 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         mapbox:style_url="@string/mapbox_type"
-        mapbox:access_token="pk.eyJ1IjoicmN1cmV0b24iLCJhIjoiY2lvOTBrY3d1MDJ6a3cza2o3bWN3Y3JpNSJ9.851ElXzI1p-CjIKhjGv2MA"/>
+        mapbox:access_token="pk.eyJ1IjoicmN1cmV0b24iLCJhIjoiY2lvOTBrY3d1MDJ6a3cza2o3bWN3Y3JpNSJ9.851ElXzI1p-CjIKhjGv2MA"
+        mapbox:center_latitude="40.7891"
+        mapbox:center_longitude="-73.1350"
+        mapbox:zoom="12"
+        mapbox:tilt="10"/>
 
 </RelativeLayout>

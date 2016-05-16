@@ -31,6 +31,7 @@ public class Basic extends AppCompatActivity {
 
                 drawPolyLinesBabylon(mapboxMap);
                 ronkonkomaTrainPolyline(mapboxMap);
+                babylonMarkers(mapboxMap);
 //                // Customize map with markers, polylines, etc.
 //                mapboxMap.addMarker(new MarkerOptions()
 //                .position(new LatLng(40.680263, -73.420472)).title("Amityville Train Station"));
@@ -89,24 +90,22 @@ public class Basic extends AppCompatActivity {
     }
 //TODO: Gotta finish this
     private void babylonMarkers (MapboxMap map){
-        List<LatLng> babylonMarkers= new ArrayList<>();
-
-        babylonMarkers.add(new LatLng(40.699511, -73.808727)); //Jamaica
-        babylonMarkers.add(new LatLng(40.691052, -73.765426)); // St.Albans
-        babylonMarkers.add(new LatLng(40.65603, -73.6758)); //Lynbrook
-        babylonMarkers.add(new LatLng(40.6583, -73.6466)); //Rockville Centre
-        babylonMarkers.add(new LatLng(40.656746, -73.607444)); //Baldwin
-        babylonMarkers.add(new LatLng(40.657425, -73.582601)); //Freeport
-        babylonMarkers.add(new LatLng(40.663769, -73.550709)); //Merrick
-        babylonMarkers.add(new LatLng(40.668766, -73.528833)); //Bellmore
-        babylonMarkers.add(new LatLng(40.672937, -73.509098)); //Wantagh
-        babylonMarkers.add(new LatLng(40.67573, -73.486454)); //Seaford
-        babylonMarkers.add(new LatLng(40.676901, -73.469052)); //Massapequa
-        babylonMarkers.add(new LatLng(40.677851, -73.45474)); //Massapequa Park
-        babylonMarkers.add(new LatLng(40.680263, -73.420472)); //Amityville
-        babylonMarkers.add(new LatLng(40.681, -73.399)); //Copiague
-        babylonMarkers.add(new LatLng(40.688243, -73.369242)); //Lindenhurst
-        babylonMarkers.add(new LatLng(40.700614, -73.32421)); //Babylon
+        map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
+        map.addMarker(new MarkerOptions().title("St. Albans Train Station").position(new LatLng(40.691052, -73.765426)));
+        map.addMarker(new MarkerOptions().title("Lynbrook").position(new LatLng(40.65603, -73.6758)));
+        map.addMarker(new MarkerOptions().title("Rockville Centre Train Station").position(new LatLng(40.6583, -73.6466)));
+        map.addMarker(new MarkerOptions().title("Baldwin Train Station").position(new LatLng(40.656746, -73.607444)));
+        map.addMarker(new MarkerOptions().title("Freeport Train Station").position(new LatLng(40.657425, -73.582601)));
+        map.addMarker(new MarkerOptions().title("Merrick Train Station").position(new LatLng(40.663769, -73.550709)));
+        map.addMarker(new MarkerOptions().title("Bellmore Train Station").position(new LatLng(40.668766, -73.528833)));
+        map.addMarker(new MarkerOptions().title("Wantagh Train Station").position(new LatLng(40.672937, -73.509098)));
+        map.addMarker(new MarkerOptions().title("Seaford Train Station").position(new LatLng(40.67573, -73.486454)));
+        map.addMarker(new MarkerOptions().title("Massapequa Train Station").position(new LatLng(40.676901, -73.469052)));
+        map.addMarker(new MarkerOptions().title("Massapequa Park Station").position(new LatLng(40.677851, -73.45474)));
+        map.addMarker(new MarkerOptions().title("Amityville Train Station").position(new LatLng(40.680263, -73.420472)));
+        map.addMarker(new MarkerOptions().title("Copiague Train Station").position(new LatLng(40.681, -73.399)));
+        map.addMarker(new MarkerOptions().title("Lindenhurst Train Station").position(new LatLng(40.688243, -73.369242)));
+        map.addMarker(new MarkerOptions().title("Babylon Train Station").position(new LatLng(40.700614, -73.32421)));
 
 
     }
