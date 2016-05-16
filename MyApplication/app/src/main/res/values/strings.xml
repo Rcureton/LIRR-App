@@ -11,6 +11,9 @@
         <item>@string/feedbacktype8</item>
     </string-array>
 
+    <string name="mapbox_type">mapbox://styles/rcureton/cio90m2hl001yaqm7csz5z0iu
+</string>
+
     <string name="feedbacktype1">Babylon</string>
     <string name="feedbacktype2">Hempstead</string>
     <string name="feedbacktype3">Ronkonkoma</string>

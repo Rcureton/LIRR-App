@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         mTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, Twitter.class);
+                Intent intent= new Intent(MainActivity.this, Basic.class);
                 startActivity(intent);
             }
         });

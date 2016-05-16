@@ -34,7 +34,8 @@ dependencies {
     compile 'com.android.support:design:23.2.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.google.android.gms:play-services:8.4.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.google.android.gms:play-services-identity:8.4.0'
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile ('com.mapbox.mapboxsdk:mapbox-android-sdk:4.0.1@aar'){
+        transitive=true
+    }
+
 }

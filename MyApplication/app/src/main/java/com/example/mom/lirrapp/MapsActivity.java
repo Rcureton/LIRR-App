@@ -14,6 +14,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -28,10 +30,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        GoogleMapOptions options= new GoogleMapOptions();
+        GoogleMapOptions options = new GoogleMapOptions();
         options.compassEnabled(true);
         options.zoomControlsEnabled(true);
         options.zoomGesturesEnabled(true);
+
 
 
     }
@@ -50,6 +53,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
+        mMap.addMarker(new MarkerOptions().position(new LatLng(70,40)).title("Hello World"));
+
+        // Instantiates a new Polyline object and adds points to define a rectangle
+        PolylineOptions rectOptions = new PolylineOptions()
+                .add(new LatLng(37.35, -122.0))
+                .add(new LatLng(37.45, -122.0))  // North of the previous point, but at the same longitude
+                .add(new LatLng(37.45, -122.2))  // Same latitude, and 30km to the west
+                .add(new LatLng(37.35, -122.2))  // Same longitude, and 16km to the south
+                .add(new LatLng(37.35, -122.0)); // Closes the polyline.
+
+// Get back the mutable Polyline
+        Polyline polyline = mMap.addPolyline(rectOptions);
 
 
 
@@ -59,22 +74,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-//            mMap.setMyLocationEnabled(true);
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-
-        }
-
-
     }
-
 }
