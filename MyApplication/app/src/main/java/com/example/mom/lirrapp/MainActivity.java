@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import java.net.URL;
 
-import com.example.mom.lirrapp.Social.Twitter;
 import com.google.transit.realtime.GtfsRealtime.FeedEntity;
 import com.google.transit.realtime.GtfsRealtime.FeedMessage;
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity
         mTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, Basic.class);
+                Intent intent= new Intent(MainActivity.this, LIRRMap.class);
                 startActivity(intent);
             }
         });

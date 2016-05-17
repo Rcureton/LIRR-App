@@ -11,24 +11,30 @@ import android.os.Bundle;
 
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
+import com.mapbox.mapboxsdk.constants.MyLocationTracking;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+import com.mapbox.mapboxsdk.maps.widgets.UserLocationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Basic extends AppCompatActivity implements OnMapReadyCallback{
+public class LIRRMap extends AppCompatActivity {
 
     private MapView mapView;
     private static final int PERMISSIONS_LOCATION = 0;
     private MapboxMap map1;
+    private UserLocationView userLocationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
+
+
 
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
@@ -37,8 +43,7 @@ public class Basic extends AppCompatActivity implements OnMapReadyCallback{
             @Override
             public void onMapReady(MapboxMap mapboxMap) {
 
-            mapboxMap.getMyLocation();
-                mapboxMap.isMyLocationEnabled();
+                myLocation();
 
                 drawPolyLinesBabylon(mapboxMap);
                 ronkonkomaTrainPolyline(mapboxMap);
@@ -66,6 +71,19 @@ public class Basic extends AppCompatActivity implements OnMapReadyCallback{
 
             }
         });
+    }
+
+
+    private void myLocation(){
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
+        } else {
+           return;
+        }
+        map1.setMyLocationEnabled(true);
+        map1.getMyLocation();
+
     }
 
     private void westHempsteadBranchPolyline(MapboxMap map){
@@ -372,18 +390,7 @@ public class Basic extends AppCompatActivity implements OnMapReadyCallback{
                 mapView.onSaveInstanceState(outState);
             }
 
-    @Override
-    public void onMapReady(MapboxMap mapboxMap) {
-        map1= mapboxMap;
 
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
-                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
-        } else {
-            mapboxMap.setMyLocationEnabled(true);
-        }
-
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -63,7 +63,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ReportDelayActivity" />
         <activity android:name=".Social.Twitter" />
-        <activity android:name=".Basic"></activity>
+        <activity android:name=".LIRRMap"></activity>
 
         <service android:name="com.mapbox.mapboxsdk.telemetry.TelemetryService" />
     </application>
