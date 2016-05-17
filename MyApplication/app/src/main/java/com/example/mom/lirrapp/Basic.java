@@ -32,6 +32,12 @@ public class Basic extends AppCompatActivity {
                 drawPolyLinesBabylon(mapboxMap);
                 ronkonkomaTrainPolyline(mapboxMap);
                 babylonMarkers(mapboxMap);
+                ronkonkomaMarkers(mapboxMap);
+                longBeachPolyLine(mapboxMap);
+                longbeachBranchMarkers(mapboxMap);
+                atlanticBranchMarkers(mapboxMap);
+                atlanticBranchPolyline(mapboxMap);
+
 //                // Customize map with markers, polylines, etc.
 //                mapboxMap.addMarker(new MarkerOptions()
 //                .position(new LatLng(40.680263, -73.420472)).title("Amityville Train Station"));
@@ -65,6 +71,27 @@ public class Basic extends AppCompatActivity {
         map.addPolyline(new PolylineOptions().addAll(ronkonkomaLine).color(Color.parseColor("#9C27B0")));
     }
 
+    private void ronkonkomaMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
+        map.addMarker(new MarkerOptions().title("Hollis Train Station").position(new LatLng(40.7102, -73.7666)));
+        map.addMarker(new MarkerOptions().title("Queens Village Train Station").position(new LatLng(40.717469, -73.73638)));
+        map.addMarker(new MarkerOptions().title("Floral Park Train Station").position(new LatLng(40.724622, -73.706398)));
+        map.addMarker(new MarkerOptions().title("New Hyde Park Train Station").position(new LatLng(40.730932, -73.680569)));
+        map.addMarker(new MarkerOptions().title("Merillion Avenue Train Station").position(new LatLng(40.735164, -73.662523)));
+        map.addMarker(new MarkerOptions().title("Mineola Train Station").position(new LatLng(40.740291, -73.641025)));
+        map.addMarker(new MarkerOptions().title("Carle Place Train Station").position(new LatLng(40.749195, -73.603705)));
+        map.addMarker(new MarkerOptions().title("Westbury Train Station").position(new LatLng(40.753404, -73.586273)));
+        map.addMarker(new MarkerOptions().title("Hicksville Train Station").position(new LatLng(40.767101, -73.528686)));
+        map.addMarker(new MarkerOptions().title("Bethpage Train Station").position(new LatLng(40.742994, -73.483359)));
+        map.addMarker(new MarkerOptions().title("Farmingdale Train Station").position(new LatLng(40.735665, -73.441713)));
+        map.addMarker(new MarkerOptions().title("Pinelawn Train Station").position(new LatLng(40.745339, -73.399572)));
+        map.addMarker(new MarkerOptions().title("Wyandanch Park Station").position(new LatLng(40.754889, -73.35781)));
+        map.addMarker(new MarkerOptions().title("Deer Park Train Station").position(new LatLng(40.76948, -73.293577)));
+        map.addMarker(new MarkerOptions().title("Brentwood Train Station").position(new LatLng(40.780826, -73.243607)));
+        map.addMarker(new MarkerOptions().title("Central Islip Train Station").position(new LatLng(40.79188, -73.19467)));
+        map.addMarker(new MarkerOptions().title("Ronkonkoma Train Station").position(new LatLng(40.808088, -73.1059)));
+    }
+
     private void drawPolyLinesBabylon(MapboxMap map){
         List<LatLng> babylonTrainLine= new ArrayList<>();
 
@@ -88,11 +115,11 @@ public class Basic extends AppCompatActivity {
         map.addPolyline(new PolylineOptions()
         .addAll(babylonTrainLine).color(Color.parseColor("#3bb2d0")));
     }
-//TODO: Gotta finish this
+
     private void babylonMarkers (MapboxMap map){
         map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
         map.addMarker(new MarkerOptions().title("St. Albans Train Station").position(new LatLng(40.691052, -73.765426)));
-        map.addMarker(new MarkerOptions().title("Lynbrook").position(new LatLng(40.65603, -73.6758)));
+        map.addMarker(new MarkerOptions().title("Lynbrook Train Sation").position(new LatLng(40.65603, -73.6758)));
         map.addMarker(new MarkerOptions().title("Rockville Centre Train Station").position(new LatLng(40.6583, -73.6466)));
         map.addMarker(new MarkerOptions().title("Baldwin Train Station").position(new LatLng(40.656746, -73.607444)));
         map.addMarker(new MarkerOptions().title("Freeport Train Station").position(new LatLng(40.657425, -73.582601)));
@@ -108,6 +135,51 @@ public class Basic extends AppCompatActivity {
         map.addMarker(new MarkerOptions().title("Babylon Train Station").position(new LatLng(40.700614, -73.32421)));
 
 
+    }
+    private void longBeachPolyLine(MapboxMap map){
+        List<LatLng> longbeachBranch = new ArrayList<>();
+
+        longbeachBranch.add(new LatLng(40.699511, -73.808727)); //Jamaica
+        longbeachBranch.add(new LatLng(40.691052, -73.765426)); // St.Albans
+        longbeachBranch.add(new LatLng(40.65603, -73.6758)); //Lynbrook
+        longbeachBranch.add(new LatLng(40.648272, -73.663915)); //Centre Avenue
+        longbeachBranch.add(new LatLng(40.640938, -73.657067)); //East Rockaway
+        longbeachBranch.add(new LatLng(40.634986, -73.654613)); //Oceanside
+        longbeachBranch.add(new LatLng(40.600433, -73.655388)); //Island Park
+        longbeachBranch.add(new LatLng(40.589368, -73.664854)); //Long Beach
+
+        map.addPolyline(new PolylineOptions().addAll(longbeachBranch)
+        .color(Color.parseColor("#009688")));
+    }
+    private void longbeachBranchMarkers(MapboxMap map){
+
+        map.addMarker(new MarkerOptions().title("Lynbrook Train Station").position(new LatLng(40.65603, -73.6758)));
+        map.addMarker(new MarkerOptions().title("Centre Avenue Train Station").position(new LatLng(40.648272, -73.663915)));
+        map.addMarker(new MarkerOptions().title("East Rockaway Train Station").position(new LatLng(40.640938, -73.657067)));
+        map.addMarker(new MarkerOptions().title("Oceanside Train Station").position(new LatLng(40.634986, -73.654613)));
+        map.addMarker(new MarkerOptions().title("Island Park Train Station").position(new LatLng(40.600433, -73.655388)));
+        map.addMarker(new MarkerOptions().title("Long Beach Train Station").position(new LatLng(40.589368, -73.664854)));
+    }
+
+    private void atlanticBranchPolyline(MapboxMap map){
+        List<LatLng> atlanticPolylines= new ArrayList<>();
+
+        atlanticPolylines.add(new LatLng(40.699511, -73.808727)); //Jamaica
+        atlanticPolylines.add(new LatLng(40.675022, -73.764897));//Locust Manor
+        atlanticPolylines.add(new LatLng(40.66853, -73.7518));//Laurelton
+        atlanticPolylines.add(new LatLng(40.6659, -73.7356));//Rosedale
+        atlanticPolylines.add(new LatLng(40.661483, -73.704679));//Valley Stream
+
+        map.addPolyline(new PolylineOptions().addAll(atlanticPolylines).color(Color.parseColor("#FFA000")));
+    }
+
+    private void atlanticBranchMarkers(MapboxMap map){
+
+        map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
+        map.addMarker(new MarkerOptions().title("Locust Manor Train Station").position(new LatLng(40.675022, -73.764897)));
+        map.addMarker(new MarkerOptions().title("Laurelton Train Station").position(new LatLng(40.66853, -73.7518)));
+        map.addMarker(new MarkerOptions().title("Rosedale Train Station").position(new LatLng(40.6659, -73.7356)));
+        map.addMarker(new MarkerOptions().title("Valley Stream Train Station").position(new LatLng(40.661483, -73.704679)));
     }
 
             // Add the mapView lifecycle to the activity's lifecycle methods
