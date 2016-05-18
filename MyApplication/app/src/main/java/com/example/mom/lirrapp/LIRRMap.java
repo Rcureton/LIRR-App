@@ -70,10 +70,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
             public void onMapReady(final MapboxMap mapboxMap) {
 
                 myLocation();
-                IconFactory iconFactory = IconFactory.getInstance(LIRRMap.this);
-                Drawable iconDrawable = ContextCompat.getDrawable(LIRRMap.this, R.drawable.purple_marker);
-                Icon icon = iconFactory.fromDrawable(iconDrawable);
-                mapboxMap.addMarker(new MarkerOptions().title("Current Location").position(new LatLng(lat,lon)).icon(icon));
+//
 
                 mapboxMap.setMyLocationEnabled(true);
 
@@ -97,6 +94,12 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 hempsteadBranchPolyline(mapboxMap);
                 portWashingtonBranchMarkers(mapboxMap);
                 portWashingtonBranchPolyLine(mapboxMap);
+                montaukBranchMarkers(mapboxMap);
+                montaukBranchPolyline(mapboxMap);
+                cityLineMarkers(mapboxMap);
+                cityLinePoly(mapboxMap);
+                atlanticTerminalMarkers(mapboxMap);
+                atlanticTerminalPolyline(mapboxMap);
 
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
@@ -269,6 +272,86 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
+    private void cityLinePoly(MapboxMap map){
+        List<LatLng> pennPolyline= new ArrayList<>();
+
+        pennPolyline.add(new LatLng(40.699511, -73.808727));//Jamaica
+        pennPolyline.add(new LatLng(40.7096, -73.83066));// Kew Gardens
+        pennPolyline.add(new LatLng(40.719483, -73.844883));//Forrest Hills
+        pennPolyline.add(new LatLng(40.746072, -73.903201));//Woodside
+        pennPolyline.add(new LatLng(40.750638, -73.993899));// Penn Station
+
+        map.addPolyline(new PolylineOptions().addAll(pennPolyline).color(Color.parseColor("#009688")));
+    }
+
+    private void cityLineMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Kew Gardens Train Station").position(new LatLng(40.7096, -73.83066)));
+        map.addMarker(new MarkerOptions().title("Forrest Hills Train Station").position(new LatLng(40.719483, -73.844883)));
+
+    }
+
+    private void atlanticTerminalPolyline(MapboxMap map){
+        List<LatLng> atlanticTermPoly= new ArrayList<>();
+
+        atlanticTermPoly.add(new LatLng(40.699511, -73.808727));//Jamaica
+        atlanticTermPoly.add(new LatLng(40.676053, -73.905925));//East New York
+        atlanticTermPoly.add(new LatLng(40.67845, -73.9494));// Nostrand Avenue
+        atlanticTermPoly.add(new LatLng(40.684226, -73.977234));//Atlantic Terminal
+
+        map.addPolyline(new PolylineOptions().addAll(atlanticTermPoly).color(Color.parseColor("#311B92")));
+    }
+    private void atlanticTerminalMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("East New York Train Station").position(new LatLng(40.676053, -73.905925)));
+        map.addMarker(new MarkerOptions().title("Nostrand Avenue Train Station").position(new LatLng(40.67845, -73.9494)));
+        map.addMarker(new MarkerOptions().title("Atlantic Terminal").position(new LatLng(40.684226, -73.977234)));
+
+    }
+
+    private void montaukBranchPolyline(MapboxMap map){
+        List<LatLng> montaukPolyline= new ArrayList<>();
+
+        montaukPolyline.add(new LatLng(41.046793, -71.954452));// Montauk
+        montaukPolyline.add(new LatLng(40.98, -72.1325));//Amagansett
+        montaukPolyline.add(new LatLng(40.964936, -72.193461));//East Hampton
+        montaukPolyline.add(new LatLng(40.939163, -72.309646));//BridgeHampton
+        montaukPolyline.add(new LatLng(40.894779, -72.38975));//Southampton
+        montaukPolyline.add(new LatLng(40.876464, -72.524566));//Hampton Bays
+        montaukPolyline.add(new LatLng(40.830191, -72.650973));//Westhampton
+        montaukPolyline.add(new LatLng(40.821224, -72.704853));//Speonk
+        montaukPolyline.add(new LatLng(40.7989, -72.86454));//Mastic-Shirley
+        montaukPolyline.add(new LatLng(40.773717, -72.943769));//Bellport
+        montaukPolyline.add(new LatLng(40.761841, -73.015735));//Patchogue
+        montaukPolyline.add(new LatLng(40.740388, -73.086497));//Sayville
+        montaukPolyline.add(new LatLng(40.7434, -73.1324));//Oakdale
+        montaukPolyline.add(new LatLng(40.740476, -73.17));//Great River
+        montaukPolyline.add(new LatLng(40.736, -73.209));//Islip
+        montaukPolyline.add(new LatLng(40.72505, -73.253057));//Bayshore
+        montaukPolyline.add(new LatLng(40.700614, -73.32421)); //Babylon
+
+        map.addPolyline(new PolylineOptions().addAll(montaukPolyline).color(Color.parseColor("#FF4081")));
+    }
+
+    private void montaukBranchMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Montauk Train Station").position(new LatLng(41.046793, -71.954452)));
+        map.addMarker(new MarkerOptions().title("Amagansett Train Station").position(new LatLng(40.98, -72.1325)));
+        map.addMarker(new MarkerOptions().title("East Hampton Train Station").position(new LatLng(40.964936, -72.193461)));
+        map.addMarker(new MarkerOptions().title("Bridgehampton Train Station").position(new LatLng(40.939163, -72.309646)));
+        map.addMarker(new MarkerOptions().title("Southampton Train Station").position(new LatLng(40.894779, -72.38975)));
+        map.addMarker(new MarkerOptions().title("Hampton Bays Train Station").position(new LatLng(40.876464, -72.524566)));
+        map.addMarker(new MarkerOptions().title("Westhampton Train Station").position(new LatLng(40.830191, -72.650973)));
+        map.addMarker(new MarkerOptions().title("Speonk Train Station").position(new LatLng(40.821224, -72.704853)));
+        map.addMarker(new MarkerOptions().title("Mastic-Shirley Train Station").position(new LatLng(40.7989, -72.86454)));
+        map.addMarker(new MarkerOptions().title("Bellport Train Station").position(new LatLng(40.773717, -72.943769)));
+        map.addMarker(new MarkerOptions().title("Patchogue Train Station").position(new LatLng(40.761841, -73.015735)));
+        map.addMarker(new MarkerOptions().title("Sayville Train Station").position(new LatLng(40.740388, -73.086497)));
+        map.addMarker(new MarkerOptions().title("Oakdale Train Station").position(new LatLng(40.7434, -73.1324)));
+        map.addMarker(new MarkerOptions().title("Great River Train Station").position(new LatLng(40.740476, -73.17)));
+        map.addMarker(new MarkerOptions().title("Islip Train Station").position(new LatLng(40.736, -73.209)));
+        map.addMarker(new MarkerOptions().title("Bayshore Train Station").position(new LatLng(40.72505, -73.253057)));
+
+
+    }
+
     private void portWashingtonBranchPolyLine(MapboxMap map){
         List<LatLng> portWashPoly= new ArrayList<>();
 
@@ -371,6 +454,12 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         ronkonkomaLine.add(new LatLng(40.780826, -73.243607)); //Brentwood
         ronkonkomaLine.add(new LatLng(40.79188, -73.19467)); //Central Islip
         ronkonkomaLine.add(new LatLng(40.808088, -73.1059)); //Ronkonkoma
+        ronkonkomaLine.add(new LatLng(40.817356, -72.999159));//Medford
+        ronkonkomaLine.add(new LatLng(40.825656, -72.915841));//Yaphank
+        ronkonkomaLine.add(new LatLng(40.919763, -72.6669));//Riverhead
+        ronkonkomaLine.add(new LatLng(40.991761, -72.536009));//Mattituck
+        ronkonkomaLine.add(new LatLng(41.066295, -72.427859));//Southold
+        ronkonkomaLine.add(new LatLng(41.099722, -72.363611));//Greenport
 
         map.addPolyline(new PolylineOptions().addAll(ronkonkomaLine).color(Color.parseColor("#9C27B0")));
     }
@@ -394,6 +483,12 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Brentwood Train Station").position(new LatLng(40.780826, -73.243607)));
         map.addMarker(new MarkerOptions().title("Central Islip Train Station").position(new LatLng(40.79188, -73.19467)));
         map.addMarker(new MarkerOptions().title("Ronkonkoma Train Station").position(new LatLng(40.808088, -73.1059)));
+        map.addMarker(new MarkerOptions().title("Medford Train Station").position(new LatLng(40.817356, -72.999159)));
+        map.addMarker(new MarkerOptions().title("Yaphank Train Station").position(new LatLng(40.825656, -72.915841)));
+        map.addMarker(new MarkerOptions().title("Riverhead Train Station").position(new LatLng(40.919763, -72.6669)));
+        map.addMarker(new MarkerOptions().title("Mattituck Train Station").position(new LatLng(40.991761, -72.536009)));
+        map.addMarker(new MarkerOptions().title("Southold Train Station").position(new LatLng(41.066295, -72.427859)));
+        map.addMarker(new MarkerOptions().title("Greenport Train Station").position(new LatLng(41.099722, -72.363611)));
     }
 
     private void drawPolyLinesBabylon(MapboxMap map){
