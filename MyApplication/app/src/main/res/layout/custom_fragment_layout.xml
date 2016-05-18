@@ -4,24 +4,31 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:padding="5dp"
         android:layout_centerInParent="true"
-        android:layout_height="wrap_content">
+        android:layout_centerHorizontal="true"
+        android:layout_height="100dp">
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/policeIcon"
+            android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/police_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/trafficIcon"
+            android:paddingRight="10dp"
+            android:layout_marginRight="10dp"
             android:src="@drawable/traffic_jam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/issueIcon"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
