@@ -25,6 +25,8 @@ import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.constants.MyLocationTracking;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -65,13 +67,15 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
-            public void onMapReady(MapboxMap mapboxMap) {
+            public void onMapReady(final MapboxMap mapboxMap) {
 
                 myLocation();
                 IconFactory iconFactory = IconFactory.getInstance(LIRRMap.this);
                 Drawable iconDrawable = ContextCompat.getDrawable(LIRRMap.this, R.drawable.purple_marker);
                 Icon icon = iconFactory.fromDrawable(iconDrawable);
                 mapboxMap.addMarker(new MarkerOptions().title("Current Location").position(new LatLng(lat,lon)).icon(icon));
+
+                mapboxMap.setMyLocationEnabled(true);
 
                 drawPolyLinesBabylon(mapboxMap);
                 ronkonkomaTrainPolyline(mapboxMap);
@@ -91,8 +95,24 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 westHempsteadBranchPolyline(mapboxMap);
                 hempsteadBranchMarkers(mapboxMap);
                 hempsteadBranchPolyline(mapboxMap);
+                portWashingtonBranchMarkers(mapboxMap);
+                portWashingtonBranchPolyLine(mapboxMap);
 
 
+                mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(@NonNull LatLng point) {
+                        CameraPosition position = new CameraPosition.Builder()
+                                .target(new LatLng(lat,lon)) // Sets the new camera position
+                                .zoom(17) // Sets the zoom
+                                .bearing(180) // Rotate the camera
+                                .tilt(30) // Set the camera tilt
+                                .build(); // Creates a CameraPosition from the builder
+
+                        mapboxMap.animateCamera(CameraUpdateFactory
+                                .newCameraPosition(position), 7000);
+                    }
+                });
             }
         });
 
@@ -232,16 +252,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 //        mLocation.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
-//                Toast.makeText(LocationPage.this, "Currently getting your location", Toast.LENGTH_LONG).show();
-//                myDate.setLon(lon);
-//                myDate.setLat(lat);
-//                Intent intent = new Intent(LocationPage.this, VenueType.class);
-//                intent.putExtra(MyDateItems.MY_ITEMS, myDate);
-//                startActivity(intent);
 //
-//            }
-//        });
 
     }
 
@@ -256,6 +267,43 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map1.setMyLocationEnabled(true);
         map1.getMyLocation();
 
+    }
+
+    private void portWashingtonBranchPolyLine(MapboxMap map){
+        List<LatLng> portWashPoly= new ArrayList<>();
+
+        portWashPoly.add(new LatLng(40.829349, -73.68733));//Port Washington
+        portWashPoly.add(new LatLng(40.810687, -73.695216));//Plandome Station
+        portWashPoly.add(new LatLng(40.79669, -73.6999996));//Manhasset
+        portWashPoly.add(new LatLng(40.787235, -73.725986));//Great Neck
+        portWashPoly.add(new LatLng(40.775, -73.740744));//Little Neck
+        portWashPoly.add(new LatLng(40.768, -73.7496));//Douglaston
+        portWashPoly.add(new LatLng(40.763105, -73.771804));//Bayside
+        portWashPoly.add(new LatLng(40.76139, -73.7905));//Auburndale
+        portWashPoly.add(new LatLng(40.761626, -73.801383));//Broadway Station
+        portWashPoly.add(new LatLng(40.762703, -73.81446));//Murray Hill
+        portWashPoly.add(new LatLng(40.757989, -73.831086));//Flusing-Main Street
+        portWashPoly.add(new LatLng(40.752516, -73.843725));// Mets Stadium- Willets Point
+        portWashPoly.add(new LatLng(40.746072, -73.903201));// Woodside
+        portWashPoly.add(new LatLng(40.750638, -73.993899));//Penn Station
+
+        map.addPolyline(new PolylineOptions().addAll(portWashPoly).color(Color.parseColor("#E65100")));
+    }
+    private void portWashingtonBranchMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Port Washington Train Station").position(new LatLng(40.829349, -73.68733)));
+        map.addMarker(new MarkerOptions().title("Plandome Train Station").position(new LatLng(40.810687, -73.695216)));
+        map.addMarker(new MarkerOptions().title("Manhasset Train Station").position(new LatLng(40.79669, -73.6999996)));
+        map.addMarker(new MarkerOptions().title("Great Neck Train Station").position(new LatLng(40.787235, -73.725986)));
+        map.addMarker(new MarkerOptions().title("Little Neck Train Station").position(new LatLng(40.775, -73.740744)));
+        map.addMarker(new MarkerOptions().title("Douglaston Train Station").position(new LatLng(40.768, -73.7496)));
+        map.addMarker(new MarkerOptions().title("Bayside Train Station").position(new LatLng(40.763105, -73.771804)));
+        map.addMarker(new MarkerOptions().title("Auburndale Train Station").position(new LatLng(40.76139, -73.7905)));
+        map.addMarker(new MarkerOptions().title("Broadway Train Station").position(new LatLng(40.761626, -73.801383)));
+        map.addMarker(new MarkerOptions().title("Murray Hill Train Station").position(new LatLng(40.762703, -73.81446)));
+        map.addMarker(new MarkerOptions().title("Flushing- Main Street Train Station").position(new LatLng(40.757989, -73.831086)));
+        map.addMarker(new MarkerOptions().title("Mets Stadium - Willets Point Train Station").position(new LatLng(40.752516, -73.843725)));
+        map.addMarker(new MarkerOptions().title("Woodside Train Station").position(new LatLng(40.746072, -73.903201)));
+        map.addMarker(new MarkerOptions().title("Penn Station").position(new LatLng(40.750638, -73.993899)));
     }
 
     private void westHempsteadBranchPolyline(MapboxMap map){
