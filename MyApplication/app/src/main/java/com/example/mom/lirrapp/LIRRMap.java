@@ -8,11 +8,15 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -53,6 +57,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     private static int DISPLACEMENT= 10;
     double lon;
     double lat;
+    FloatingActionButton button;
 
 
     @Override
@@ -61,7 +66,13 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         setContentView(R.layout.activity_basic);
 
 
-
+        button=(FloatingActionButton)findViewById(R.id.mapButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
+            }
+        });
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 
@@ -133,10 +144,6 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
             configureButton();
 
         }
-
-
-
-
 
         if(checkPlayServices() ){
             buildGoogleApiClient();
@@ -257,6 +264,12 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 //            public void onClick(View v) {
 //
 
+    }
+
+    private void showDialog(){
+        FragmentManager fm= getSupportFragmentManager();
+        ReportIconsFragment reportIconsFragment= ReportIconsFragment.newInstance("Report");
+        reportIconsFragment.show(getFragmentManager(),"custom_fragment_dialog");
     }
 
 
