@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import java.net.URL;
 
+import com.google.firebase.messaging.RemoteMessage;
 import com.google.transit.realtime.GtfsRealtime.FeedEntity;
 import com.google.transit.realtime.GtfsRealtime.FeedMessage;
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity
         mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
         mAlerts=(ImageButton)findViewById(R.id.delay);
         mTwitter=(ImageButton)findViewById(R.id.Twitter);
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -166,46 +168,6 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public class GtfsRealtimeExample {
-        public void main(String[] args) throws Exception {
-            URL url = new URL("http://datamine.mta.info/mta_esi.php?key=da4e37b70fd7bbcf07f8a7202382523c&feed_id=1");
-            FeedMessage feed = FeedMessage.parseFrom(url.openStream());
-            for (FeedEntity entity : feed.getEntityList()) {
-                if (entity.hasTripUpdate()) {
-                    System.out.println(entity.getTripUpdate());
-                    String update= entity.getTripUpdate().toString();
-                    mTextview.setText(update);
-                }
-            }
-        }
-    }
-    public static int getConnectivityStatus(Context context) {
-        ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        if (null != activeNetwork) {
-            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
-                return TYPE_WIFI;
-
-            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
-                return TYPE_MOBILE;
-        }
-        return TYPE_NOT_CONNECTED;
-    }
-
-    public static String getConnectivityStatusString(Context context) {
-        int conn = MainActivity.getConnectivityStatus(context);
-        String status = null;
-        if (conn == MainActivity.TYPE_WIFI) {
-            status = "Wifi enabled";
-        } else if (conn == MainActivity.TYPE_MOBILE) {
-            status = "Mobile data enabled";
-        } else if (conn == MainActivity.TYPE_NOT_CONNECTED) {
-            status = "Not connected to Internet";
-        }
-        return status;
-    }
 
     private void showNetworkNotAvailableNotification() {
         NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
@@ -226,6 +188,8 @@ public class MainActivity extends AppCompatActivity
     private void showNetworkAvailableNotification() {
         NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
         bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.default_marker)).build();
+        RemoteMessage remoteMessage;
+
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
