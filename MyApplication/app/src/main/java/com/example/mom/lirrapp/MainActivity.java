@@ -1,12 +1,17 @@
 package com.example.mom.lirrapp;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -33,6 +38,8 @@ public class MainActivity extends AppCompatActivity
     public static int TYPE_WIFI = 1;
     public static int TYPE_MOBILE = 2;
     public static int TYPE_NOT_CONNECTED = 0;
+    public static final int NOTIFICATION_AVAILABLE = 1;
+    public static final int NOTIFICATION_NOT_AVAILABLE = 2;
 
 
     @Override
@@ -45,6 +52,14 @@ public class MainActivity extends AppCompatActivity
         mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
         mAlerts=(ImageButton)findViewById(R.id.delay);
         mTwitter=(ImageButton)findViewById(R.id.Twitter);
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            showNetworkAvailableNotification();
+        } else {
+            showNetworkNotAvailableNotification();
+        }
 
         mTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +207,36 @@ public class MainActivity extends AppCompatActivity
         return status;
     }
 
+    private void showNetworkNotAvailableNotification() {
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+        bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.purple_marker)).build();
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.drawable.cast_ic_notification_connecting);
+        mBuilder.setContentTitle("Notification Alert!");
+        mBuilder.setContentText("The network in your location is not available");
+        mBuilder.setContentIntent(pIntent);
+        mBuilder.setPriority(Notification.PRIORITY_MAX);
+        mBuilder.setStyle(bigPictureStyle);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(NOTIFICATION_NOT_AVAILABLE, mBuilder.build());
+    }
 
+    private void showNetworkAvailableNotification() {
+        NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
+        bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.default_marker)).build();
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, 0, intent, 0);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.drawable.ic_perm_scan_wifi);
+        mBuilder.setContentTitle("Notification Alert!");
+        mBuilder.setContentText("The network in your location is available");
+        mBuilder.setContentIntent(pIntent);
+        mBuilder.setStyle(bigPictureStyle);
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(NOTIFICATION_AVAILABLE, mBuilder.build());
+    }
 
 
 }
