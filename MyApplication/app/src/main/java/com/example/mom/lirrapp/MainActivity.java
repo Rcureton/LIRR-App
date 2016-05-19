@@ -1,6 +1,9 @@
 package com.example.mom.lirrapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +30,9 @@ public class MainActivity extends AppCompatActivity
 
     TextView mTextview;
     ImageButton mMonthlyPass,mAlerts, mTwitter;
+    public static int TYPE_WIFI = 1;
+    public static int TYPE_MOBILE = 2;
+    public static int TYPE_NOT_CONNECTED = 0;
 
 
     @Override
@@ -158,4 +164,35 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+    public static int getConnectivityStatus(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (null != activeNetwork) {
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+                return TYPE_WIFI;
+
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+                return TYPE_MOBILE;
+        }
+        return TYPE_NOT_CONNECTED;
+    }
+
+    public static String getConnectivityStatusString(Context context) {
+        int conn = MainActivity.getConnectivityStatus(context);
+        String status = null;
+        if (conn == MainActivity.TYPE_WIFI) {
+            status = "Wifi enabled";
+        } else if (conn == MainActivity.TYPE_MOBILE) {
+            status = "Mobile data enabled";
+        } else if (conn == MainActivity.TYPE_NOT_CONNECTED) {
+            status = "Not connected to Internet";
+        }
+        return status;
+    }
+
+
+
+
 }

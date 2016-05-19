@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "144637418164",
+    "firebase_url": "https://project-3691302154624406965.firebaseio.com",
+    "project_id": "project-3691302154624406965",
+    "storage_bucket": "project-3691302154624406965.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144637418164:android:7f42f47ff378b685",
+        "android_client_info": {
+          "package_name": "com.example.mom.lirrapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "144637418164-dhekc7ov75dtalao7h652k9lnsjqcno7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfkRwY3-9z-F2RRfo-TZE3KnBV2DnDUcE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
