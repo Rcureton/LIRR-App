@@ -65,12 +65,18 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
 
+        final Items items= new Items();
+
+
 
         button=(FloatingActionButton)findViewById(R.id.mapButton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog();
+                items.setLattitude(lat);
+                items.setLongitude(lon);
+
             }
         });
         mapView = (MapView) findViewById(R.id.mapview);

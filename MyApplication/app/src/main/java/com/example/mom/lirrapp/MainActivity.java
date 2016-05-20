@@ -36,9 +36,6 @@ public class MainActivity extends AppCompatActivity
 
     TextView mTextview;
     ImageButton mMonthlyPass,mAlerts, mTwitter;
-    public static int TYPE_WIFI = 1;
-    public static int TYPE_MOBILE = 2;
-    public static int TYPE_NOT_CONNECTED = 0;
     public static final int NOTIFICATION_AVAILABLE = 1;
     public static final int NOTIFICATION_NOT_AVAILABLE = 2;
 
@@ -59,7 +56,7 @@ public class MainActivity extends AppCompatActivity
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             showNetworkAvailableNotification();
-        } else {
+        }  {
             showNetworkNotAvailableNotification();
         }
 
@@ -96,8 +93,6 @@ public class MainActivity extends AppCompatActivity
                 Intent intent= new Intent(MainActivity.this,MapsActivity.class);
                 startActivity(intent);
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
 
@@ -170,6 +165,7 @@ public class MainActivity extends AppCompatActivity
 
 
     private void showNetworkNotAvailableNotification() {
+
         NotificationCompat.BigPictureStyle bigPictureStyle = new NotificationCompat.BigPictureStyle();
         bigPictureStyle.bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.purple_marker)).build();
         Intent intent = new Intent(this, MainActivity.class);
