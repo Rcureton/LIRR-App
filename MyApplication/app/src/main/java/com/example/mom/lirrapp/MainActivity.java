@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import java.net.URL;
 
+import com.example.mom.lirrapp.Social.Twitter;
 import com.google.firebase.messaging.RemoteMessage;
 import com.google.transit.realtime.GtfsRealtime.FeedEntity;
 import com.google.transit.realtime.GtfsRealtime.FeedMessage;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
 
     TextView mTextview;
-    ImageButton mMonthlyPass,mAlerts, mTwitter;
+    ImageButton mMonthlyPass,mAlerts, mTwitter, mTrainMap;
     public static final int NOTIFICATION_AVAILABLE = 1;
     public static final int NOTIFICATION_NOT_AVAILABLE = 2;
 
@@ -50,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
         mAlerts=(ImageButton)findViewById(R.id.delay);
         mTwitter=(ImageButton)findViewById(R.id.Twitter);
+        mTrainMap=(ImageButton)findViewById(R.id.mapImageButton);
+
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -61,6 +64,14 @@ public class MainActivity extends AppCompatActivity
         }
 
         mTwitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(MainActivity.this, Twitter.class);
+                startActivity(intent);
+            }
+        });
+
+        mTrainMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(MainActivity.this, LIRRMap.class);

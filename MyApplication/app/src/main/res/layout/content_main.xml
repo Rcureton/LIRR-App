@@ -18,6 +18,124 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:orientation="horizontal"
+        android:paddingTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/mapImageButton"
+            android:src="@drawable/ic_map"
+            android:background="@color/colorAccent"
+            android:paddingRight="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/monthlyCard"
+            android:paddingLeft="25dp"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_local_movies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageButton
+            android:id="@+id/schedule"
+            android:paddingLeft="25dp"
+            android:src="@drawable/ic_train"
+            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageButton
+            android:id="@+id/delay"
+            android:paddingLeft="25dp"
+            android:src="@drawable/ic_error_outline"
+            android:background="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageButton
+            android:id="@+id/Twitter"
+            android:paddingLeft="25dp"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_action_twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_below="@id/linear1"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Train Map"
+            android:id="@+id/textView2"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Schedule"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:id="@+id/textView3"
+            />
+
+        <TextView
+            android:id="@+id/weatherText"
+            android:text="Weather"
+            android:paddingLeft="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/delays"
+            android:text="Report Issues"
+            android:paddingLeft="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/twitterText"
+            android:text="#LIRR"
+            android:paddingLeft="15dp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
     <TextView
         android:id="@+id/textView"
         android:text="iLIRR"
@@ -27,92 +145,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true" />
-    <ImageButton
-        android:id="@+id/monthlyCard"
-        android:src="@drawable/ic_local_movies_black_24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="51dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Montly Pass"
-        android:id="@+id/textView2"
-        android:textColor="#104d93"
-        android:textStyle="bold"
-        android:textSize="12dp"
-        android:layout_below="@+id/monthlyCard"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
-    <ImageButton
-        android:id="@+id/schedule"
-        android:src="@drawable/ic_train_black_24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/delay"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Schedule and Fares"
-        android:textColor="#104d93"
-        android:textSize="12dp"
-        android:textStyle="bold"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/schedule"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
 
-    <ImageButton
-        android:id="@+id/delay"
-        android:src="@drawable/ic_error_outline_black_24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/monthlyCard"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="47dp"
-        android:layout_marginEnd="47dp" />
 
-    <TextView
-        android:id="@+id/delays"
-        android:text="Report Issues"
-        android:textStyle="bold"
-        android:textColor="#104d93"
-        android:textSize="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_alignRight="@+id/delay"
-        android:layout_alignEnd="@+id/delay" />
 
-    <ImageButton
-        android:id="@+id/Twitter"
-        android:src="@drawable/ic_action_twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/monthlyCard"
-        android:layout_alignEnd="@+id/monthlyCard" />
 
-    <TextView
-        android:id="@+id/twitterText"
-        android:text="#LIRR"
-        android:paddingLeft="5dp"
-        android:textColor="#104d93"
-        android:textStyle="bold"
-        android:layout_below="@id/Twitter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+
+
+
+
 
 
 </RelativeLayout>

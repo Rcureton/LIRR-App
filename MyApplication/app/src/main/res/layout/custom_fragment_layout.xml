@@ -3,36 +3,93 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="200dp"
-        android:padding="5dp"
+        android:orientation="vertical"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_height="100dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/policeIcon"
-            android:paddingRight="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/police_icon"
+        <TextView
+            android:id="@+id/headlineText"
+            android:text="Report Issue"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:paddingLeft="25dp"
+            android:textColor="@color/colorPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/trafficIcon"
-            android:paddingRight="10dp"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/traffic_jam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/issueIcon"
-            android:padding="10dp"
+        <LinearLayout
+            android:id="@+id/linearFrag"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/policeIcon"
+                android:paddingRight="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/police_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/trafficIcon"
+                android:paddingRight="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/traffic_jam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/issueIcon"
+                android:padding="10dp"
+                android:src="@drawable/ems_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragmentLinear"
+            android:layout_below="@+id/linearFrag"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="Police"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:textColor="@color/colorPrimary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="Traffic"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="Medical"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:paddingLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 
 
