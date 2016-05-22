@@ -716,17 +716,6 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
 
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        switch (requestCode) {
-//            case PERMISSIONS_LOCATION: {
-//                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    map1.setMyLocationEnabled(true);
-//                }
-//            }
-//        }
-//    }
-
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         displayLocation();

@@ -7,7 +7,7 @@ import android.os.Parcelable;
  * Created by MOM on 5/20/16.
  */
 public class Items implements Parcelable {
-    private static String MY_ITEMS= "myItems";
+    public final static String MY_ITEMS= "myItems";
     private double lattitude;
     private double longitude;
 

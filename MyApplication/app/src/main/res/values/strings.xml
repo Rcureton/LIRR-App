@@ -29,4 +29,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_monthly_tickey">MonthlyTickey</string>
+    <string name="open_weather_api">df6ed090d79254b9118b93e2f3e30436</string>
+    <string name="yahoo_client_secret">63056946e7f5ca0e5701066ad5541e489fe553d1</string>
+    <string name="yahoo_consumer_key">dj0yJmk9NGs5MnR0cjNxcVRYJmQ9WVdrOU9XNVhaM3BJTnpZbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00Mg</string>
+
+
 </resources>

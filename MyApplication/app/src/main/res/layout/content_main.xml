@@ -48,7 +48,7 @@
         <ImageButton
             android:id="@+id/schedule"
             android:paddingLeft="25dp"
-            android:src="@drawable/ic_train"
+            android:src="@drawable/weathericon"
             android:background="@color/colorAccent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,6 +88,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Train Map"
             android:id="@+id/textView2"
+            android:paddingLeft="10dp"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textSize="12sp"
@@ -107,7 +108,7 @@
         <TextView
             android:id="@+id/weatherText"
             android:text="Weather"
-            android:paddingLeft="10dp"
+            android:paddingLeft="15dp"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -117,7 +118,7 @@
         <TextView
             android:id="@+id/delays"
             android:text="Report Issues"
-            android:paddingLeft="15dp"
+            android:paddingLeft="20dp"
             android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
