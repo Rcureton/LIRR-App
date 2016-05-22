@@ -14,6 +14,133 @@
     <string name="mapbox_type">mapbox://styles/rcureton/cio90m2hl001yaqm7csz5z0iu
 </string>
 
+    <string-array name="lirr_stations">
+        <item>Albertson</item>
+        <item>Amagansett</item>
+        <item>Amityville</item>
+        <item>Atlantic Terminal</item>
+        <item>Auburndale</item>
+        <item>Babylon</item>
+        <item>Baldwin</item>
+        <item>Bayshore</item>
+        <item>Bayside</item>
+        <item>Bellerose</item>
+        <item>Bellmore</item>
+        <item>Bellport</item>
+        <item>Belmont</item>
+        <item>Bethpage</item>
+        <item>Brentwood</item>
+        <item>Bridgehampton</item>
+        <item>Broadway</item>
+        <item>Carle Place</item>
+        <item>Cedarhurst</item>
+        <item>Central Islip</item>
+        <item>Centre Avenue</item>
+        <item>Copiague</item>
+        <item>Country Life Press</item>
+        <item>Deer Park</item>
+        <item>Douglaston</item>
+        <item>East Hampton</item>
+        <item>East New York</item>
+        <item>East Rockaway</item>
+        <item>East Williston</item>
+        <item>Far Rockaway</item>
+        <item>Farmingdale</item>
+        <item>Floral Park</item>
+        <item>Flushing Main Street</item>
+        <item>Forest Hills</item>
+        <item>Freeport</item>
+        <item>Garden City</item>
+        <item>Gibson</item>
+        <item>Glen Cove</item>
+        <item>Glen Head</item>
+        <item>Glen Street</item>
+        <item>Great Neck</item>
+        <item>Great River</item>
+        <item>Greenlawn</item>
+        <item>Greenport</item>
+        <item>Greenvale</item>
+        <item>Hampton Bays</item>
+        <item>Hempstead</item>
+        <item>Hempstead Gardens</item>
+        <item>Hewlett</item>
+        <item>Hicksville</item>
+        <item>Hollis</item>
+        <item>Hunterspoint Avenue</item>
+        <item>Huntington</item>
+        <item>Inwood</item>
+        <item>Island Park</item>
+        <item>Islip</item>
+        <item>Jamaica</item>
+        <item>Kew Gardens</item>
+        <item>Kings Park</item>
+        <item>Lakeview</item>
+        <item>Laurelton</item>
+        <item>Lawrence</item>
+        <item>Lindenhurst</item>
+        <item>Little Neck</item>
+        <item>Locust Manor</item>
+        <item>Locust Valley</item>
+        <item>Long Beach</item>
+        <item>Long Island City</item>
+        <item>Lynbrook</item>
+        <item>Malverne</item>
+        <item>Manhasset</item>
+        <item>Massapequa</item>
+        <item>Massapequa Park</item>
+        <item>Mastic-Shirley</item>
+        <item>Mattituck</item>
+        <item>Medford</item>
+        <item>Merillion Avenue</item>
+        <item>Merrick</item>
+        <item>Mets-Willets Point</item>
+        <item>Mineola</item>
+        <item>Montauk</item>
+        <item>Murray Hill</item>
+        <item>Nassau Boulevard</item>
+        <item>New Hyde Park</item>
+        <item>Northport</item>
+        <item>Nostrand Avenue</item>
+        <item>Oakdale</item>
+        <item>Oceanside</item>
+        <item>Oyster Bay</item>
+        <item>Patchogue</item>
+        <item>Penn Station</item>
+        <item>Pinelawn</item>
+        <item>Plandome</item>
+        <item>Port Jefferson</item>
+        <item>Port Washington</item>
+        <item>Queens Village</item>
+        <item>Riverhead</item>
+        <item>Rockville Centre</item>
+        <item>Ronkonkoma</item>
+        <item>Rosedale</item>
+        <item>Roslyn</item>
+        <item>Sayville</item>
+        <item>Sea Cliff</item>
+        <item>Seaford</item>
+        <item>Smithtown</item>
+        <item>Southampton</item>
+        <item>Southold</item>
+        <item>Speonk</item>
+        <item>St.Albans</item>
+        <item>St.James</item>
+        <item>Stewart Manor</item>
+        <item>Stony Brook</item>
+        <item>Syosset</item>
+        <item>Valley Stream</item>
+        <item>Wantagh</item>
+        <item>West Hempstead</item>
+        <item>Westbury</item>
+        <item>Westhampton</item>
+        <item>Westwood</item>
+        <item>Woodmere</item>
+        <item>Woodside</item>
+        <item>Wyandanch</item>
+        <item>Yaphank</item>
+
+    </string-array>
+
     <string name="feedbacktype1">Babylon</string>
     <string name="feedbacktype2">Hempstead</string>
     <string name="feedbacktype3">Ronkonkoma</string>

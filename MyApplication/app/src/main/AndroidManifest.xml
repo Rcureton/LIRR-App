@@ -72,7 +72,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".WeatherActivity"></activity>
+        <activity android:name=".WeatherActivity" />
+        <activity android:name=".ScheduleActivity"></activity>
     </application>
 
 </manifest>
