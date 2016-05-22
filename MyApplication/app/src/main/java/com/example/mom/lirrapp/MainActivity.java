@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
 
-    TextView mTextview;
+    TextView mTextview,mBlanktext;
     ImageButton mMonthlyPass,mAlerts, mTwitter, mTrainMap, mWeather;
     private static final String TAG= MainActivity.class.getSimpleName();
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST= 1000;
@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mTextview=(TextView)findViewById(R.id.textView);
+        mBlanktext=(TextView)findViewById(R.id.blankText);
         mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
         mAlerts=(ImageButton)findViewById(R.id.delay);
         mTwitter=(ImageButton)findViewById(R.id.Twitter);
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity
             lat= mLastLocationCoordinates.getLatitude();
             lon= mLastLocationCoordinates.getLongitude();
 
-            Toast.makeText(MainActivity.this, " ", Toast.LENGTH_SHORT).show();
+            mBlanktext.setText("");
         }else{
             Toast.makeText(MainActivity.this, "Couldn't get the location", Toast.LENGTH_SHORT).show();
         }

@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -44,6 +45,7 @@ import java.util.List;
 public class LIRRMap extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     private MapView mapView;
+    private TextView mblank;
     private static final int PERMISSIONS_LOCATION = 0;
     private MapboxMap map1;
     private static final String TAG= LIRRMap.class.getSimpleName();
@@ -64,6 +66,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
+        mblank=(TextView)findViewById(R.id.blank2);
 
         final Items items= new Items();
 
@@ -200,7 +203,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
             lat= mLastLocationCoordinates.getLatitude();
             lon= mLastLocationCoordinates.getLongitude();
 
-            Toast.makeText(LIRRMap.this, " ", Toast.LENGTH_SHORT).show();
+            mblank.setText("");
         }else{
             Toast.makeText(LIRRMap.this, "Couldn't get the location", Toast.LENGTH_SHORT).show();
         }
