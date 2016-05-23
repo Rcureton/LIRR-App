@@ -8,7 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
-public class LIRRSchedule {
+public class LIRRScheduleClass {
 
     @SerializedName("START_STATION")
     @Expose

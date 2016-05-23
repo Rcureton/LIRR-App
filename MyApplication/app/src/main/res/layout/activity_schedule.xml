@@ -9,14 +9,36 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mom.lirrapp.ScheduleActivity">
 
-    <AutoCompleteTextView
-        android:id="@+id/departFrom"
+    <LinearLayout
+        android:id="@+id/scheduleLinear"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/departFrom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <AutoCompleteTextView
+            android:id="@+id/arriveAt"
+            android:layout_below="@id/departFrom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/sendScheduleButton"
+            android:text="Get Schedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/responseText"
+        android:layout_below="@id/scheduleLinear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <AutoCompleteTextView
-        android:id="@+id/arriveAt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

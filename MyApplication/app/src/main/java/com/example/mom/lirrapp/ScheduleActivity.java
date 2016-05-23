@@ -3,13 +3,27 @@ package com.example.mom.lirrapp;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class ScheduleActivity extends AppCompatActivity {
 
     AutoCompleteTextView mDepart, mArrive;
+    Button mButton;
     private String LIRR_URL="https://traintime.lirr.org/api/TrainTime?api_key=da4e37b70fd7bbcf07f8a7202382523c";
+    private String responseText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +32,16 @@ public class ScheduleActivity extends AppCompatActivity {
 
         mDepart=(AutoCompleteTextView)findViewById(R.id.departFrom);
         mArrive=(AutoCompleteTextView)findViewById(R.id.arriveAt);
+        mButton=(Button)findViewById(R.id.sendScheduleButton);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ScheduleAsyncTask scheduleAsyncTask= new ScheduleAsyncTask();
+                scheduleAsyncTask.execute();
+
+            }
+        });
+
 
 
         String [] trainStations= getResources().getStringArray(R.array.lirr_stations);
@@ -44,6 +68,41 @@ public class ScheduleActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... params) {
+            OkHttpClient client= new OkHttpClient();
+
+            HttpUrl.Builder builder= HttpUrl.parse(LIRR_URL).newBuilder();
+            builder.addQueryParameter("startsta",departFrom);
+            builder.addQueryParameter("endsta",arrivingStation);
+            String url= builder.build().toString();
+
+            Request request= new Request.Builder()
+                    .url(url)
+                    .build();
+
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, final Response response) throws IOException {
+                    // ... check for failure using `isSuccessful` before proceeding
+
+                    // Read data on the worker thread
+                    final String responseData = response.body().string();
+                    responseText=responseData;
+
+                    // Run view-related code back on the main thread
+//                    MainActivity.this.runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            TextView myTextView = (TextView) findViewById(R.id.responseText);
+//                            myTextView.setText(responseData);
+//                        }
+//                    });
+                }
+            });
 
             return null;
         }
@@ -51,6 +110,8 @@ public class ScheduleActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            TextView myTextView = (TextView) findViewById(R.id.responseText);
+            myTextView.setText(responseText);
         }
     }
 }

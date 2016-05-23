@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
         mMonthlyPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,MonthlyTicket.class);
+                Intent intent = new Intent(MainActivity.this,ScheduleActivity.class);
                 startActivity(intent);
 
             }

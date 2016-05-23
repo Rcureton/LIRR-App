@@ -21,7 +21,7 @@ public class TRIP {
     private int PEAKINDICATOR;
     @SerializedName("FARES")
     @Expose
-    private com.example.mom.lirrapp.FARES FARES;
+    private com.example.mom.lirrapp.LIRRScheduleData.FARES FARES;
     @SerializedName("VIA_POINT")
     @Expose
     private Object VIAPOINT;
@@ -97,7 +97,7 @@ public class TRIP {
      * @return
      *     The FARES
      */
-    public com.example.mom.lirrapp.FARES getFARES() {
+    public com.example.mom.lirrapp.LIRRScheduleData.FARES getFARES() {
         return FARES;
     }
 
@@ -106,7 +106,7 @@ public class TRIP {
      * @param FARES
      *     The FARES
      */
-    public void setFARES(com.example.mom.lirrapp.FARES FARES) {
+    public void setFARES(com.example.mom.lirrapp.LIRRScheduleData.FARES FARES) {
         this.FARES = FARES;
     }
 
