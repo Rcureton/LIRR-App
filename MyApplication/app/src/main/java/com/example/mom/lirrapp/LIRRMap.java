@@ -94,6 +94,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
                 mapboxMap.setMyLocationEnabled(true);
 
+                //Long Island Train Lines
                 drawPolyLinesBabylon(mapboxMap);
                 ronkonkomaTrainPolyline(mapboxMap);
                 babylonMarkers(mapboxMap);
@@ -116,12 +117,19 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 portWashingtonBranchPolyLine(mapboxMap);
                 montaukBranchMarkers(mapboxMap);
                 montaukBranchPolyline(mapboxMap);
+
+                //Queens and Brooklyn Train Lines
                 cityLineMarkers(mapboxMap);
                 cityLinePoly(mapboxMap);
                 atlanticTerminalMarkers(mapboxMap);
                 atlanticTerminalPolyline(mapboxMap);
+
+                // Metro North Lines
                 hudsonLinePolyLine(mapboxMap);
                 hudsonLineMarkers(mapboxMap);
+                harlemLinePoly(mapboxMap);
+                harlemLineMarkers(mapboxMap);
+                newHavenLinePoly(mapboxMap);
 
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
@@ -769,6 +777,127 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Poughkeepsie Station").position(new LatLng(41.707222, -73.938333)));
 
 
+    }
+    private void harlemLinePoly(MapboxMap map){
+        List<LatLng> harlemline= new ArrayList<>();
+
+        harlemline.add(new LatLng(40.7528, -73.976522));//Grand Central Terminal
+        harlemline.add(new LatLng(40.8052, -73.939));// Harlem-125th Street
+        harlemline.add(new LatLng(40.8257, -73.9154));//Melrose Station
+        harlemline.add(new LatLng(40.8472, -73.8997));//Tremont
+        harlemline.add(new LatLng(40.861534, -73.890561));//Fordham
+        harlemline.add(new LatLng(40.8671, -73.8819));//Botanical Garden
+        harlemline.add(new LatLng(40.8788, -73.8707));//Williams Bridge
+        harlemline.add(new LatLng(40.8955, -73.8628));//Woodlawn Station
+        harlemline.add(new LatLng(40.9062, -73.8554));//Wakefield
+        harlemline.add(new LatLng(40.913, -73.8502));//Mount Vernon West
+        harlemline.add(new LatLng(40.927, -73.84));//Fleetwood
+        harlemline.add(new LatLng(40.941, -73.8351));//Bronxville
+        harlemline.add(new LatLng(40.9505, -73.8284));//Tuckahoe
+        harlemline.add(new LatLng(40.959, -73.8209));//Crestwood
+        harlemline.add(new LatLng(40.9899, -73.8083));//Scarsdale
+        harlemline.add(new LatLng(41.011111, -73.795833));//Hartsdale
+        harlemline.add(new LatLng(41.0338, -73.7747));//White Plains
+        harlemline.add(new LatLng(41.051389, -73.7725));//North White Plains
+        harlemline.add(new LatLng(41.0732, -73.7729));//Valhalla
+        harlemline.add(new LatLng(41.096, -73.7938));//Mount Pleasant
+        harlemline.add(new LatLng(41.109, -73.796));//Hawthorne
+        harlemline.add(new LatLng(41.1348, -73.7923));//Pleasantville
+        harlemline.add(new LatLng(41.1579, -73.7749));//Chappaqua
+        harlemline.add(new LatLng(41.2084, -73.7296));//Mount Kisko
+        harlemline.add(new LatLng(41.2373, -73.7001));//Bedford Hills
+        harlemline.add(new LatLng(41.2598, -73.6841));//Katonah
+        harlemline.add(new LatLng(41.2945, -73.6776));//Goldens Bridge
+        harlemline.add(new LatLng(41.3256, -73.659));//Purdy's
+        harlemline.add(new LatLng(41.3479, -73.6622));//Croton Falls
+        harlemline.add(new LatLng(41.3947, -73.6198));//Brewster
+        harlemline.add(new LatLng(41.4127, -73.623));//Southeast
+        harlemline.add(new LatLng(41.51174, -73.60428));//Patterson
+        harlemline.add(new LatLng(41.5646, -73.6004));//Pawling
+        harlemline.add(new LatLng(41.5929, -73.588));//Appalachian Trail
+        harlemline.add(new LatLng(41.6374, -73.5717));//Harlem Valley- Wingdale
+        harlemline.add(new LatLng(41.7427, -73.5762));//Dover Plains
+        harlemline.add(new LatLng(41.7795, -73.559));//Tenmile River
+        harlemline.add(new LatLng(41.8147, -73.5623));//Wassiac
+
+        map.addPolyline(new PolylineOptions().addAll(harlemline).color(Color.parseColor("#09A6C9")));
+
+    }
+    private void harlemLineMarkers(MapboxMap map){
+
+        map.addMarker(new MarkerOptions().title("Melrose Station").position(new LatLng(40.8257, -73.9154)));
+        map.addMarker(new MarkerOptions().title("Tremont Station").position(new LatLng(40.8472, -73.8997)));
+        map.addMarker(new MarkerOptions().title("Fordham Station").position(new LatLng(40.861534, -73.890561)));
+        map.addMarker(new MarkerOptions().title("Botanical Gardens Station").position(new LatLng(40.8671, -73.8819)));
+        map.addMarker(new MarkerOptions().title("Williams Bridge Station").position(new LatLng(40.8788, -73.8707)));
+        map.addMarker(new MarkerOptions().title("Woodlawn Station").position(new LatLng(40.8955, -73.8628)));
+        map.addMarker(new MarkerOptions().title("Wakefield Station").position(new LatLng(40.9062, -73.8554)));
+        map.addMarker(new MarkerOptions().title("Mount Vernon West Station").position(new LatLng(40.913, -73.8502)));
+        map.addMarker(new MarkerOptions().title("Fleetwood Station").position(new LatLng(40.927, -73.84)));
+        map.addMarker(new MarkerOptions().title("Bronxville Station").position(new LatLng(40.941, -73.8351)));
+        map.addMarker(new MarkerOptions().title("Tuckahoe Station").position(new LatLng(40.9505, -73.8284)));
+        map.addMarker(new MarkerOptions().title("Crestwood Station").position(new LatLng(40.959, -73.8209)));
+        map.addMarker(new MarkerOptions().title("Scarsdale Station").position(new LatLng(40.9899, -73.8083)));
+        map.addMarker(new MarkerOptions().title("Hartsdale Station").position(new LatLng(41.011111, -73.795833)));
+        map.addMarker(new MarkerOptions().title("White Plains Station").position(new LatLng(41.0338, -73.7747)));
+        map.addMarker(new MarkerOptions().title("North White Plains Station").position(new LatLng(41.051389, -73.7725)));
+        map.addMarker(new MarkerOptions().title("Valhalla Station").position(new LatLng(41.0732, -73.7729)));
+        map.addMarker(new MarkerOptions().title("Mount Pleasant Station").position(new LatLng(41.096, -73.7938)));
+        map.addMarker(new MarkerOptions().title("Hawthorne Station").position(new LatLng(41.109, -73.796)));
+        map.addMarker(new MarkerOptions().title("Pleasantville Station").position(new LatLng(41.1348, -73.7923)));
+        map.addMarker(new MarkerOptions().title("Chappaqua Station").position(new LatLng(41.1579, -73.7749)));
+        map.addMarker(new MarkerOptions().title("Mount Kisko Station").position(new LatLng(41.2084, -73.7296)));
+        map.addMarker(new MarkerOptions().title("Bedford Hills Station").position(new LatLng(41.2373, -73.7001)));
+        map.addMarker(new MarkerOptions().title("Katonah Station").position(new LatLng(41.2598, -73.6841)));
+        map.addMarker(new MarkerOptions().title("Golden's Bridge Station").position(new LatLng(41.2945, -73.6776)));
+        map.addMarker(new MarkerOptions().title("Purdy's Station").position(new LatLng(41.3256, -73.659)));
+        map.addMarker(new MarkerOptions().title("Croton-Falls Station").position(new LatLng(41.3479, -73.6622)));
+        map.addMarker(new MarkerOptions().title("Brewster Station").position(new LatLng(41.3947, -73.6198)));
+        map.addMarker(new MarkerOptions().title("Southeast Station").position(new LatLng(41.4127, -73.623)));
+        map.addMarker(new MarkerOptions().title("Patterson Station").position(new LatLng(41.51174, -73.60428)));
+        map.addMarker(new MarkerOptions().title("Pawling Station").position(new LatLng(41.5646, -73.6004)));
+        map.addMarker(new MarkerOptions().title("Appalachian Trail Station").position(new LatLng(41.5929, -73.588)));
+        map.addMarker(new MarkerOptions().title("Harlem Valley-Wingdale Station").position(new LatLng(41.6374, -73.5717)));
+        map.addMarker(new MarkerOptions().title("Dover Plains Station").position(new LatLng(41.7427, -73.5762)));
+        map.addMarker(new MarkerOptions().title("Tenmile River Station").position(new LatLng(41.7795, -73.559)));
+        map.addMarker(new MarkerOptions().title("Wassiac Station").position(new LatLng(41.8147, -73.5623)));
+
+    }
+    private void newHavenLinePoly(MapboxMap map){
+        List<LatLng> newHavenLine=new ArrayList<>();
+
+        newHavenLine.add(new LatLng(40.861534, -73.890561));//Fordham
+        newHavenLine.add(new LatLng(40.911942, -73.831678));//Mount Vernon East
+        newHavenLine.add(new LatLng(40.912961, -73.810251));//Pelham
+        newHavenLine.add(new LatLng(40.912317, -73.784936));//New Rochelle
+        newHavenLine.add(new LatLng(40.934444, -73.759782));//Larchmont
+        newHavenLine.add(new LatLng(40.955109, -73.736115));//Marmaroneck
+        newHavenLine.add(new LatLng(40.97, -73.711));//Harrison
+        newHavenLine.add(new LatLng(40.987803, -73.679123));//Rye
+        newHavenLine.add(new LatLng(41.00178, -73.664703));//Port Chester
+        newHavenLine.add(new LatLng(41.022326, -73.62462));//Greenwich
+        newHavenLine.add(new LatLng(41.031111, -73.598333));//Cos Cob
+        newHavenLine.add(new LatLng(41.032735, -73.594215));//Riverside
+        newHavenLine.add(new LatLng(41.033333, -73.567778));//Old Greenwich
+        newHavenLine.add(new LatLng(41.046937, -73.541493));//Stamford Terminal
+        newHavenLine.add(new LatLng(41.070099, -73.49787));//Noroton Heights
+        newHavenLine.add(new LatLng(41.078187, -73.472958));//Darien
+        newHavenLine.add(new LatLng(41.07851, -73.445535));//Rowayton
+        newHavenLine.add(new LatLng(41.0957, -73.42185));//South Norwalk
+        newHavenLine.add(new LatLng(41.104, -73.4045));//East Norwalk
+        newHavenLine.add(new LatLng(41.119986, -73.37142));//Westport
+        newHavenLine.add(new LatLng(41.123316, -73.315415));//Green's Farm
+        newHavenLine.add(new LatLng(41.136389, -73.286111));//Southport
+        newHavenLine.add(new LatLng(41.142778, -73.258056));//Fairfield
+        newHavenLine.add(new LatLng(41.1611, -73.2343));//Fairfield Metro
+        newHavenLine.add(new LatLng(41.1778, -73.1871));//Bridgeport
+        newHavenLine.add(new LatLng(41.195303, -73.131523));//Stratford
+        newHavenLine.add(new LatLng(41.22235, -73.059619));//Milford
+        newHavenLine.add(new LatLng(41.271142, -72.963199));//West Haven
+        newHavenLine.add(new LatLng(41.2975, -72.926667));//Union Station- New Haven
+        newHavenLine.add(new LatLng(41.305763, -72.921753));//New Haven State Street
+
+        map.addPolyline(new PolylineOptions().addAll(newHavenLine).color(Color.parseColor("#AB2A07")));
     }
 
             // Add the mapView lifecycle to the activity's lifecycle methods
