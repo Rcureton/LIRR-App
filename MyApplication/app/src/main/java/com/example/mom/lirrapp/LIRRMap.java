@@ -947,7 +947,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         newCananLine.add(new LatLng(41.0888, -73.5178));//Springdale
         newCananLine.add(new LatLng(41.116, -73.4981));//Talmadge Hill
         newCananLine.add(new LatLng(41.1463, -73.4956));//New Canaan
-        map.addPolyline(new PolylineOptions().addAll(newCananLine).color(Color.parseColor("#D2192C")));
+        map.addPolyline(new PolylineOptions().addAll(newCananLine).color(Color.parseColor("#FFC300")));
 
     }
     private void newCananMarkers(MapboxMap map){
