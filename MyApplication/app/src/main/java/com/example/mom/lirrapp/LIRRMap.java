@@ -120,6 +120,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 cityLinePoly(mapboxMap);
                 atlanticTerminalMarkers(mapboxMap);
                 atlanticTerminalPolyline(mapboxMap);
+                hudsonLinePolyLine(mapboxMap);
+                hudsonLineMarkers(mapboxMap);
 
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
@@ -693,6 +695,79 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Woodmere Train Station").position(new LatLng(40.631298, -73.713740)));
         map.addMarker(new MarkerOptions().title("Hewlett Train Station").position(new LatLng(40.636737, -73.705151)));
         map.addMarker(new MarkerOptions().title("Gibson Train Station").position(new LatLng(40.649927, -73.701694)));
+
+    }
+
+    private void hudsonLinePolyLine(MapboxMap map){
+        List<LatLng> hudsonLine = new ArrayList<>();
+
+        hudsonLine.add(new LatLng(40.7528, -73.976522));//Grand Central Terminal
+        hudsonLine.add(new LatLng(40.8052, -73.939));// Harlem-125th Street
+        hudsonLine.add(new LatLng(40.825375, -73.930267));//Yankee Stadium- 153rd Street
+        hudsonLine.add(new LatLng(40.854, -73.9199));//Morris Heights
+        hudsonLine.add(new LatLng(40.8614, -73.9147));//University Heights
+        hudsonLine.add(new LatLng(40.8747, -73.912));//Marble Hill
+        hudsonLine.add(new LatLng(40.8789, -73.9227));//Spuyten Duyvil
+        hudsonLine.add(new LatLng(40.90444, -73.9139));//Riverdale
+        hudsonLine.add(new LatLng(40.9238, -73.9056));//Ludlow
+        hudsonLine.add(new LatLng(40.9356, -73.9023));//Yonkers
+        hudsonLine.add(new LatLng(40.9506, -73.8991));//Glenwood
+        hudsonLine.add(new LatLng(40.9721, -73.8896));//Greystone
+        hudsonLine.add(new LatLng(40.9946, -73.8847));//Hastings on Hudson
+        hudsonLine.add(new LatLng(41.0125, -73.879444));//Dobbs Ferry
+        hudsonLine.add(new LatLng(41.027, -73.8769));//Ardsley on Hudson
+        hudsonLine.add(new LatLng(41.0395, -73.8733));//Irvington
+        hudsonLine.add(new LatLng(41.0755, -73.8656));//Tarrytown
+        hudsonLine.add(new LatLng(41.094722, -73.869444));//Philipse Manor
+        hudsonLine.add(new LatLng(41.137, -73.8664));//Scarborough
+        hudsonLine.add(new LatLng(41.156, -73.8696));//Ossining
+        hudsonLine.add(new LatLng(41.1898, -73.8827));//Croton-Harmon Station
+        hudsonLine.add(new LatLng(41.247, -73.9232));//Cortlandt Station
+        hudsonLine.add(new LatLng(41.285, -73.930833));//Peekskill
+        hudsonLine.add(new LatLng(41.3324, -73.9709));//Manitou
+        hudsonLine.add(new LatLng(41.3828, -73.9471));//Garrison
+        hudsonLine.add(new LatLng(41.4152, -73.9585));//Cold Spring
+        hudsonLine.add(new LatLng(41.4508, -73.9829));//Breakneck Ridge
+        hudsonLine.add(new LatLng(41.5055, -73.9853));//Beacon
+        hudsonLine.add(new LatLng(41.5889, -73.9479));//New Hamburg
+        hudsonLine.add(new LatLng(41.707222, -73.938333));//Poughkeepsie
+
+        map.addPolyline(new PolylineOptions().addAll(hudsonLine).color(Color.parseColor("#8BC34A")));
+
+    }
+
+    private void hudsonLineMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Grand Central Terminal").position(new LatLng(40.7528, -73.976522)));
+        map.addMarker(new MarkerOptions().title("Harlem 125th Street Station").position(new LatLng(40.8052, -73.939)));
+        map.addMarker(new MarkerOptions().title("Yankee Stadium 153rd Street Station").position(new LatLng(40.825375, -73.930267)));
+        map.addMarker(new MarkerOptions().title("Morris Heights Station").position(new LatLng(40.854, -73.9199)));
+        map.addMarker(new MarkerOptions().title("University Heights Station").position(new LatLng(40.8614, -73.9147)));
+        map.addMarker(new MarkerOptions().title("Marble Hill Station").position(new LatLng(40.8747, -73.912)));
+        map.addMarker(new MarkerOptions().title("Spuyten Duyvil Station").position(new LatLng(40.8789, -73.9227)));
+        map.addMarker(new MarkerOptions().title("Riverdale Station").position(new LatLng(40.90444, -73.9139)));
+        map.addMarker(new MarkerOptions().title("Ludlow Station").position(new LatLng(40.9238, -73.9056)));
+        map.addMarker(new MarkerOptions().title("Yonkers Station").position(new LatLng(40.9356, -73.9023)));
+        map.addMarker(new MarkerOptions().title("Glenwood Station").position(new LatLng(40.9506, -73.8991)));
+        map.addMarker(new MarkerOptions().title("Greystone Station").position(new LatLng(40.9721, -73.8896)));
+        map.addMarker(new MarkerOptions().title("Hastings on Hudson Station").position(new LatLng(40.9946, -73.8847)));
+        map.addMarker(new MarkerOptions().title("Dobbs Ferry Station").position(new LatLng(41.0125, -73.879444)));
+        map.addMarker(new MarkerOptions().title("Ardsley on Hudson Station").position(new LatLng(41.027, -73.8769)));
+        map.addMarker(new MarkerOptions().title("Irvington Station").position(new LatLng(41.0395, -73.8733)));
+        map.addMarker(new MarkerOptions().title("Tarrytown Station").position(new LatLng(41.0755, -73.8656)));
+        map.addMarker(new MarkerOptions().title("Philipse Manor Station").position(new LatLng(41.094722, -73.869444)));
+        map.addMarker(new MarkerOptions().title("Scarborough Station").position(new LatLng(41.137, -73.8664)));
+        map.addMarker(new MarkerOptions().title("Ossining Station").position(new LatLng(41.156, -73.8696)));
+        map.addMarker(new MarkerOptions().title("Croton-Harmon Station").position(new LatLng(41.1898, -73.8827)));
+        map.addMarker(new MarkerOptions().title("Cortlandt Station").position(new LatLng(41.247, -73.9232)));
+        map.addMarker(new MarkerOptions().title("Peekskill Station").position(new LatLng(41.285, -73.930833)));
+        map.addMarker(new MarkerOptions().title("Manitou Station").position(new LatLng(41.3324, -73.9709)));
+        map.addMarker(new MarkerOptions().title("Garrison Station").position(new LatLng(41.3828, -73.9471)));
+        map.addMarker(new MarkerOptions().title("Cold Spring Station").position(new LatLng(41.4152, -73.9585)));
+        map.addMarker(new MarkerOptions().title("Breakneck Ridge Station").position(new LatLng(41.4508, -73.9829)));
+        map.addMarker(new MarkerOptions().title("Beacon Station").position(new LatLng(41.5055, -73.9853)));
+        map.addMarker(new MarkerOptions().title("New Hamburg Station").position(new LatLng(41.5889, -73.9479)));
+        map.addMarker(new MarkerOptions().title("Poughkeepsie Station").position(new LatLng(41.707222, -73.938333)));
+
 
     }
 
