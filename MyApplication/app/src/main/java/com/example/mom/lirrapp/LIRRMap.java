@@ -130,6 +130,13 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 harlemLinePoly(mapboxMap);
                 harlemLineMarkers(mapboxMap);
                 newHavenLinePoly(mapboxMap);
+                newHavenMarkers(mapboxMap);
+                newCanaanPoly(mapboxMap);
+                newCananMarkers(mapboxMap);
+                danburyMarkers(mapboxMap);
+                danburyPoly(mapboxMap);
+                waterburyMarkers(mapboxMap);
+                waterburyPoly(mapboxMap);
 
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
@@ -899,6 +906,110 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         map.addPolyline(new PolylineOptions().addAll(newHavenLine).color(Color.parseColor("#AB2A07")));
     }
+    private void newHavenMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Fordham Station").position(new LatLng(40.861534, -73.890561)));
+        map.addMarker(new MarkerOptions().title("Mount Vernon East Station").position(new LatLng(40.911942, -73.831678)));
+        map.addMarker(new MarkerOptions().title("Pelham Station").position(new LatLng(40.912961, -73.810251)));
+        map.addMarker(new MarkerOptions().title("New Rochelle Station").position(new LatLng(40.912317, -73.784936)));
+        map.addMarker(new MarkerOptions().title("Larchmont Station").position(new LatLng(40.934444, -73.759782)));
+        map.addMarker(new MarkerOptions().title("Marmaroneck Station").position(new LatLng(40.955109, -73.736115)));
+        map.addMarker(new MarkerOptions().title("Harrison Station").position(new LatLng(40.97, -73.711)));
+        map.addMarker(new MarkerOptions().title("Rye Station").position(new LatLng(40.987803, -73.679123)));
+        map.addMarker(new MarkerOptions().title("Port Chester Station").position(new LatLng(41.00178, -73.664703)));
+        map.addMarker(new MarkerOptions().title("Greenwich Station").position(new LatLng(41.022326, -73.62462)));
+        map.addMarker(new MarkerOptions().title("Cos Cob Station").position(new LatLng(41.031111, -73.598333)));
+        map.addMarker(new MarkerOptions().title("Riverside Station").position(new LatLng(41.032735, -73.594215)));
+        map.addMarker(new MarkerOptions().title("Old Greenwich Station").position(new LatLng(41.033333, -73.567778)));
+        map.addMarker(new MarkerOptions().title("Stamford Terminal").position(new LatLng(41.046937, -73.541493)));
+        map.addMarker(new MarkerOptions().title("Noroton Heights Station").position(new LatLng(41.070099, -73.49787)));
+        map.addMarker(new MarkerOptions().title("Darien Station").position(new LatLng(41.078187, -73.472958)));
+        map.addMarker(new MarkerOptions().title("Rowayton Station").position(new LatLng(41.07851, -73.445535)));
+        map.addMarker(new MarkerOptions().title("South Norwalk Station").position(new LatLng(41.0957, -73.42185)));
+        map.addMarker(new MarkerOptions().title("East Norwalk Station").position(new LatLng(41.104, -73.4045)));
+        map.addMarker(new MarkerOptions().title("Westport Station").position(new LatLng(41.119986, -73.37142)));
+        map.addMarker(new MarkerOptions().title("Green's Farm Station").position(new LatLng(41.123316, -73.315415)));
+        map.addMarker(new MarkerOptions().title("Southport Station").position(new LatLng(41.136389, -73.286111)));
+        map.addMarker(new MarkerOptions().title("Fairfieled Station").position(new LatLng(41.142778, -73.258056)));
+        map.addMarker(new MarkerOptions().title("Fairfield Metro Station").position(new LatLng(41.1611, -73.2343)));
+        map.addMarker(new MarkerOptions().title("Bridgeport Station").position(new LatLng(41.1778, -73.1871)));
+        map.addMarker(new MarkerOptions().title("Stratford Station").position(new LatLng(41.195303, -73.131523)));
+        map.addMarker(new MarkerOptions().title("Milford Station").position(new LatLng(41.22235, -73.059619)));
+        map.addMarker(new MarkerOptions().title("West Haven Station").position(new LatLng(41.271142, -72.963199)));
+        map.addMarker(new MarkerOptions().title("Union Station- New Haven").position(new LatLng(41.2975, -72.926667)));
+        map.addMarker(new MarkerOptions().title("New Haven State Street Station").position(new LatLng(41.305763, -72.921753)));
+
+    }
+    private void newCanaanPoly(MapboxMap map){
+        List<LatLng> newCananLine= new ArrayList<>();
+
+        newCananLine.add(new LatLng(41.046937, -73.541493));//Stamford Terminal
+        newCananLine.add(new LatLng(41.0705, -73.5199));//Glenbrook
+        newCananLine.add(new LatLng(41.0888, -73.5178));//Springdale
+        newCananLine.add(new LatLng(41.116, -73.4981));//Talmadge Hill
+        newCananLine.add(new LatLng(41.1463, -73.4956));//New Canaan
+        map.addPolyline(new PolylineOptions().addAll(newCananLine).color(Color.parseColor("#D2192C")));
+
+    }
+    private void newCananMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Stamford Terminal").position(new LatLng(41.046937, -73.541493)));
+        map.addMarker(new MarkerOptions().title("Glenbrook Station").position(new LatLng(41.0705, -73.5199)));
+        map.addMarker(new MarkerOptions().title("Srpingdale Station").position(new LatLng(41.0888, -73.5178)));
+        map.addMarker(new MarkerOptions().title("Talmadge Hill Station").position(new LatLng(41.116, -73.4981)));
+        map.addMarker(new MarkerOptions().title("New Canaan Station").position(new LatLng(41.1463, -73.4956)));
+
+
+    }
+
+    private void danburyPoly(MapboxMap map) {
+        List<LatLng> danburyLines= new ArrayList<>();
+
+        danburyLines.add(new LatLng(41.0957, -73.42185));//South Norwalk
+        danburyLines.add(new LatLng(41.1466, -73.4278));//Merrit 7
+        danburyLines.add(new LatLng(41.1959, -73.4321));//Wilton
+        danburyLines.add(new LatLng(41.216667, -73.426667));//Canonndale
+        danburyLines.add(new LatLng(41.2667, -73.4409));//Branchville
+        danburyLines.add(new LatLng(41.3256, -73.4335));//Redding
+        danburyLines.add(new LatLng(41.376, -73.418));//Bethel
+        danburyLines.add(new LatLng(41.3963, -73.4493));//Danbury
+        map.addPolyline(new PolylineOptions().addAll(danburyLines).color(Color.parseColor("#D3720B")));
+    }
+
+    private void danburyMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Merrit 7 Station").position(new LatLng(41.0957, -73.42185)));
+        map.addMarker(new MarkerOptions().title("Wilton Station").position(new LatLng(41.1959, -73.4321)));
+        map.addMarker(new MarkerOptions().title("Cannondale Station").position(new LatLng(41.216667, -73.426667)));
+        map.addMarker(new MarkerOptions().title("Branchville Station").position(new LatLng(41.2667, -73.4409)));
+        map.addMarker(new MarkerOptions().title("Redding Station").position(new LatLng(41.3256, -73.4335)));
+        map.addMarker(new MarkerOptions().title("Bethel Station").position(new LatLng(41.376, -73.418)));
+        map.addMarker(new MarkerOptions().title("Danbury Station").position(new LatLng(41.3963, -73.4493)));
+
+    }
+
+    private void waterburyPoly(MapboxMap map){
+        List<LatLng> waterLines= new ArrayList<>();
+
+        waterLines.add(new LatLng(41.1778, -73.1871));//Bridgeport
+        waterLines.add(new LatLng(41.195303, -73.131523));//Stratford
+        waterLines.add(new LatLng(41.320284, -73.083565));//Derby-Shelton
+        waterLines.add(new LatLng(41.3442, -73.0799));//Asonia
+        waterLines.add(new LatLng(41.3953, -73.0725));//Seymour
+        waterLines.add(new LatLng(41.4407, -73.0631));//Beacon Falls
+        waterLines.add(new LatLng(41.492778, -73.052222));//Naugatuck
+        waterLines.add(new LatLng(41.5544, -73.047));//Waterbury
+        map.addPolyline(new PolylineOptions().addAll(waterLines).color(Color.parseColor("#5FECC9")));
+
+    }
+
+    private void waterburyMarkers(MapboxMap map){
+        map.addMarker(new MarkerOptions().title("Derby-Shelton Station").position(new LatLng(41.320284, -73.083565)));
+        map.addMarker(new MarkerOptions().title("Asonia Station").position(new LatLng(41.3442, -73.0799)));
+        map.addMarker(new MarkerOptions().title("Seymour Station").position(new LatLng(41.3953, -73.0725)));
+        map.addMarker(new MarkerOptions().title("Beacon Falls Station").position(new LatLng(41.4407, -73.0631)));
+        map.addMarker(new MarkerOptions().title("Naugatuck Station").position(new LatLng(41.492778, -73.052222)));
+        map.addMarker(new MarkerOptions().title("Waterbury Station").position(new LatLng(41.5544, -73.047)));
+
+    }
+
 
             // Add the mapView lifecycle to the activity's lifecycle methods
 
