@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -21,7 +22,8 @@ import okhttp3.Response;
 
 public class ScheduleActivity extends AppCompatActivity {
 
-    AutoCompleteTextView mDepart, mArrive;
+
+    Spinner mDepart,mArrive;
     Button mButton;
 
     @Override
@@ -29,8 +31,8 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        mDepart = (AutoCompleteTextView) findViewById(R.id.departFrom);
-        mArrive = (AutoCompleteTextView) findViewById(R.id.arriveAt);
+        mDepart = (Spinner) findViewById(R.id.departFrom);
+        mArrive = (Spinner) findViewById(R.id.arriveAt);
         mButton = (Button) findViewById(R.id.sendScheduleButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,24 +44,30 @@ public class ScheduleActivity extends AppCompatActivity {
         });
 
 
+
         String[] trainStations = getResources().getStringArray(R.array.lirr_stations);
         String [] trainAbbrevs= getResources().getStringArray(R.array.lirr_stations_abv);
+
+        String [] spinnerArray= new String[trainStations.length];
 
         //Matching the Town Names to the Abbreviations
         HashMap<String,String> mappy= new HashMap<>();
 
         for(int i=0; i< trainStations.length; i++){
             mappy.put(trainStations[i], trainAbbrevs[i]);
+            spinnerArray[i]= trainStations.get(i);
         }
-        Set keymap= mappy.keySet();
+        mappy.get(trainAbbrevs);
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, trainStations);
-
-        mDepart.setThreshold(1);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, spinnerArray);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         mDepart.setAdapter(adapter);
-        mArrive.setThreshold(1);
-        mArrive.setAdapter(adapter);
+
+//        mDepart.setThreshold(1);
+//        mDepart.setAdapter(adapter);
+//        mArrive.setThreshold(1);
+//        mArrive.setAdapter(adapter);
 
 
     }
@@ -71,8 +79,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            departFrom = mDepart.getText().toString();
-            arrivingStation = mArrive.getText().toString();
+            departFrom = mDepart.getSelectedItem().toString();
+            arrivingStation = mArrive.getSelectedItem().toString();
 
 
             super.onPreExecute();
