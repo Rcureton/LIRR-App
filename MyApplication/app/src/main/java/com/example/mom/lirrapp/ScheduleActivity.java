@@ -3,6 +3,7 @@ package com.example.mom.lirrapp;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -41,12 +44,25 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
         String[] trainStations = getResources().getStringArray(R.array.lirr_stations);
+        String [] trainAbbrevs= getResources().getStringArray(R.array.lirr_stations_abv);
+
+        //Matching the Town Names to the Abbreviations
+        HashMap<String,String> mappy= new HashMap<>();
+
+        for(int i=0; i< trainStations.length; i++){
+            mappy.put(trainStations[i], trainAbbrevs[i]);
+        }
+        Set keymap= mappy.keySet();
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, trainStations);
 
         mDepart.setThreshold(1);
         mDepart.setAdapter(adapter);
         mArrive.setThreshold(1);
         mArrive.setAdapter(adapter);
+
+
     }
 
     private class ScheduleAsyncTask extends AsyncTask<String, Void, String> {
@@ -58,6 +74,7 @@ public class ScheduleActivity extends AppCompatActivity {
         protected void onPreExecute() {
             departFrom = mDepart.getText().toString();
             arrivingStation = mArrive.getText().toString();
+
 
             super.onPreExecute();
         }
