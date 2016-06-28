@@ -22,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,10 @@ import com.google.android.gms.location.LocationServices;
 
 import com.example.mom.lirrapp.Constants;
 import com.mukesh.permissions.AppPermissions;
+import com.squareup.picasso.Picasso;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
     TextView mTextview, mBlanktext;
+    ImageView mBackgroundImage;
     ImageButton mMonthlyPass, mAlerts, mTwitter, mTrainMap, mWeather;
     double lon;
     double lat;
@@ -53,8 +59,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mBackgroundImage= (ImageView)findViewById(R.id.backgroundImage);
         mTextview = (TextView) findViewById(R.id.textView);
         mBlanktext = (TextView) findViewById(R.id.blankText);
         mMonthlyPass = (ImageButton) findViewById(R.id.monthlyCard);
@@ -62,6 +71,9 @@ public class MainActivity extends AppCompatActivity
         mTwitter = (ImageButton) findViewById(R.id.Twitter);
         mWeather = (ImageButton) findViewById(R.id.schedule);
         mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
+
+//        Picasso.with(MainActivity.this).load("http://graphics8.nytimes.com/images/2013/01/20/nyregion/20GRAND2/20GRAND2-articleLarge-v2.jpg").into(mBackgroundImage);
+
 
         final Items items = new Items();
 

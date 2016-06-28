@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lirr_image"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.mom.lirrapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:src="@drawable/grandcentral"
+        android:scaleType="center"
+        android:layout_width="500dp"
+        android:layout_height="600dp" />
 
     <ImageView
         android:id="@+id/imageView"
