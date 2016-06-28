@@ -95,7 +95,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
-                myLocation();
+//
                 mapboxMap.setMyLocationEnabled(true);
 
                 //Long Island Train Lines
@@ -288,11 +288,6 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         reportIconsFragment.show(getFragmentManager(), "custom_fragment_dialog");
     }
 
-
-    private void myLocation() {
-        map1.setMyLocationEnabled(true);
-        map1.getMyLocation();
-    }
 
     private void cityLinePoly(MapboxMap map) {
         List<LatLng> pennPolyline = new ArrayList<>();
