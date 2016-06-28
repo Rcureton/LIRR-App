@@ -1,9 +1,9 @@
-
 package com.example.mom.lirrapp.Weather;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Wind {
@@ -16,36 +16,28 @@ public class Wind {
     private double deg;
 
     /**
-     * 
-     * @return
-     *     The speed
+     * @return The speed
      */
     public double getSpeed() {
         return speed;
     }
 
     /**
-     * 
-     * @param speed
-     *     The speed
+     * @param speed The speed
      */
     public void setSpeed(double speed) {
         this.speed = speed;
     }
 
     /**
-     * 
-     * @return
-     *     The deg
+     * @return The deg
      */
     public double getDeg() {
         return deg;
     }
 
     /**
-     * 
-     * @param deg
-     *     The deg
+     * @param deg The deg
      */
     public void setDeg(double deg) {
         this.deg = deg;

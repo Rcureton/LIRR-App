@@ -10,7 +10,7 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
  */
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    private static final String TAG = "MyFirebaseIIDService";
+    private static final String TAG = MyFirebaseInstanceIDService.class.getSimpleName();
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of
@@ -31,7 +31,7 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
     /**
      * Persist token to third-party servers.
-     *
+     * <p>
      * Modify this method to associate the user's FCM InstanceID token with any server-side account
      * maintained by your application.
      *

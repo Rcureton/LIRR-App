@@ -1,11 +1,12 @@
-
 package com.example.mom.lirrapp.LIRRScheduleData;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class LEG {
@@ -39,162 +40,126 @@ public class LEG {
     private String PUBLICCONIND;
 
     /**
-     * 
-     * @return
-     *     The TRAINID
+     * @return The TRAINID
      */
     public String getTRAINID() {
         return TRAINID;
     }
 
     /**
-     * 
-     * @param TRAINID
-     *     The TRAIN_ID
+     * @param TRAINID The TRAIN_ID
      */
     public void setTRAINID(String TRAINID) {
         this.TRAINID = TRAINID;
     }
 
     /**
-     * 
-     * @return
-     *     The BRANCH
+     * @return The BRANCH
      */
     public String getBRANCH() {
         return BRANCH;
     }
 
     /**
-     * 
-     * @param BRANCH
-     *     The BRANCH
+     * @param BRANCH The BRANCH
      */
     public void setBRANCH(String BRANCH) {
         this.BRANCH = BRANCH;
     }
 
     /**
-     * 
-     * @return
-     *     The DEPARTTIME
+     * @return The DEPARTTIME
      */
     public String getDEPARTTIME() {
         return DEPARTTIME;
     }
 
     /**
-     * 
-     * @param DEPARTTIME
-     *     The DEPART_TIME
+     * @param DEPARTTIME The DEPART_TIME
      */
     public void setDEPARTTIME(String DEPARTTIME) {
         this.DEPARTTIME = DEPARTTIME;
     }
 
     /**
-     * 
-     * @return
-     *     The DESTINATION
+     * @return The DESTINATION
      */
     public String getDESTINATION() {
         return DESTINATION;
     }
 
     /**
-     * 
-     * @param DESTINATION
-     *     The DESTINATION
+     * @param DESTINATION The DESTINATION
      */
     public void setDESTINATION(String DESTINATION) {
         this.DESTINATION = DESTINATION;
     }
 
     /**
-     * 
-     * @return
-     *     The TRACK
+     * @return The TRACK
      */
     public Object getTRACK() {
         return TRACK;
     }
 
     /**
-     * 
-     * @param TRACK
-     *     The TRACK
+     * @param TRACK The TRACK
      */
     public void setTRACK(Object TRACK) {
         this.TRACK = TRACK;
     }
 
     /**
-     * 
-     * @return
-     *     The STATUS
+     * @return The STATUS
      */
     public String getSTATUS() {
         return STATUS;
     }
 
     /**
-     * 
-     * @param STATUS
-     *     The STATUS
+     * @param STATUS The STATUS
      */
     public void setSTATUS(String STATUS) {
         this.STATUS = STATUS;
     }
 
     /**
-     * 
-     * @return
-     *     The ARRIVETIME
+     * @return The ARRIVETIME
      */
     public String getARRIVETIME() {
         return ARRIVETIME;
     }
 
     /**
-     * 
-     * @param ARRIVETIME
-     *     The ARRIVE_TIME
+     * @param ARRIVETIME The ARRIVE_TIME
      */
     public void setARRIVETIME(String ARRIVETIME) {
         this.ARRIVETIME = ARRIVETIME;
     }
 
     /**
-     * 
-     * @return
-     *     The STOPS
+     * @return The STOPS
      */
     public List<STOP> getSTOPS() {
         return STOPS;
     }
 
     /**
-     * 
-     * @param STOPS
-     *     The STOPS
+     * @param STOPS The STOPS
      */
     public void setSTOPS(List<STOP> STOPS) {
         this.STOPS = STOPS;
     }
 
     /**
-     * 
-     * @return
-     *     The PUBLICCONIND
+     * @return The PUBLICCONIND
      */
     public String getPUBLICCONIND() {
         return PUBLICCONIND;
     }
 
     /**
-     * 
-     * @param PUBLICCONIND
-     *     The PUBLIC_CON_IND
+     * @param PUBLICCONIND The PUBLIC_CON_IND
      */
     public void setPUBLICCONIND(String PUBLICCONIND) {
         this.PUBLICCONIND = PUBLICCONIND;

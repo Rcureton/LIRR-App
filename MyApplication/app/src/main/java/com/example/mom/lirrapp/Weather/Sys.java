@@ -1,9 +1,9 @@
-
 package com.example.mom.lirrapp.Weather;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Sys {
@@ -22,72 +22,56 @@ public class Sys {
     private int sunset;
 
     /**
-     * 
-     * @return
-     *     The message
+     * @return The message
      */
     public double getMessage() {
         return message;
     }
 
     /**
-     * 
-     * @param message
-     *     The message
+     * @param message The message
      */
     public void setMessage(double message) {
         this.message = message;
     }
 
     /**
-     * 
-     * @return
-     *     The country
+     * @return The country
      */
     public String getCountry() {
         return country;
     }
 
     /**
-     * 
-     * @param country
-     *     The country
+     * @param country The country
      */
     public void setCountry(String country) {
         this.country = country;
     }
 
     /**
-     * 
-     * @return
-     *     The sunrise
+     * @return The sunrise
      */
     public int getSunrise() {
         return sunrise;
     }
 
     /**
-     * 
-     * @param sunrise
-     *     The sunrise
+     * @param sunrise The sunrise
      */
     public void setSunrise(int sunrise) {
         this.sunrise = sunrise;
     }
 
     /**
-     * 
-     * @return
-     *     The sunset
+     * @return The sunset
      */
     public int getSunset() {
         return sunset;
     }
 
     /**
-     * 
-     * @param sunset
-     *     The sunset
+     * @param sunset The sunset
      */
     public void setSunset(int sunset) {
         this.sunset = sunset;

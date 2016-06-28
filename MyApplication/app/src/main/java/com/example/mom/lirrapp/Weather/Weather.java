@@ -1,9 +1,9 @@
-
 package com.example.mom.lirrapp.Weather;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Weather {
@@ -22,72 +22,56 @@ public class Weather {
     private String icon;
 
     /**
-     * 
-     * @return
-     *     The id
+     * @return The id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * 
-     * @return
-     *     The main
+     * @return The main
      */
     public String getMain() {
         return main;
     }
 
     /**
-     * 
-     * @param main
-     *     The main
+     * @param main The main
      */
     public void setMain(String main) {
         this.main = main;
     }
 
     /**
-     * 
-     * @return
-     *     The description
+     * @return The description
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * 
-     * @param description
-     *     The description
+     * @param description The description
      */
     public void setDescription(String description) {
         this.description = description;
     }
 
     /**
-     * 
-     * @return
-     *     The icon
+     * @return The icon
      */
     public String getIcon() {
         return icon;
     }
 
     /**
-     * 
-     * @param icon
-     *     The icon
+     * @param icon The icon
      */
     public void setIcon(String icon) {
         this.icon = icon;

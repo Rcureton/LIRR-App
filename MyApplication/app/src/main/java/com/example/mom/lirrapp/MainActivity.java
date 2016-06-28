@@ -1,13 +1,8 @@
 package com.example.mom.lirrapp;
 
-import android.*;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -15,24 +10,20 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.NotificationCompat;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.net.URL;
 
 import com.example.mom.lirrapp.Social.Twitter;
 import com.google.android.gms.common.ConnectionResult;
@@ -40,28 +31,22 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-import com.google.firebase.messaging.RemoteMessage;
-import com.google.transit.realtime.GtfsRealtime.FeedEntity;
-import com.google.transit.realtime.GtfsRealtime.FeedMessage;
+
+import com.example.mom.lirrapp.Constants;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
 
-    TextView mTextview,mBlanktext;
-    ImageButton mMonthlyPass,mAlerts, mTwitter, mTrainMap, mWeather;
-    private static final String TAG= MainActivity.class.getSimpleName();
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST= 1000;
+    private static final String TAG = MainActivity.class.getSimpleName();
+    TextView mTextview, mBlanktext;
+    ImageButton mMonthlyPass, mAlerts, mTwitter, mTrainMap, mWeather;
+    double lon;
+    double lat;
     private Location mLastLocationCoordinates;
     private GoogleApiClient mGoogleApiClient;
     private boolean mRequestLocationUpdates = false;
     private LocationRequest mLocationRequest;
-    private static int UPDATE_INTERVAL= 10000;
-    private static int FASTEST_INTERVAL= 5000;
-    private static int DISPLACEMENT= 10;
-    double lon;
-    double lat;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,15 +54,15 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mTextview=(TextView)findViewById(R.id.textView);
-        mBlanktext=(TextView)findViewById(R.id.blankText);
-        mMonthlyPass=(ImageButton)findViewById(R.id.monthlyCard);
-        mAlerts=(ImageButton)findViewById(R.id.delay);
-        mTwitter=(ImageButton)findViewById(R.id.Twitter);
-        mWeather=(ImageButton)findViewById(R.id.schedule);
-        mTrainMap=(ImageButton)findViewById(R.id.mapImageButton);
+        mTextview = (TextView) findViewById(R.id.textView);
+        mBlanktext = (TextView) findViewById(R.id.blankText);
+        mMonthlyPass = (ImageButton) findViewById(R.id.monthlyCard);
+        mAlerts = (ImageButton) findViewById(R.id.delay);
+        mTwitter = (ImageButton) findViewById(R.id.Twitter);
+        mWeather = (ImageButton) findViewById(R.id.schedule);
+        mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
 
-        final Items items= new Items();
+        final Items items = new Items();
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -91,7 +76,7 @@ public class MainActivity extends AppCompatActivity
         mTwitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, Twitter.class);
+                Intent intent = new Intent(MainActivity.this, Twitter.class);
                 startActivity(intent);
             }
         });
@@ -100,9 +85,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                items.setLattitude(lat);
+                items.setLatitude(lat);
                 items.setLongitude(lon);
-                Intent intent= new Intent(MainActivity.this, LIRRMap.class);
+                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
                 intent.putExtra(Items.MY_ITEMS, items);
                 startActivity(intent);
             }
@@ -112,10 +97,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                items.setLattitude(lat);
+                items.setLatitude(lat);
                 items.setLongitude(lon);
-                Intent weatherIntent= new Intent(MainActivity.this, WeatherActivity.class);
-                weatherIntent.putExtra(Items.MY_ITEMS,items);
+                Intent weatherIntent = new Intent(MainActivity.this, WeatherActivity.class);
+                weatherIntent.putExtra(Items.MY_ITEMS, items);
                 startActivity(weatherIntent);
             }
         });
@@ -123,7 +108,7 @@ public class MainActivity extends AppCompatActivity
         mAlerts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(MainActivity.this, ReportDelayActivity.class);
+                Intent intent = new Intent(MainActivity.this, ReportDelayActivity.class);
                 startActivity(intent);
             }
         });
@@ -131,7 +116,7 @@ public class MainActivity extends AppCompatActivity
         mMonthlyPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ScheduleActivity.class);
+                Intent intent = new Intent(MainActivity.this, ScheduleActivity.class);
                 startActivity(intent);
 
             }
@@ -141,7 +126,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(MainActivity.this,MapsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
 
             }
@@ -163,16 +148,16 @@ public class MainActivity extends AppCompatActivity
                     android.Manifest.permission.ACCESS_FINE_LOCATION,
                     android.Manifest.permission.ACCESS_COARSE_LOCATION,
                     android.Manifest.permission.INTERNET
-            }, 10 );
+            }, 10);
 
             return;
 
-        }else{
+        } else {
             configureButton();
 
         }
 
-        if(checkPlayServices() ){
+        if (checkPlayServices()) {
             buildGoogleApiClient();
             createLocationRequest();
         }
@@ -184,7 +169,7 @@ public class MainActivity extends AppCompatActivity
     protected void onStart() {
         super.onStart();
 
-        if(mGoogleApiClient !=null){
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
     }
@@ -194,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
 
         checkPlayServices();
-        if(mGoogleApiClient.isConnected() && mRequestLocationUpdates){
+        if (mGoogleApiClient.isConnected() && mRequestLocationUpdates) {
             startLocationUpdates();
 
         }
@@ -203,7 +188,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onStop() {
         super.onStop();
-        if(mGoogleApiClient.isConnected()){
+        if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
     }
@@ -215,51 +200,51 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void displayLocation(){
-        mLastLocationCoordinates= LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if(mLastLocationCoordinates !=null){
-            lat= mLastLocationCoordinates.getLatitude();
-            lon= mLastLocationCoordinates.getLongitude();
+    private void displayLocation() {
+        mLastLocationCoordinates = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocationCoordinates != null) {
+            lat = mLastLocationCoordinates.getLatitude();
+            lon = mLastLocationCoordinates.getLongitude();
 
             mBlanktext.setText("");
-        }else{
+        } else {
             Toast.makeText(MainActivity.this, "Couldn't get the location", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void togglePeriodLocation(){
-        if(!mRequestLocationUpdates){
-            mRequestLocationUpdates=true;
+    private void togglePeriodLocation() {
+        if (!mRequestLocationUpdates) {
+            mRequestLocationUpdates = true;
             startLocationUpdates();
-        }else{
-            mRequestLocationUpdates= false;
+        } else {
+            mRequestLocationUpdates = false;
 
             stopLocationUpdates();
         }
     }
 
-    protected synchronized void buildGoogleApiClient(){
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+    protected synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
     }
 
-    protected void createLocationRequest(){
+    protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(UPDATE_INTERVAL);
-        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+        mLocationRequest.setInterval(Constants.UPDATE_INTERVAL);
+        mLocationRequest.setFastestInterval(Constants.FASTEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
+        mLocationRequest.setSmallestDisplacement(Constants.DISPLACEMENT);
 
     }
 
-    private boolean checkPlayServices(){
-        int resultCode= GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if(resultCode != ConnectionResult.SUCCESS){
-            if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
-                GooglePlayServicesUtil.getErrorDialog(resultCode,this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            }else{
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, Constants.PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
                 Toast.makeText(MainActivity.this, "This device is not supported", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -268,19 +253,19 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    protected void startLocationUpdates(){
+    protected void startLocationUpdates() {
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
-    protected void stopLocationUpdates(){
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+    protected void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
+        switch (requestCode) {
             case 10:
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     configureButton();
         }
     }
@@ -354,7 +339,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnected(@Nullable Bundle bundle) {
         displayLocation();
-        if(mRequestLocationUpdates){
+        if (mRequestLocationUpdates) {
             startLocationUpdates();
         }
     }
@@ -366,13 +351,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocationCoordinates= location;
+        mLastLocationCoordinates = location;
         Toast.makeText(MainActivity.this, "Location Changed", Toast.LENGTH_SHORT).show();
         displayLocation();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i(TAG,"Connection failed" + connectionResult.getErrorMessage());
+        Log.i(TAG, "Connection failed" + connectionResult.getErrorMessage());
     }
 }
