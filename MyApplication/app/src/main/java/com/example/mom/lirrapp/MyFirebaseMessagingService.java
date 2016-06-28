@@ -63,4 +63,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
     }
+
+    @Override
+    public void onMessageSent(String msgId) {
+        Log.e("MESSAGE", "##########onMessageSent: " + msgId );
+        super.onMessageSent(msgId);
+
+    }
 }

@@ -23,7 +23,7 @@ import okhttp3.Response;
 public class ScheduleActivity extends AppCompatActivity {
 
 
-    Spinner mDepart,mArrive;
+    AutoCompleteTextView mDepart,mArrive;
     Button mButton;
 
     @Override
@@ -31,8 +31,8 @@ public class ScheduleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
 
-        mDepart = (Spinner) findViewById(R.id.departFrom);
-        mArrive = (Spinner) findViewById(R.id.arriveAt);
+        mDepart = (AutoCompleteTextView) findViewById(R.id.departFrom);
+        mArrive = (AutoCompleteTextView) findViewById(R.id.arriveAt);
         mButton = (Button) findViewById(R.id.sendScheduleButton);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,19 +55,16 @@ public class ScheduleActivity extends AppCompatActivity {
 
         for(int i=0; i< trainStations.length; i++){
             mappy.put(trainStations[i], trainAbbrevs[i]);
-            spinnerArray[i]= trainStations.get(i);
         }
-        mappy.get(trainAbbrevs);
+        mappy.get(trainStations);
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, spinnerArray);
-        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, trainAbbrevs);
+
+        mDepart.setThreshold(1);
         mDepart.setAdapter(adapter);
-
-//        mDepart.setThreshold(1);
-//        mDepart.setAdapter(adapter);
-//        mArrive.setThreshold(1);
-//        mArrive.setAdapter(adapter);
+        mArrive.setThreshold(1);
+        mArrive.setAdapter(adapter);
 
 
     }
@@ -79,8 +76,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            departFrom = mDepart.getSelectedItem().toString();
-            arrivingStation = mArrive.getSelectedItem().toString();
+            departFrom = mDepart.getText().toString();
+            arrivingStation = mArrive.getText().toString();
 
 
             super.onPreExecute();
