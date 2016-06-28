@@ -1,2 +1,509 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.mukesh/permissions/1.0.3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e2f86ad26a2a73a247e5906d71ca41edb29d0701">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.mukesh-permissions-1.0.3_541b0e617b2ff827669db1d9fed288736a93dc98/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2f7e6e2dad1bccaf68a8820820adc6c0d5b96d37">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0_e1af89bfe03a3148a538decb549f67da25b32a07/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_4a78ee509f62bf38823622238d89b836357d248d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dd7b4a8e01cafa79a0b228b2ee5bd57ae5577444">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-9.2.0_21f12efbebefa67273ded070f2db63993f63cbf8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="30489a97b06cc3945bdbcc1770089af9e3b3b64d">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.2.0_be2a1f47f30969815b10a98c8a3d88496dc4a75d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0/jars/libs/internal_impl-24.0.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fcaf463e10e69c1923ccf1edeba3b4196d239e00">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0_f6d1ec0068db1f87f0f1cedb02bee87343e06d62/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast-framework/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="163b095362fd14d682ac311bf672c2fb54de5078">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-framework-9.2.0_1af69ee71b218d9dcf5a9b860d1dd4148af3bbf4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="be009dbe07b3a252c8cda07fc948ac713d2f5171">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-9.2.0_d7c3b7cd0faa74f1bca53fe588ffae54984b5f22/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gass/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="1dc44c4798cbd79e95e4838a3fdc734c0e3f895f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gass-9.2.0_35e971ec4c2e316da946a32d813c84006a9ec54c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3bd97cfefd783e9de1dd1c30574a6adb44b4409b">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0_302503e62d695028f59c7fbc38a3887b8fa9a1c7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f56a68df45e18ce77814db6553fdaa229308f49b">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.2.0_90966d2125e39c589f92e6838f0f13a2fa016940/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0874286cc2fd88d54fdf130e9d5372730da6de97">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0_a0714bd8df851342fe3edfa91eee013574b8cb5a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fb15fd9774b5c51dcb39d8e6fa1b6f06bcd1cd34">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.2.0_28d9154cdc8839b2ac0b2c0637e32e3e610ca9f0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5acfd484717d9175c175569a114d46dbeec074ed">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-9.2.0_2958bf9a446f044e65f27205dff4d1f3dc6b1de6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e3f200938bb888d83c2da807cb6aee983baae254">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-9.2.0_bda4bd32aa14810385a798ac67f9e1337050dc8c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a0712565a784bedd07ada2393c95e0b1e288840f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-9.2.0_68a42de98706c443ce3196dce842ca737e40602f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-crash/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="0595e77431edaba6793410f9bfa3603c063c58e7">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-crash-9.2.0_381f5bc2f07afbb99b3059d7a649903470deb7d6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-places/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8ec9ae00d45e758ac5b7a1c5dc0daa8a4b24280f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-places-9.2.0_559fd31b90e3109b0e127ffaa3c25c763418231c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="08cdd337d1d9247eb915f0ab365624dd7966e7fa">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-9.2.0_afd234a542d21c3661e252c292dc480498c28f0b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a378adc3106cb3560ab3dfed05f1fda26cff5b49">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-9.2.0_9d3a8a26e1a0eef8aabf23f155eb57de78d50d1c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="4838df6db988160b107e954e02a745370df543b6">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.2.0_d640c6974e09153b443bd4ce22a6b96535122921/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="982031d2aa9652bc955d0b581ec70378c0adfc56">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-9.2.0_80ff3a48a4d9e41f91f61090f451e6626c209354/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dd7676ac12aa6653718b7ea33d93ce9d6915d526">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.2.0_87ab9fd29db6102d5f906987716758aa477730bb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-contextmanager/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8ad1b5663f367dac619256d75fb08a98c7baa4f4">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-contextmanager-9.2.0_eda367d4ad9fb38ca4fef49c8454ddefbbbea436/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/codelight.studios.android/weather-downloader/0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a70f40aa966209701818bfc3af54461e56d430b9">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/codelight.studios.android-weather-downloader-0.1_cd5e916eea0d27c0c5b2cf5a93b788cf5337cb7f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="08c8010053e27a1033d66cbe91b8b550eff1c7f1">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_fe4958b4d70d0df8b705c1ceb93cbcf17ae1d1a9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_7fd78bd6a81d0f3443c1591640fff88d5dcc9447/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.2.0/f7873a2ebde246a45c2a8d6f3247108b4c88a879/okhttp-3.2.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f7873a2ebde246a45c2a8d6f3247108b4c88a879">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.2.0_b153231cbbdfa67c36d6bcd8678e5f15dbafdce6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="c6ec0c33947270da1643673d542fa13f69099751">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5c0b7f1b812f950eef0ea7ca03a3b21701197072/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="404f4108b41050173f93836f5b35efdd9525a0ad">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-9.2.0_a425738f0925f7ccab0c570defc675d091fa2aa6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_21215ec606a3ac702d565b9cd4e7a408575ec3d3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager-api/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="74694bf98bd1f856cf478bd0c516531801badced">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-api-9.2.0_000233cb37ee7b0d33f0979694650bc9c1a8915e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="363f626ad5686283250cdb6073ae1bba5cb07a87">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.2.0_0662e05cd3dc6647432b9e6a32bb8940d68fb50b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7428f0d1debdcf1b5792a26146e51a38d992d04d">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.2.0_fc11e91b71acec6fada3e5d72e1861c961dbf585/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tagmanager/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7378806b630886994099d03c369983f2848a609f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tagmanager-9.2.0_ffbe8528d175d48aa6525ee62f2ce08f432e0b9a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="593fbaec1c3e100480a2bd72457b64b7dde6ac2d">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.2.0_8b64fd62c16217885f17535b899f27b5cfb94fdf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-clearcut/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b53d61bae49278c0fa202d9066d2e72fc151c1e8">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-clearcut-9.2.0_160fb2b850d055d39ab78bf9af8f1a07eb9af436/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="dc4c18602ecffb3e69cda6cdc51ba4feac0f97d7">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.2.0_f242c666f68b2959a13dbca02a11fd254a42bda8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a06eb7761fca120bbb46b34b930a3a3462ba9d7f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.2.0_3f8b6bab25ff6a3296af0c2f4cafdcc7f9726e20/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.6.0_7ecbe35008e19cd7f4c59a23136cce6bae2a0845/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-23.0.0_34fb57d12d0d7d0d391229560421b384498d7e31/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/picasso-2.5.2_4a6761bb9cd405b38b0b433f7e070e29fd34700d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="299e04800d1169b9f3dd04c376c7b266a3594cca">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-9.2.0_72dad9ddbcdd888330f7e17f532dd32a48e87aef/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-config/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="ce9432b50a02be101bc491a1b38d3904200bd988">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-config-9.2.0_78e5ba4585680486d9cf5577961a277bbc7e55c0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7c7c21cc7a45d5c2a57d77f4840d4d4ea3c7604f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-9.2.0_fa231724a0527b08d1ad37c8cd55a84c397c7686/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3c8fcebabb73df25937704f5566bf6c388ea941d">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-9.2.0_ac23811a753653d01c26847f8a411474d0df0219/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/2.6.1/d9521f2aecb909835746b7a5facf612af5e890e8/protobuf-java-2.6.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d9521f2aecb909835746b7a5facf612af5e890e8">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/protobuf-java-2.6.1_a75d1ecfb0a6a16c51e03d80d9c00971b95de4b0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_8bf9475a207a33377b153b7eda16a70a530728a0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="21bb89120d84fa29afeb0f9c0ebf415bc3b45a7e">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.2.0_a6a4b2b6c0f10bed7d07f0c289beae64070787ae/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="535d4497b5fa5d451e07a043e9e220d5c25ab7c7">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.2.0_2088c61bd0d1fc7e416d3a98ef3778614a97ccf6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.mapzen.android/lost/1.0.1/5f807d0be6ca894f6ae0007e884099793b2c8633/lost-1.0.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5f807d0be6ca894f6ae0007e884099793b2c8633">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/lost-1.0.1_f038e03cc9735d6d753e69827b740123315cb289/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0_a4f4955b0c23998108dcc30168990b0247690c6d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/org.glassfish/javax.annotation/10.0-b28/30eb3b3cc9cb0863a4edaea5a7575f8ace1b96ba/javax.annotation-10.0-b28.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="30eb3b3cc9cb0863a4edaea5a7575f8ace1b96ba">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/javax.annotation-10.0-b28_a8e50e7b2c81388863655758bf3adbd7378c1c9d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="18e52280643effbab30370b073e456d670a0db54">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.2.0_4fe2fffa5e52a3b2a9ac58129decf3a5c3885463/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f315c6b5b99081f16a79c9aaa557328a4644fe63">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.2.0_b9fd2806c5ec667b4cb471ee6f1d8172973f6d3b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e91e1f335dc418d0138991a1d5155f0490ab6082">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.2.0_79e1ce54eb1a5b5afca384b60db5b72f1f11c6d0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.google.transit/gtfs-realtime-bindings/0.0.4/2b372fb3a069ea3ec40efa32cd188ec44fb81f3c/gtfs-realtime-bindings-0.0.4.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2b372fb3a069ea3ec40efa32cd188ec44fb81f3c">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/gtfs-realtime-bindings-0.0.4_a480c24e149ef2a7a7418bffacafce7f9c2c0304/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.2_0fec9a92d63d7ec606b06f802d6e8dac93e79755/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e70f608219ed6b974644c333249ab2bb7b71de98">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0_c39705962d7e9579b138a35782392960985870df/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="39261f58509b1a379df041f03da394c29da05395">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-9.2.0_872bddf478545d0b52caa8e0dac53b6310ea2bbf/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="20ca7888c59f63d439f218a8810c88039f8bc7db">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-9.2.0_4b60c7218c416500acb9fba53a6052de5017b376/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-storage-common/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fa6c324604383981fb74c4cb036d4171ed0a9a02">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-storage-common-9.2.0_17b743155168e54821bd242e3ac9568c0cb0b385/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-common/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="44120508d7240c3e34a05957981a5c3c9b9f61aa">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-common-9.2.0_b29741084aa91115bbdd7f9ffaf95b2e8e6f1b9a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="7c39a4b431976abc46d3cf6344c75d06c769cd35">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-9.2.0_edd8ec0f649d6c8571d5645f7ace9c0f3dd0d849/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database-connection/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="33203b081101ca6242a4cd746aafe5fc2dd98a34">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-connection-9.2.0_4da52693c041854739379b76d8e06b8d654776f1/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-auth-module/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e791f7f2fbf9ca5b3b576916533f844dfb384024">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-auth-module-9.2.0_9b2a8647cbbb03ab51a6b118ef67c3ddaf30b47d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="811202a9098047576814fc2171b56b83b537a8b9">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-9.2.0_898ba7b94b92464b159a53da86b642b2a6e92ee8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="fbb50f7f89342c915898c9376a67229e2fcee286">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.2.0_42e9426f74ce9a733ee3db74f212035c9bf6006f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a03f4d605b0f29222c2ddf8b7896258cb4b92def">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-9.2.0_515fbed3fab0338240aa2cc7e5ad20d871439355/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.mapbox.mapboxsdk/mapbox-android-sdk/4.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="587b36c3c40d0b27d1051857124f6bf48f22806f">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.mapbox.mapboxsdk-mapbox-android-sdk-4.0.1_6139c06d46da3fb7e0c475a202be3cf6425ef840/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.firebase/firebase-database/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="d7572433ba21aa9e4624c819fa738b2748b82d05">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-database-9.2.0_020abf829e2b9f1cf99e8a3e872c4ac3312d0f1a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/9.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="33b5900f82d19fd3dacee518363b249ace77b8f5">
+        <dex dex="/Users/Ra/Documents/LIRR-App/MyApplication/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-9.2.0_ccaea3bd36dc7f9a5f3633c0625b07193b474575/classes.dex" />
+    </item>
+
+</items>

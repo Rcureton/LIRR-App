@@ -33,6 +33,7 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import com.example.mom.lirrapp.Constants;
+import com.mukesh.permissions.AppPermissions;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -63,6 +64,10 @@ public class MainActivity extends AppCompatActivity
         mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
 
         final Items items = new Items();
+
+        AppPermissions runtimePermission = new AppPermissions(MainActivity.this);
+        runtimePermission.hasPermission("permission");
+
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
