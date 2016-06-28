@@ -20,7 +20,6 @@ public class ScheduleActivity extends AppCompatActivity {
 
     AutoCompleteTextView mDepart, mArrive;
     Button mButton;
-    private String LIRR_URL = "https://traintime.lirr.org/api/TrainTime?api_key=da4e37b70fd7bbcf07f8a7202382523c";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +65,7 @@ public class ScheduleActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             OkHttpClient client = new OkHttpClient();
 
-            HttpUrl.Builder builder = HttpUrl.parse(LIRR_URL).newBuilder();
+            HttpUrl.Builder builder = HttpUrl.parse(Constants.LIRR_URL).newBuilder();
             builder.addQueryParameter("startsta", departFrom);
             builder.addQueryParameter("endsta", arrivingStation);
             String url = builder.build().toString();

@@ -1,10 +1,7 @@
 package com.example.mom.lirrapp;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -12,27 +9,21 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static com.example.mom.lirrapp.Constants.REQUEST_IMAGE_CAPTURE;
+
 public class MonthlyTicket extends AppCompatActivity {
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    private ImageView mImageView;
     FloatingActionButton mFab;
     String mCurrentPhotoPath;
-
+    private ImageView mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +45,7 @@ public class MonthlyTicket extends AppCompatActivity {
             }
         });
     }
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -115,6 +107,7 @@ public class MonthlyTicket extends AppCompatActivity {
         }
         return false;
     }
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

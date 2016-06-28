@@ -1,11 +1,12 @@
-
 package com.example.mom.lirrapp.Weather;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.annotation.Generated;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 
 @Generated("org.jsonschema2pojo")
 public class CurrentWeather {
@@ -45,198 +46,154 @@ public class CurrentWeather {
     private int cod;
 
     /**
-     * 
-     * @return
-     *     The coord
+     * @return The coord
      */
     public Coord getCoord() {
         return coord;
     }
 
     /**
-     * 
-     * @param coord
-     *     The coord
+     * @param coord The coord
      */
     public void setCoord(Coord coord) {
         this.coord = coord;
     }
 
     /**
-     * 
-     * @return
-     *     The weather
+     * @return The weather
      */
     public List<Weather> getWeather() {
         return weather;
     }
 
     /**
-     * 
-     * @param weather
-     *     The weather
+     * @param weather The weather
      */
     public void setWeather(List<Weather> weather) {
         this.weather = weather;
     }
 
     /**
-     * 
-     * @return
-     *     The base
+     * @return The base
      */
     public String getBase() {
         return base;
     }
 
     /**
-     * 
-     * @param base
-     *     The base
+     * @param base The base
      */
     public void setBase(String base) {
         this.base = base;
     }
 
     /**
-     * 
-     * @return
-     *     The main
+     * @return The main
      */
     public Main getMain() {
         return main;
     }
 
     /**
-     * 
-     * @param main
-     *     The main
+     * @param main The main
      */
     public void setMain(Main main) {
         this.main = main;
     }
 
     /**
-     * 
-     * @return
-     *     The wind
+     * @return The wind
      */
     public Wind getWind() {
         return wind;
     }
 
     /**
-     * 
-     * @param wind
-     *     The wind
+     * @param wind The wind
      */
     public void setWind(Wind wind) {
         this.wind = wind;
     }
 
     /**
-     * 
-     * @return
-     *     The clouds
+     * @return The clouds
      */
     public Clouds getClouds() {
         return clouds;
     }
 
     /**
-     * 
-     * @param clouds
-     *     The clouds
+     * @param clouds The clouds
      */
     public void setClouds(Clouds clouds) {
         this.clouds = clouds;
     }
 
     /**
-     * 
-     * @return
-     *     The dt
+     * @return The dt
      */
     public int getDt() {
         return dt;
     }
 
     /**
-     * 
-     * @param dt
-     *     The dt
+     * @param dt The dt
      */
     public void setDt(int dt) {
         this.dt = dt;
     }
 
     /**
-     * 
-     * @return
-     *     The sys
+     * @return The sys
      */
     public Sys getSys() {
         return sys;
     }
 
     /**
-     * 
-     * @param sys
-     *     The sys
+     * @param sys The sys
      */
     public void setSys(Sys sys) {
         this.sys = sys;
     }
 
     /**
-     * 
-     * @return
-     *     The id
+     * @return The id
      */
     public int getId() {
         return id;
     }
 
     /**
-     * 
-     * @param id
-     *     The id
+     * @param id The id
      */
     public void setId(int id) {
         this.id = id;
     }
 
     /**
-     * 
-     * @return
-     *     The name
+     * @return The name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 
-     * @param name
-     *     The name
+     * @param name The name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * 
-     * @return
-     *     The cod
+     * @return The cod
      */
     public int getCod() {
         return cod;
     }
 
     /**
-     * 
-     * @param cod
-     *     The cod
+     * @param cod The cod
      */
     public void setCod(int cod) {
         this.cod = cod;

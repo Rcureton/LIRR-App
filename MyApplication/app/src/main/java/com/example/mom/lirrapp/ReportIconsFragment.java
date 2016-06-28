@@ -1,8 +1,6 @@
 package com.example.mom.lirrapp;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -15,19 +13,19 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static com.example.mom.lirrapp.Constants.SENDER_ID;
+
 /**
  * Created by MOM on 5/18/16.
  */
 public class ReportIconsFragment extends DialogFragment {
 
-    private static String SENDER_ID= String.valueOf(R.string.gcm_defaultSenderId);
-
     public ReportIconsFragment() {
 
     }
 
-    public static ReportIconsFragment newInstance(String title){
-        ReportIconsFragment fragment= new ReportIconsFragment();
+    public static ReportIconsFragment newInstance(String title) {
+        ReportIconsFragment fragment = new ReportIconsFragment();
         Bundle args = new Bundle();
         args.putString("title", title);
         fragment.setArguments(args);
@@ -37,9 +35,9 @@ public class ReportIconsFragment extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View fragment= inflater.inflate(R.layout.custom_fragment_layout,container);
+        View fragment = inflater.inflate(R.layout.custom_fragment_layout, container);
 
-        FloatingActionButton policeButton=  (FloatingActionButton)fragment.findViewById(R.id.policeIcon);
+        FloatingActionButton policeButton = (FloatingActionButton) fragment.findViewById(R.id.policeIcon);
         policeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,38 +52,38 @@ public class ReportIconsFragment extends DialogFragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        FloatingActionButton trafficButton= (FloatingActionButton)view.findViewById(R.id.trafficIcon);
-        FloatingActionButton issueButton= (FloatingActionButton)view.findViewById(R.id.issueIcon);
+        FloatingActionButton trafficButton = (FloatingActionButton) view.findViewById(R.id.trafficIcon);
+        FloatingActionButton issueButton = (FloatingActionButton) view.findViewById(R.id.issueIcon);
 
     }
 
-    private void policeMessageUpstream(){
+    private void policeMessageUpstream() {
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
-        AtomicInteger msgId= new AtomicInteger();
-        fm.send(new RemoteMessage.Builder(SENDER_ID+"@gcm.googleapis.com")
+        AtomicInteger msgId = new AtomicInteger();
+        fm.send(new RemoteMessage.Builder(SENDER_ID + "@gcm.googleapis.com")
                 .setMessageId(Integer.toString(msgId.incrementAndGet()))
                 .addData("my_message", "There is police activity at the current location")
-                .addData("my_action","Police Activity")
+                .addData("my_action", "Police Activity")
                 .build());
     }
 
-    private void trafficIssueUpstream(){
+    private void trafficIssueUpstream() {
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
-        AtomicInteger msgId= new AtomicInteger();
+        AtomicInteger msgId = new AtomicInteger();
         fm.send(new RemoteMessage.Builder(R.string.gcm_defaultSenderId + "@gcm.googleapis.com")
                 .setMessageId(Integer.toString(msgId.incrementAndGet()))
                 .addData("my_message", "There is traffic at the current location")
-                .addData("my_action","Traffic Activity")
+                .addData("my_action", "Traffic Activity")
                 .build());
     }
 
-    private void issueButtonUpstream(){
+    private void issueButtonUpstream() {
         FirebaseMessaging fm = FirebaseMessaging.getInstance();
-        AtomicInteger msgId= new AtomicInteger();
+        AtomicInteger msgId = new AtomicInteger();
         fm.send(new RemoteMessage.Builder(R.string.gcm_defaultSenderId + "@gcm.googleapis.com")
                 .setMessageId(Integer.toString(msgId.incrementAndGet()))
                 .addData("my_message", "There is issue at the current location")
-                .addData("my_action","Issue Activity")
+                .addData("my_action", "Issue Activity")
                 .build());
     }
 }

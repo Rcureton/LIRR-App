@@ -1,17 +1,12 @@
 package com.example.mom.lirrapp;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
@@ -36,7 +31,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         options.zoomGesturesEnabled(true);
 
 
-
     }
 
 
@@ -53,7 +47,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMyLocationEnabled(true);
-        mMap.addMarker(new MarkerOptions().position(new LatLng(70,40)).title("Hello World"));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(70, 40)).title("Hello World"));
 
         // Instantiates a new Polyline object and adds points to define a rectangle
         PolylineOptions rectOptions = new PolylineOptions()
@@ -65,7 +59,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 // Get back the mutable Polyline
         Polyline polyline = mMap.addPolyline(rectOptions);
-
 
 
         // Add a marker in Sydney and move the camera

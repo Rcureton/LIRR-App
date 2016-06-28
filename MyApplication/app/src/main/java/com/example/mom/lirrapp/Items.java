@@ -7,19 +7,7 @@ import android.os.Parcelable;
  * Created by MOM on 5/20/16.
  */
 public class Items implements Parcelable {
-    public final static String MY_ITEMS= "myItems";
-    private double lattitude;
-    private double longitude;
-
-    public Items(){
-
-    }
-
-    protected Items(Parcel in) {
-        lattitude = in.readDouble();
-        longitude = in.readDouble();
-    }
-
+    public final static String MY_ITEMS = "myItems";
     public static final Creator<Items> CREATOR = new Creator<Items>() {
         @Override
         public Items createFromParcel(Parcel in) {
@@ -31,6 +19,17 @@ public class Items implements Parcelable {
             return new Items[size];
         }
     };
+    private double latitude;
+    private double longitude;
+
+    public Items() {
+
+    }
+
+    protected Items(Parcel in) {
+        latitude = in.readDouble();
+        longitude = in.readDouble();
+    }
 
     public double getLongitude() {
         return longitude;
@@ -40,12 +39,12 @@ public class Items implements Parcelable {
         this.longitude = longitude;
     }
 
-    public double getLattitude() {
-        return lattitude;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setLattitude(double lattitude) {
-        this.lattitude = lattitude;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     @Override
@@ -55,7 +54,7 @@ public class Items implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(lattitude);
+        dest.writeDouble(latitude);
         dest.writeDouble(longitude);
     }
 }

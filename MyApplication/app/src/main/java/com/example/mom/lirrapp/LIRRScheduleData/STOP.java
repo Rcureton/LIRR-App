@@ -1,9 +1,9 @@
-
 package com.example.mom.lirrapp.LIRRScheduleData;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class STOP {
@@ -16,36 +16,28 @@ public class STOP {
     private String TIME;
 
     /**
-     * 
-     * @return
-     *     The STATION
+     * @return The STATION
      */
     public String getSTATION() {
         return STATION;
     }
 
     /**
-     * 
-     * @param STATION
-     *     The STATION
+     * @param STATION The STATION
      */
     public void setSTATION(String STATION) {
         this.STATION = STATION;
     }
 
     /**
-     * 
-     * @return
-     *     The TIME
+     * @return The TIME
      */
     public String getTIME() {
         return TIME;
     }
 
     /**
-     * 
-     * @param TIME
-     *     The TIME
+     * @param TIME The TIME
      */
     public void setTIME(String TIME) {
         this.TIME = TIME;

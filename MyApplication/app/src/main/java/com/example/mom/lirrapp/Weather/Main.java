@@ -1,9 +1,9 @@
-
 package com.example.mom.lirrapp.Weather;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Main {
@@ -31,126 +31,98 @@ public class Main {
     private double grndLevel;
 
     /**
-     * 
-     * @return
-     *     The temp
+     * @return The temp
      */
     public double getTemp() {
         return temp;
     }
 
     /**
-     * 
-     * @param temp
-     *     The temp
+     * @param temp The temp
      */
     public void setTemp(double temp) {
         this.temp = temp;
     }
 
     /**
-     * 
-     * @return
-     *     The pressure
+     * @return The pressure
      */
     public double getPressure() {
         return pressure;
     }
 
     /**
-     * 
-     * @param pressure
-     *     The pressure
+     * @param pressure The pressure
      */
     public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
     /**
-     * 
-     * @return
-     *     The humidity
+     * @return The humidity
      */
     public int getHumidity() {
         return humidity;
     }
 
     /**
-     * 
-     * @param humidity
-     *     The humidity
+     * @param humidity The humidity
      */
     public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
 
     /**
-     * 
-     * @return
-     *     The tempMin
+     * @return The tempMin
      */
     public double getTempMin() {
         return tempMin;
     }
 
     /**
-     * 
-     * @param tempMin
-     *     The temp_min
+     * @param tempMin The temp_min
      */
     public void setTempMin(double tempMin) {
         this.tempMin = tempMin;
     }
 
     /**
-     * 
-     * @return
-     *     The tempMax
+     * @return The tempMax
      */
     public double getTempMax() {
         return tempMax;
     }
 
     /**
-     * 
-     * @param tempMax
-     *     The temp_max
+     * @param tempMax The temp_max
      */
     public void setTempMax(double tempMax) {
         this.tempMax = tempMax;
     }
 
     /**
-     * 
-     * @return
-     *     The seaLevel
+     * @return The seaLevel
      */
     public double getSeaLevel() {
         return seaLevel;
     }
 
     /**
-     * 
-     * @param seaLevel
-     *     The sea_level
+     * @param seaLevel The sea_level
      */
     public void setSeaLevel(double seaLevel) {
         this.seaLevel = seaLevel;
     }
 
     /**
-     * 
-     * @return
-     *     The grndLevel
+     * @return The grndLevel
      */
     public double getGrndLevel() {
         return grndLevel;
     }
 
     /**
-     * 
-     * @param grndLevel
-     *     The grnd_level
+     * @param grndLevel The grnd_level
      */
     public void setGrndLevel(double grndLevel) {
         this.grndLevel = grndLevel;

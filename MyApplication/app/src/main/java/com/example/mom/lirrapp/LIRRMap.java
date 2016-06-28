@@ -3,18 +3,15 @@ package com.example.mom.lirrapp;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-
 import android.location.Location;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -25,73 +22,80 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
-
-import com.mapbox.mapboxsdk.annotations.Icon;
-import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.annotations.PolylineOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
-import com.mapbox.mapboxsdk.constants.MyLocationTracking;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.widgets.UserLocationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.mom.lirrapp.Constants;
+
 public class LIRRMap extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
+    private static final int PERMISSIONS_LOCATION = 0;
+    private static final String TAG = LIRRMap.class.getSimpleName();
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
     private MapView mapView;
     private TextView mblank;
-    private static final int PERMISSIONS_LOCATION = 0;
     private MapboxMap map1;
-    private static final String TAG= LIRRMap.class.getSimpleName();
-    private static final int PLAY_SERVICES_RESOLUTION_REQUEST= 1000;
     private Location mLastLocationCoordinates;
     private GoogleApiClient mGoogleApiClient;
     private boolean mRequestLocationUpdates = false;
     private LocationRequest mLocationRequest;
-    private static int UPDATE_INTERVAL= 10000;
-    private static int FASTEST_INTERVAL= 5000;
-    private static int DISPLACEMENT= 10;
-    double lon;
-    double lat;
-    FloatingActionButton button;
+    private double longitude;
+    private double latitude;
+    private FloatingActionButton floatingActionButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
-        mblank=(TextView)findViewById(R.id.blank2);
+        mblank = (TextView) findViewById(R.id.blank2);
 
-        final Items items= new Items();
+        final Items items = new Items();
 
 
-
-        button=(FloatingActionButton)findViewById(R.id.mapButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.mapButton);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog();
-                items.setLattitude(lat);
-                items.setLongitude(lon);
+                items.setLatitude(latitude);
+                items.setLongitude(longitude);
 
             }
         });
         mapView = (MapView) findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!hasSufficientPermissions()) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
+            }
+        }
+
+        // Keep methods as short as possible
+        plotPoints();
+        configureButton();
+
+        if (checkPlayServices()) {
+            buildGoogleApiClient();
+            createLocationRequest();
+        }
+    }
+
+    private void plotPoints() {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
-
                 myLocation();
-//
-
                 mapboxMap.setMyLocationEnabled(true);
 
                 //Long Island Train Lines
@@ -143,7 +147,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                     @Override
                     public void onMapClick(@NonNull LatLng point) {
                         CameraPosition position = new CameraPosition.Builder()
-                                .target(new LatLng(lat,lon)) // Sets the new camera position
+                                .target(new LatLng(latitude, longitude)) // Sets the new camera position
                                 .zoom(17) // Sets the zoom
                                 .bearing(180) // Rotate the camera
                                 .tilt(30) // Set the camera tilt
@@ -155,33 +159,13 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 });
             }
         });
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            ActivityCompat.requestPermissions(LIRRMap.this, new String[]{
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.INTERNET
-            }, 10 );
-
-            return;
-
-        }else{
-            configureButton();
-
-        }
-
-        if(checkPlayServices() ){
-            buildGoogleApiClient();
-            createLocationRequest();
-        }
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        if(mGoogleApiClient !=null){
+        if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
         }
     }
@@ -192,16 +176,15 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         mapView.onResume();
 
         checkPlayServices();
-        if(mGoogleApiClient.isConnected() && mRequestLocationUpdates){
+        if (mGoogleApiClient.isConnected() && mRequestLocationUpdates && hasSufficientPermissions()) {
             startLocationUpdates();
-
         }
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(mGoogleApiClient.isConnected()){
+        if (mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
         }
     }
@@ -211,54 +194,61 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         super.onPause();
         mapView.onPause();
         stopLocationUpdates();
-
     }
 
-    private void displayLocation(){
-        mLastLocationCoordinates= LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if(mLastLocationCoordinates !=null){
-            lat= mLastLocationCoordinates.getLatitude();
-            lon= mLastLocationCoordinates.getLongitude();
+    private boolean hasSufficientPermissions() {
+        return (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+    }
 
+    private void displayLocation() {
+        if (!hasSufficientPermissions()) {
+            return;
+        }
+        mLastLocationCoordinates = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocationCoordinates != null) {
+            latitude = mLastLocationCoordinates.getLatitude();
+            longitude = mLastLocationCoordinates.getLongitude();
             mblank.setText("");
-        }else{
-            Toast.makeText(LIRRMap.this, "Couldn't get the location", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(LIRRMap.this, R.string.location_error, Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void togglePeriodLocation(){
-        if(!mRequestLocationUpdates){
-            mRequestLocationUpdates=true;
+    private void togglePeriodLocation() {
+        if (!mRequestLocationUpdates) {
+            mRequestLocationUpdates = true;
             startLocationUpdates();
-        }else{
-            mRequestLocationUpdates= false;
+        } else {
+            mRequestLocationUpdates = false;
 
             stopLocationUpdates();
         }
     }
 
-    protected synchronized void buildGoogleApiClient(){
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
+    private synchronized void buildGoogleApiClient() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
     }
 
-    protected void createLocationRequest(){
+    private void createLocationRequest() {
         mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(UPDATE_INTERVAL);
-        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
+        mLocationRequest.setInterval(Constants.UPDATE_INTERVAL);
+        mLocationRequest.setFastestInterval(Constants.FASTEST_INTERVAL);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setSmallestDisplacement(DISPLACEMENT);
+        mLocationRequest.setSmallestDisplacement(Constants.DISPLACEMENT);
 
     }
 
-    private boolean checkPlayServices(){
-        int resultCode= GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
-        if(resultCode != ConnectionResult.SUCCESS){
-            if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)){
-                GooglePlayServicesUtil.getErrorDialog(resultCode,this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
-            }else{
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this, PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
                 Toast.makeText(LIRRMap.this, "This device is not supported", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -267,19 +257,20 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         return true;
     }
 
-    protected void startLocationUpdates(){
+    // Use private instead of protected
+    private void startLocationUpdates() {
         LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
-    protected void stopLocationUpdates(){
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient,this);
+    private void stopLocationUpdates() {
+        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
+        switch (requestCode) {
             case 10:
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                     configureButton();
         }
     }
@@ -289,30 +280,22 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 //            @Override
 //            public void onClick(View v) {
 //
-
     }
 
-    private void showDialog(){
-        FragmentManager fm= getSupportFragmentManager();
-        ReportIconsFragment reportIconsFragment= ReportIconsFragment.newInstance("Report");
-        reportIconsFragment.show(getFragmentManager(),"custom_fragment_dialog");
+    private void showDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        ReportIconsFragment reportIconsFragment = ReportIconsFragment.newInstance("Report");
+        reportIconsFragment.show(getFragmentManager(), "custom_fragment_dialog");
     }
 
 
-    private void myLocation(){
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) ||
-                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
-        } else {
-           return;
-        }
+    private void myLocation() {
         map1.setMyLocationEnabled(true);
         map1.getMyLocation();
-
     }
 
-    private void cityLinePoly(MapboxMap map){
-        List<LatLng> pennPolyline= new ArrayList<>();
+    private void cityLinePoly(MapboxMap map) {
+        List<LatLng> pennPolyline = new ArrayList<>();
 
         pennPolyline.add(new LatLng(40.699511, -73.808727));//Jamaica
         pennPolyline.add(new LatLng(40.7096, -73.83066));// Kew Gardens
@@ -323,14 +306,14 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(pennPolyline).color(Color.parseColor("#009688")));
     }
 
-    private void cityLineMarkers(MapboxMap map){
+    private void cityLineMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Kew Gardens Train Station").position(new LatLng(40.7096, -73.83066)));
         map.addMarker(new MarkerOptions().title("Forrest Hills Train Station").position(new LatLng(40.719483, -73.844883)));
 
     }
 
-    private void atlanticTerminalPolyline(MapboxMap map){
-        List<LatLng> atlanticTermPoly= new ArrayList<>();
+    private void atlanticTerminalPolyline(MapboxMap map) {
+        List<LatLng> atlanticTermPoly = new ArrayList<>();
 
         atlanticTermPoly.add(new LatLng(40.699511, -73.808727));//Jamaica
         atlanticTermPoly.add(new LatLng(40.676053, -73.905925));//East New York
@@ -339,15 +322,16 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         map.addPolyline(new PolylineOptions().addAll(atlanticTermPoly).color(Color.parseColor("#311B92")));
     }
-    private void atlanticTerminalMarkers(MapboxMap map){
+
+    private void atlanticTerminalMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("East New York Train Station").position(new LatLng(40.676053, -73.905925)));
         map.addMarker(new MarkerOptions().title("Nostrand Avenue Train Station").position(new LatLng(40.67845, -73.9494)));
         map.addMarker(new MarkerOptions().title("Atlantic Terminal").position(new LatLng(40.684226, -73.977234)));
 
     }
 
-    private void montaukBranchPolyline(MapboxMap map){
-        List<LatLng> montaukPolyline= new ArrayList<>();
+    private void montaukBranchPolyline(MapboxMap map) {
+        List<LatLng> montaukPolyline = new ArrayList<>();
 
         montaukPolyline.add(new LatLng(41.046793, -71.954452));// Montauk
         montaukPolyline.add(new LatLng(40.98, -72.1325));//Amagansett
@@ -370,7 +354,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(montaukPolyline).color(Color.parseColor("#FF4081")));
     }
 
-    private void montaukBranchMarkers(MapboxMap map){
+    private void montaukBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Montauk Train Station").position(new LatLng(41.046793, -71.954452)));
         map.addMarker(new MarkerOptions().title("Amagansett Train Station").position(new LatLng(40.98, -72.1325)));
         map.addMarker(new MarkerOptions().title("East Hampton Train Station").position(new LatLng(40.964936, -72.193461)));
@@ -391,8 +375,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    private void portWashingtonBranchPolyLine(MapboxMap map){
-        List<LatLng> portWashPoly= new ArrayList<>();
+    private void portWashingtonBranchPolyLine(MapboxMap map) {
+        List<LatLng> portWashPoly = new ArrayList<>();
 
         portWashPoly.add(new LatLng(40.829349, -73.68733));//Port Washington
         portWashPoly.add(new LatLng(40.810687, -73.695216));//Plandome Station
@@ -411,7 +395,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         map.addPolyline(new PolylineOptions().addAll(portWashPoly).color(Color.parseColor("#E65100")));
     }
-    private void portWashingtonBranchMarkers(MapboxMap map){
+
+    private void portWashingtonBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Port Washington Train Station").position(new LatLng(40.829349, -73.68733)));
         map.addMarker(new MarkerOptions().title("Plandome Train Station").position(new LatLng(40.810687, -73.695216)));
         map.addMarker(new MarkerOptions().title("Manhasset Train Station").position(new LatLng(40.79669, -73.6999996)));
@@ -428,8 +413,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Penn Station").position(new LatLng(40.750638, -73.993899)));
     }
 
-    private void westHempsteadBranchPolyline(MapboxMap map){
-        List<LatLng> westHempsteadPolyline= new ArrayList<>();
+    private void westHempsteadBranchPolyline(MapboxMap map) {
+        List<LatLng> westHempsteadPolyline = new ArrayList<>();
 
         westHempsteadPolyline.add(new LatLng(40.701944, -73.641667));// West Hempstead
         westHempsteadPolyline.add(new LatLng(40.694722, -73.646111));// Hempstead Gardens
@@ -441,7 +426,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(westHempsteadPolyline).color(Color.parseColor("#E040FB")));
     }
 
-    private void westHempsteadBranchMarkers(MapboxMap map){
+    private void westHempsteadBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("West Hempstead Train Station").position(new LatLng(40.701944, -73.641667)));
         map.addMarker(new MarkerOptions().title("Hempstead Gardens Train Station").position(new LatLng(40.694722, -73.646111)));
         map.addMarker(new MarkerOptions().title("Lakeview Train Station").position(new LatLng(40.685556, -73.652222)));
@@ -449,8 +434,9 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Westwood Train Station").position(new LatLng(40.668278, -73.681417)));
 
     }
-    private void hempsteadBranchPolyline(MapboxMap map){
-        List<LatLng> hempsteadBranchPoly= new ArrayList<>();
+
+    private void hempsteadBranchPolyline(MapboxMap map) {
+        List<LatLng> hempsteadBranchPoly = new ArrayList<>();
 
         hempsteadBranchPoly.add(new LatLng(40.713102, -73.625307));//Hempstead
         hempsteadBranchPoly.add(new LatLng(40.721234, -73.629405));//Country Life Press
@@ -462,7 +448,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(hempsteadBranchPoly).color(Color.parseColor("#01579B")));
     }
 
-    private void hempsteadBranchMarkers(MapboxMap map){
+    private void hempsteadBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Hempstead Train Station").position(new LatLng(40.713102, -73.625307)));
         map.addMarker(new MarkerOptions().title("Country Life Press Train Station").position(new LatLng(40.721234, -73.629405)));
         map.addMarker(new MarkerOptions().title("Garden City Train Station").position(new LatLng(40.723136, -73.64007)));
@@ -472,8 +458,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
 
-    private void ronkonkomaTrainPolyline(MapboxMap map){
-        List<LatLng> ronkonkomaLine= new ArrayList<>();
+    private void ronkonkomaTrainPolyline(MapboxMap map) {
+        List<LatLng> ronkonkomaLine = new ArrayList<>();
 
         ronkonkomaLine.add(new LatLng(40.699511, -73.808727)); //Jamaica
         ronkonkomaLine.add(new LatLng(40.7102, -73.7666)); //Hollis
@@ -503,7 +489,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(ronkonkomaLine).color(Color.parseColor("#9C27B0")));
     }
 
-    private void ronkonkomaMarkers(MapboxMap map){
+    private void ronkonkomaMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
         map.addMarker(new MarkerOptions().title("Hollis Train Station").position(new LatLng(40.7102, -73.7666)));
         map.addMarker(new MarkerOptions().title("Queens Village Train Station").position(new LatLng(40.717469, -73.73638)));
@@ -530,8 +516,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Greenport Train Station").position(new LatLng(41.099722, -72.363611)));
     }
 
-    private void drawPolyLinesBabylon(MapboxMap map){
-        List<LatLng> babylonTrainLine= new ArrayList<>();
+    private void drawPolyLinesBabylon(MapboxMap map) {
+        List<LatLng> babylonTrainLine = new ArrayList<>();
 
         babylonTrainLine.add(new LatLng(40.699511, -73.808727)); //Jamaica
         babylonTrainLine.add(new LatLng(40.691052, -73.765426)); // St.Albans
@@ -551,10 +537,10 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         babylonTrainLine.add(new LatLng(40.700614, -73.32421)); //Babylon
 
         map.addPolyline(new PolylineOptions()
-        .addAll(babylonTrainLine).color(Color.parseColor("#3bb2d0")));
+                .addAll(babylonTrainLine).color(Color.parseColor("#3bb2d0")));
     }
 
-    private void babylonMarkers (MapboxMap map){
+    private void babylonMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
         map.addMarker(new MarkerOptions().title("St. Albans Train Station").position(new LatLng(40.691052, -73.765426)));
         map.addMarker(new MarkerOptions().title("Lynbrook Train Sation").position(new LatLng(40.65603, -73.6758)));
@@ -574,7 +560,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
 
     }
-    private void longBeachPolyLine(MapboxMap map){
+
+    private void longBeachPolyLine(MapboxMap map) {
         List<LatLng> longbeachBranch = new ArrayList<>();
 
         longbeachBranch.add(new LatLng(40.699511, -73.808727)); //Jamaica
@@ -587,9 +574,10 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         longbeachBranch.add(new LatLng(40.589368, -73.664854)); //Long Beach
 
         map.addPolyline(new PolylineOptions().addAll(longbeachBranch)
-        .color(Color.parseColor("#009688")));
+                .color(Color.parseColor("#009688")));
     }
-    private void longbeachBranchMarkers(MapboxMap map){
+
+    private void longbeachBranchMarkers(MapboxMap map) {
 
         map.addMarker(new MarkerOptions().title("Lynbrook Train Station").position(new LatLng(40.65603, -73.6758)));
         map.addMarker(new MarkerOptions().title("Centre Avenue Train Station").position(new LatLng(40.648272, -73.663915)));
@@ -599,8 +587,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Long Beach Train Station").position(new LatLng(40.589368, -73.664854)));
     }
 
-    private void atlanticBranchPolyline(MapboxMap map){
-        List<LatLng> atlanticPolylines= new ArrayList<>();
+    private void atlanticBranchPolyline(MapboxMap map) {
+        List<LatLng> atlanticPolylines = new ArrayList<>();
 
         atlanticPolylines.add(new LatLng(40.699511, -73.808727)); //Jamaica
         atlanticPolylines.add(new LatLng(40.675022, -73.764897));//Locust Manor
@@ -611,7 +599,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(atlanticPolylines).color(Color.parseColor("#FFA000")));
     }
 
-    private void atlanticBranchMarkers(MapboxMap map){
+    private void atlanticBranchMarkers(MapboxMap map) {
 
         map.addMarker(new MarkerOptions().title("Jamaica Train Station").position(new LatLng(40.699511, -73.808727)));
         map.addMarker(new MarkerOptions().title("Locust Manor Train Station").position(new LatLng(40.675022, -73.764897)));
@@ -619,10 +607,11 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Rosedale Train Station").position(new LatLng(40.6659, -73.7356)));
         map.addMarker(new MarkerOptions().title("Valley Stream Train Station").position(new LatLng(40.661483, -73.704679)));
     }
-    private void oysterBayBranchPolyLine(MapboxMap map){
-        List<LatLng> oysterBayLine= new ArrayList<>();
 
-        oysterBayLine.add(new LatLng(40.874992,-73.531603));//Oyster Bay
+    private void oysterBayBranchPolyLine(MapboxMap map) {
+        List<LatLng> oysterBayLine = new ArrayList<>();
+
+        oysterBayLine.add(new LatLng(40.874992, -73.531603));//Oyster Bay
         oysterBayLine.add(new LatLng(40.874251, -73.598678));//Locust Valley
         oysterBayLine.add(new LatLng(40.865189, -73.616976));// Glen Cove
         oysterBayLine.add(new LatLng(40.857862, -73.621461));//Glen Street
@@ -643,8 +632,9 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(oysterBayLine).color(Color.parseColor("#00695C")));
 
     }
-    private void oysterBayBranchMarkers(MapboxMap map){
-        map.addMarker(new MarkerOptions().title("Oyster Bay Train Station").position(new LatLng(40.874992,-73.531603)));
+
+    private void oysterBayBranchMarkers(MapboxMap map) {
+        map.addMarker(new MarkerOptions().title("Oyster Bay Train Station").position(new LatLng(40.874992, -73.531603)));
         map.addMarker(new MarkerOptions().title("Locust Valley Train Station").position(new LatLng(40.874251, -73.598678)));
         map.addMarker(new MarkerOptions().title("Glen Cove Train Station").position(new LatLng(40.865189, -73.616976)));
         map.addMarker(new MarkerOptions().title("Glen Street Train Station").position(new LatLng(40.857862, -73.621461)));
@@ -657,8 +647,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    private void portJeffersonBranchPolyLine(MapboxMap map){
-        List<LatLng> portJeffLine= new ArrayList<>();
+    private void portJeffersonBranchPolyLine(MapboxMap map) {
+        List<LatLng> portJeffLine = new ArrayList<>();
 
         portJeffLine.add(new LatLng(40.934719, -73.053692));// Port Jefferson
         portJeffLine.add(new LatLng(40.920275, -73.128514));// Stony Brook
@@ -674,7 +664,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         map.addPolyline(new PolylineOptions().addAll(portJeffLine).color(Color.parseColor("#FF5722")));
     }
-    private void portJeffersonBranchMarkers(MapboxMap map){
+
+    private void portJeffersonBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Port Jefferson Train Station").position(new LatLng(40.934719, -73.053692)));
         map.addMarker(new MarkerOptions().title("Stony Brook Train Station").position(new LatLng(40.920275, -73.128514)));
         map.addMarker(new MarkerOptions().title("Saint James Train Station").position(new LatLng(40.883272, -73.158153)));
@@ -687,13 +678,14 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Syosset Train Station").position(new LatLng(40.824892, -73.500492)));
 
     }
-    private void farRockawayBranchPolyline(MapboxMap map){
-        List<LatLng> farRockawayLine= new ArrayList<>();
+
+    private void farRockawayBranchPolyline(MapboxMap map) {
+        List<LatLng> farRockawayLine = new ArrayList<>();
 
         farRockawayLine.add(new LatLng(40.608610, -73.750792));//Far Rockaway
         farRockawayLine.add(new LatLng(40.612291, -73.74431));//Inwood
         farRockawayLine.add(new LatLng(40.615638, -73.736050));//Lawrence
-        farRockawayLine.add(new LatLng(40.622214,-73.727121));//Cedarhurst
+        farRockawayLine.add(new LatLng(40.622214, -73.727121));//Cedarhurst
         farRockawayLine.add(new LatLng(40.631298, -73.713740));//Woodmere
         farRockawayLine.add(new LatLng(40.636737, -73.705151));//Hewlett
         farRockawayLine.add(new LatLng(40.649927, -73.701694));//Gibson
@@ -702,18 +694,18 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(farRockawayLine).color(Color.parseColor("#64FFDA")));
     }
 
-    private void farRockawayBranchMarkers(MapboxMap map){
+    private void farRockawayBranchMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Far Rockaway Train Station").position(new LatLng(40.608610, -73.750792)));
         map.addMarker(new MarkerOptions().title("Inwood Train Station").position(new LatLng(40.612291, -73.74431)));
         map.addMarker(new MarkerOptions().title("Lawrence Train Station").position(new LatLng(40.615638, -73.736050)));
-        map.addMarker(new MarkerOptions().title("Cedarhurst Train Station").position(new LatLng(40.622214,-73.727121)));
+        map.addMarker(new MarkerOptions().title("Cedarhurst Train Station").position(new LatLng(40.622214, -73.727121)));
         map.addMarker(new MarkerOptions().title("Woodmere Train Station").position(new LatLng(40.631298, -73.713740)));
         map.addMarker(new MarkerOptions().title("Hewlett Train Station").position(new LatLng(40.636737, -73.705151)));
         map.addMarker(new MarkerOptions().title("Gibson Train Station").position(new LatLng(40.649927, -73.701694)));
 
     }
 
-    private void hudsonLinePolyLine(MapboxMap map){
+    private void hudsonLinePolyLine(MapboxMap map) {
         List<LatLng> hudsonLine = new ArrayList<>();
 
         hudsonLine.add(new LatLng(40.7528, -73.976522));//Grand Central Terminal
@@ -751,7 +743,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    private void hudsonLineMarkers(MapboxMap map){
+    private void hudsonLineMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Grand Central Terminal").position(new LatLng(40.7528, -73.976522)));
         map.addMarker(new MarkerOptions().title("Harlem 125th Street Station").position(new LatLng(40.8052, -73.939)));
         map.addMarker(new MarkerOptions().title("Yankee Stadium 153rd Street Station").position(new LatLng(40.825375, -73.930267)));
@@ -785,8 +777,9 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
 
     }
-    private void harlemLinePoly(MapboxMap map){
-        List<LatLng> harlemline= new ArrayList<>();
+
+    private void harlemLinePoly(MapboxMap map) {
+        List<LatLng> harlemline = new ArrayList<>();
 
         harlemline.add(new LatLng(40.7528, -73.976522));//Grand Central Terminal
         harlemline.add(new LatLng(40.8052, -73.939));// Harlem-125th Street
@@ -830,7 +823,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(harlemline).color(Color.parseColor("#09A6C9")));
 
     }
-    private void harlemLineMarkers(MapboxMap map){
+
+    private void harlemLineMarkers(MapboxMap map) {
 
         map.addMarker(new MarkerOptions().title("Melrose Station").position(new LatLng(40.8257, -73.9154)));
         map.addMarker(new MarkerOptions().title("Tremont Station").position(new LatLng(40.8472, -73.8997)));
@@ -870,8 +864,9 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("Wassiac Station").position(new LatLng(41.8147, -73.5623)));
 
     }
-    private void newHavenLinePoly(MapboxMap map){
-        List<LatLng> newHavenLine=new ArrayList<>();
+
+    private void newHavenLinePoly(MapboxMap map) {
+        List<LatLng> newHavenLine = new ArrayList<>();
 
         newHavenLine.add(new LatLng(40.861534, -73.890561));//Fordham
         newHavenLine.add(new LatLng(40.911942, -73.831678));//Mount Vernon East
@@ -906,7 +901,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
         map.addPolyline(new PolylineOptions().addAll(newHavenLine).color(Color.parseColor("#AB2A07")));
     }
-    private void newHavenMarkers(MapboxMap map){
+
+    private void newHavenMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Fordham Station").position(new LatLng(40.861534, -73.890561)));
         map.addMarker(new MarkerOptions().title("Mount Vernon East Station").position(new LatLng(40.911942, -73.831678)));
         map.addMarker(new MarkerOptions().title("Pelham Station").position(new LatLng(40.912961, -73.810251)));
@@ -939,8 +935,9 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addMarker(new MarkerOptions().title("New Haven State Street Station").position(new LatLng(41.305763, -72.921753)));
 
     }
-    private void newCanaanPoly(MapboxMap map){
-        List<LatLng> newCananLine= new ArrayList<>();
+
+    private void newCanaanPoly(MapboxMap map) {
+        List<LatLng> newCananLine = new ArrayList<>();
 
         newCananLine.add(new LatLng(41.046937, -73.541493));//Stamford Terminal
         newCananLine.add(new LatLng(41.0705, -73.5199));//Glenbrook
@@ -950,7 +947,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(newCananLine).color(Color.parseColor("#FFC300")));
 
     }
-    private void newCananMarkers(MapboxMap map){
+
+    private void newCananMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Stamford Terminal").position(new LatLng(41.046937, -73.541493)));
         map.addMarker(new MarkerOptions().title("Glenbrook Station").position(new LatLng(41.0705, -73.5199)));
         map.addMarker(new MarkerOptions().title("Srpingdale Station").position(new LatLng(41.0888, -73.5178)));
@@ -961,7 +959,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
     private void danburyPoly(MapboxMap map) {
-        List<LatLng> danburyLines= new ArrayList<>();
+        List<LatLng> danburyLines = new ArrayList<>();
 
         danburyLines.add(new LatLng(41.0957, -73.42185));//South Norwalk
         danburyLines.add(new LatLng(41.1466, -73.4278));//Merrit 7
@@ -974,7 +972,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         map.addPolyline(new PolylineOptions().addAll(danburyLines).color(Color.parseColor("#D3720B")));
     }
 
-    private void danburyMarkers(MapboxMap map){
+    private void danburyMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Merrit 7 Station").position(new LatLng(41.0957, -73.42185)));
         map.addMarker(new MarkerOptions().title("Wilton Station").position(new LatLng(41.1959, -73.4321)));
         map.addMarker(new MarkerOptions().title("Cannondale Station").position(new LatLng(41.216667, -73.426667)));
@@ -985,8 +983,8 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    private void waterburyPoly(MapboxMap map){
-        List<LatLng> waterLines= new ArrayList<>();
+    private void waterburyPoly(MapboxMap map) {
+        List<LatLng> waterLines = new ArrayList<>();
 
         waterLines.add(new LatLng(41.1778, -73.1871));//Bridgeport
         waterLines.add(new LatLng(41.195303, -73.131523));//Stratford
@@ -1000,7 +998,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     }
 
-    private void waterburyMarkers(MapboxMap map){
+    private void waterburyMarkers(MapboxMap map) {
         map.addMarker(new MarkerOptions().title("Derby-Shelton Station").position(new LatLng(41.320284, -73.083565)));
         map.addMarker(new MarkerOptions().title("Asonia Station").position(new LatLng(41.3442, -73.0799)));
         map.addMarker(new MarkerOptions().title("Seymour Station").position(new LatLng(41.3953, -73.0725)));
@@ -1011,35 +1009,42 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
 
-            // Add the mapView lifecycle to the activity's lifecycle methods
+    // Add the mapView lifecycle to the activity's lifecycle methods
 
 
-            @Override
-            public void onLowMemory() {
-                super.onLowMemory();
-                mapView.onLowMemory();
-            }
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
 
-            @Override
-            protected void onDestroy() {
-                super.onDestroy();
-                mapView.onDestroy();
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
 
-            @Override
-            protected void onSaveInstanceState(Bundle outState) {
-                super.onSaveInstanceState(outState);
-                mapView.onSaveInstanceState(outState);
-            }
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
 
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        displayLocation();
-        if(mRequestLocationUpdates){
-            startLocationUpdates();
+        if (hasSufficientPermissions()) {
+            displayLocation();
+            if (mRequestLocationUpdates) {
+                startLocationUpdates();
+            }
+        } else {
+            requestPermissions();
         }
+    }
+
+    private void requestPermissions() {
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
     }
 
     @Override
@@ -1049,14 +1054,14 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocationCoordinates= location;
+        mLastLocationCoordinates = location;
         Toast.makeText(LIRRMap.this, "Location Changed", Toast.LENGTH_SHORT).show();
         displayLocation();
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Log.i(TAG,"Connection failed" + connectionResult.getErrorMessage());
+        Log.i(TAG, "Connection failed" + connectionResult.getErrorMessage());
     }
 }
 
