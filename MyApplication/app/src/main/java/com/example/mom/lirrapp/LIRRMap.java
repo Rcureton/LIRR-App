@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -34,16 +35,14 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.mom.lirrapp.Constants;
-
 public class LIRRMap extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     private static final int PERMISSIONS_LOCATION = 0;
     private static final String TAG = LIRRMap.class.getSimpleName();
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
-    private MapView mapView;
+    private MapView mMapView;
     private TextView mblank;
-    private MapboxMap map1;
+    private MapboxMap mMap;
     private Location mLastLocationCoordinates;
     private GoogleApiClient mGoogleApiClient;
     private boolean mRequestLocationUpdates = false;
@@ -72,14 +71,16 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
 
             }
         });
-        mapView = (MapView) findViewById(R.id.mapview);
-        mapView.onCreate(savedInstanceState);
+        mMapView = (MapView) findViewById(R.id.mapview);
+        mMapView.onCreate(savedInstanceState);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasSufficientPermissions()) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSIONS_LOCATION);
             }
         }
+
+
 
         // Keep methods as short as possible
         plotPoints();
@@ -92,11 +93,12 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
     private void plotPoints() {
-        mapView.getMapAsync(new OnMapReadyCallback() {
+        mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
-//
+                mMap = mapboxMap;
                 mapboxMap.setMyLocationEnabled(true);
+                new MarkersAsyncTask().execute();
 
                 //Long Island Train Lines
                 drawPolyLinesBabylon(mapboxMap);
@@ -129,18 +131,18 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 atlanticTerminalPolyline(mapboxMap);
 
                 // Metro North Lines
-                hudsonLinePolyLine(mapboxMap);
-                hudsonLineMarkers(mapboxMap);
-                harlemLinePoly(mapboxMap);
-                harlemLineMarkers(mapboxMap);
-                newHavenLinePoly(mapboxMap);
-                newHavenMarkers(mapboxMap);
-                newCanaanPoly(mapboxMap);
-                newCananMarkers(mapboxMap);
-                danburyMarkers(mapboxMap);
-                danburyPoly(mapboxMap);
-                waterburyMarkers(mapboxMap);
-                waterburyPoly(mapboxMap);
+////                hudsonLinePolyLine(mapboxMap);
+//                hudsonLineMarkers(mapboxMap);
+//                harlemLinePoly(mapboxMap);
+//                harlemLineMarkers(mapboxMap);
+//                newHavenLinePoly(mapboxMap);
+//                newHavenMarkers(mapboxMap);
+//                newCanaanPoly(mapboxMap);
+//                newCananMarkers(mapboxMap);
+//                danburyMarkers(mapboxMap);
+//                danburyPoly(mapboxMap);
+//                waterburyMarkers(mapboxMap);
+//                waterburyPoly(mapboxMap);
 
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
@@ -173,7 +175,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     @Override
     protected void onResume() {
         super.onResume();
-        mapView.onResume();
+        mMapView.onResume();
 
         checkPlayServices();
         if (mGoogleApiClient.isConnected() && mRequestLocationUpdates && hasSufficientPermissions()) {
@@ -192,7 +194,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     @Override
     protected void onPause() {
         super.onPause();
-        mapView.onPause();
+        mMapView.onPause();
         stopLocationUpdates();
     }
 
@@ -1004,25 +1006,25 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     }
 
 
-    // Add the mapView lifecycle to the activity's lifecycle methods
+    // Add the mMapView lifecycle to the activity's lifecycle methods
 
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        mapView.onLowMemory();
+        mMapView.onLowMemory();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mapView.onDestroy();
+        mMapView.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
+        mMapView.onSaveInstanceState(outState);
     }
 
 
@@ -1058,6 +1060,44 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG, "Connection failed" + connectionResult.getErrorMessage());
     }
+
+    private class MarkersAsyncTask extends AsyncTask<Void,Void,List<LatLng>>{
+
+        @Override
+        protected List<LatLng> doInBackground(Void... params) {
+
+            List<LatLng> waterLines = new ArrayList<>();
+
+            waterLines.add(new LatLng(41.1778, -73.1871));//Bridgeport
+            waterLines.add(new LatLng(41.195303, -73.131523));//Stratford
+            waterLines.add(new LatLng(41.320284, -73.083565));//Derby-Shelton
+            waterLines.add(new LatLng(41.3442, -73.0799));//Asonia
+            waterLines.add(new LatLng(41.3953, -73.0725));//Seymour
+            waterLines.add(new LatLng(41.4407, -73.0631));//Beacon Falls
+            waterLines.add(new LatLng(41.492778, -73.052222));//Naugatuck
+            waterLines.add(new LatLng(41.5544, -73.047));//Waterbury
+
+
+            return waterLines;
+        }
+
+        @Override
+        protected void onPostExecute(final List<LatLng> points) {
+            super.onPostExecute(points);
+            if(points.size()>0){
+                LatLng[] pointsArray = points.toArray(new LatLng[points.size()]);
+
+                // Draw a polyline showing the route the marker will be taking.
+                mMap.addPolyline(new PolylineOptions()
+                        .add(pointsArray)
+                        .color(Color.parseColor("#F13C6E"))
+                        .width(4));
+
+            }
+
+        }
+    }
+
 }
 
 

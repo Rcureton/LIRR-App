@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         mWeather = (ImageButton) findViewById(R.id.schedule);
         mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
 
-//        Picasso.with(MainActivity.this).load("http://graphics8.nytimes.com/images/2013/01/20/nyregion/20GRAND2/20GRAND2-articleLarge-v2.jpg").into(mBackgroundImage);
+        Picasso.with(MainActivity.this).load("https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/MSGPennStationExterior_Rendering_original.jpg").into(mBackgroundImage);
 
 
         final Items items = new Items();
@@ -139,15 +139,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
