@@ -37,6 +37,8 @@ import com.example.mom.lirrapp.Constants;
 import com.mukesh.permissions.AppPermissions;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -72,7 +74,12 @@ public class MainActivity extends AppCompatActivity
         mWeather = (ImageButton) findViewById(R.id.schedule);
         mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
 
-        Picasso.with(MainActivity.this).load("https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/MSGPennStationExterior_Rendering_original.jpg").into(mBackgroundImage);
+        Calendar calendar=Calendar.getInstance();
+        int month= calendar.get(Calendar.MONTH);
+            mBackgroundImage.setImageResource(getMonth(month));
+
+
+//        Picasso.with(MainActivity.this).load("https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/MSGPennStationExterior_Rendering_original.jpg").into(mBackgroundImage);
 
 
         final Items items = new Items();
@@ -367,5 +374,36 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG, "Connection failed" + connectionResult.getErrorMessage());
+    }
+
+    private int getMonth(int month){
+        switch (month){
+            case 0:
+                return R.drawable.january;
+            case 1:
+                return R.drawable.february;
+            case 2:
+                return R.drawable.march;
+            case 3:
+                return R.drawable.april;
+            case 4:
+                return R.drawable.may;
+            case 5:
+                return R.drawable.june;
+            case 6:
+                return R.drawable.july;
+            case 7:
+                return R.drawable.august;
+            case 8:
+                return R.drawable.september;
+            case 9:
+                return R.drawable.october;
+            case 10:
+                return R.drawable.november;
+            case 11:
+                return R.drawable.december;
+            default:
+                return R.drawable.seattle;
+        }
     }
 }

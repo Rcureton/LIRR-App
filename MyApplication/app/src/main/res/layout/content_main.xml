@@ -8,11 +8,21 @@
     tools:context="com.example.mom.lirrapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <ImageView
-        android:id="@+id/backgroundImage"
-        android:scaleType="centerCrop"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:scaleType="centerCrop"
+            android:src="@drawable/september"
+            android:layout_width="match_parent"
+            android:layout_height="350dp" />
+
+    </FrameLayout>
+
+
 
     <ImageView
         android:id="@+id/imageView"
