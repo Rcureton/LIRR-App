@@ -16,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     private MapView mMapView;
     private TextView mblank;
     private MapboxMap mMap;
+    private ProgressBar pb;
     private Location mLastLocationCoordinates;
     private GoogleApiClient mGoogleApiClient;
     private boolean mRequestLocationUpdates = false;
@@ -58,6 +60,19 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     private double longitude;
     private double latitude;
     private FloatingActionButton floatingActionButton;
+    private List<LatLng> mBabylon;
+    private List<LatLng> mRonkonkoma;
+    private List<LatLng> mAtlanticTerminal;
+    private List<LatLng> mPortWashington;
+    private List<LatLng> mLongBeach;
+    private List<LatLng> mPennLine;
+    private List<LatLng> mMontaukLine;
+    private List<LatLng> mOysterBay;
+    private List<LatLng> mWestHempstead;
+    private List<LatLng> mHempstead;
+    private List<LatLng> mPortJefferson;
+    private List<LatLng> mFarRockaway;
+
 
 
     @Override
@@ -65,6 +80,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic);
         mblank = (TextView) findViewById(R.id.blank2);
+        pb = (ProgressBar) findViewById(R.id.pb);
 
         final Items items = new Items();
 
@@ -109,34 +125,25 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 new MarkersAsyncTask().execute();
 
                 //Long Island Train Lines
-                drawPolyLinesBabylon(mapboxMap);
-                ronkonkomaTrainPolyline(mapboxMap);
+
                 babylonMarkers(mapboxMap);
                 ronkonkomaMarkers(mapboxMap);
-                longBeachPolyLine(mapboxMap);
                 longbeachBranchMarkers(mapboxMap);
                 atlanticBranchMarkers(mapboxMap);
-                atlanticBranchPolyline(mapboxMap);
                 oysterBayBranchMarkers(mapboxMap);
-                oysterBayBranchPolyLine(mapboxMap);
                 portJeffersonBranchMarkers(mapboxMap);
-                portJeffersonBranchPolyLine(mapboxMap);
                 farRockawayBranchMarkers(mapboxMap);
-                farRockawayBranchPolyline(mapboxMap);
                 westHempsteadBranchMarkers(mapboxMap);
-                westHempsteadBranchPolyline(mapboxMap);
                 hempsteadBranchMarkers(mapboxMap);
-                hempsteadBranchPolyline(mapboxMap);
                 portWashingtonBranchMarkers(mapboxMap);
-                portWashingtonBranchPolyLine(mapboxMap);
                 montaukBranchMarkers(mapboxMap);
-                montaukBranchPolyline(mapboxMap);
 
-                //Queens and Brooklyn Train Lines
-                cityLineMarkers(mapboxMap);
-                cityLinePoly(mapboxMap);
-                atlanticTerminalMarkers(mapboxMap);
-                atlanticTerminalPolyline(mapboxMap);
+//
+//                //Queens and Brooklyn Train Lines
+//                cityLineMarkers(mapboxMap);
+//                cityLinePoly(mapboxMap);
+//                atlanticTerminalMarkers(mapboxMap);
+//                atlanticTerminalPolyline(mapboxMap);
 
                 // Metro North Lines
 ////                hudsonLinePolyLine(mapboxMap);
@@ -1072,47 +1079,193 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
     private class MarkersAsyncTask extends AsyncTask<Void,Void,List<LatLng>>{
 
         @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pb.setVisibility(View.VISIBLE);
+        }
+
+        @Override
         protected List<LatLng> doInBackground(Void... params) {
 
             // Store the route LatLng points in a list so we can query them.
             List<LatLng> points = new ArrayList<>();
+            mBabylon= new ArrayList<>();
+            mMontaukLine= new ArrayList<>();
+            mPennLine= new ArrayList<>();
+            mAtlanticTerminal= new ArrayList<>();
+            mPortWashington= new ArrayList<>();
+            mLongBeach= new ArrayList<>();
+            mHempstead= new ArrayList<>();
+            mWestHempstead= new ArrayList<>();
+            mPortJefferson= new ArrayList<>();
+            mOysterBay= new ArrayList<>();
+            mFarRockaway= new ArrayList<>();
+            mRonkonkoma= new ArrayList<>();
 
-            try {
-                // Load GeoJSON file from the assets folder.
-                InputStream inputStream = getAssets().open("map.geojson");
-                BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
-                StringBuilder sb = new StringBuilder();
-                int cp;
-                while ((cp = rd.read()) != -1) {
-                    sb.append((char) cp);
-                }
+            //Bablyon Line
+            mBabylon.add(new LatLng(40.699511, -73.808727));//Jamaica
+            mBabylon.add(new LatLng(40.676053, -73.905925));//East New York
+            mBabylon.add(new LatLng(40.67845, -73.9494));// Nostrand Avenue
+            mBabylon.add(new LatLng(40.684226, -73.977234));//Atlantic Terminal
+            mBabylon.add(new LatLng(40.699511, -73.808727)); //Jamaica
+            mBabylon.add(new LatLng(40.691052, -73.765426)); // St.Albans
+            mBabylon.add(new LatLng(40.65603, -73.6758)); //Lynbrook
+            mBabylon.add(new LatLng(40.6583, -73.6466)); //Rockville Centre
+            mBabylon.add(new LatLng(40.656746, -73.607444)); //Baldwin
+            mBabylon.add(new LatLng(40.657425, -73.582601)); //Freeport
+            mBabylon.add(new LatLng(40.663769, -73.550709)); //Merrick
+            mBabylon.add(new LatLng(40.668766, -73.528833)); //Bellmore
+            mBabylon.add(new LatLng(40.672937, -73.509098)); //Wantagh
+            mBabylon.add(new LatLng(40.67573, -73.486454)); //Seaford
+            mBabylon.add(new LatLng(40.676901, -73.469052)); //Massapequa
+            mBabylon.add(new LatLng(40.677851, -73.45474)); //Massapequa Park
+            mBabylon.add(new LatLng(40.680263, -73.420472)); //Amityville
+            mBabylon.add(new LatLng(40.681, -73.399)); //Copiague
+            mBabylon.add(new LatLng(40.688243, -73.369242)); //Lindenhurst
+            mBabylon.add(new LatLng(40.700614, -73.32421)); //Babylon
 
-                inputStream.close();
-                // Parse JSON
-                JSONObject json = new JSONObject(sb.toString());
-                JSONArray features = json.getJSONArray("features");
-                JSONObject feature = features.getJSONObject(0);
-                JSONObject geometry = feature.getJSONObject("geometry");
-                if (geometry != null) {
-                    String type = geometry.getString("type");
+            //Ronkonkoma Line
+            mRonkonkoma.add(new LatLng(40.699511, -73.808727)); //Jamaica
+            mRonkonkoma.add(new LatLng(40.7102, -73.7666)); //Hollis
+            mRonkonkoma.add(new LatLng(40.717469, -73.73638)); //Queens Village
+            mRonkonkoma.add(new LatLng(40.724622, -73.706398)); //Floral Park
+            mRonkonkoma.add(new LatLng(40.730932, -73.680569)); //New Hyde Park
+            mRonkonkoma.add(new LatLng(40.735164, -73.662523)); //Merillion Avenue
+            mRonkonkoma.add(new LatLng(40.740291, -73.641025)); //Mineola
+            mRonkonkoma.add(new LatLng(40.749195, -73.603705)); //Carle Place
+            mRonkonkoma.add(new LatLng(40.753404, -73.586273)); //Westbury
+            mRonkonkoma.add(new LatLng(40.767101, -73.528686)); //Hicksville
+            mRonkonkoma.add(new LatLng(40.742994, -73.483359)); //Bethpage
+            mRonkonkoma.add(new LatLng(40.735665, -73.441713)); //Farmingdale
+            mRonkonkoma.add(new LatLng(40.745339, -73.399572)); //Pinelawn
+            mRonkonkoma.add(new LatLng(40.754889, -73.35781)); //Wyandanch
+            mRonkonkoma.add(new LatLng(40.76948, -73.293577)); //Deer Park
+            mRonkonkoma.add(new LatLng(40.780826, -73.243607)); //Brentwood
+            mRonkonkoma.add(new LatLng(40.79188, -73.19467)); //Central Islip
+            mRonkonkoma.add(new LatLng(40.808088, -73.1059)); //Ronkonkoma
+            mRonkonkoma.add(new LatLng(40.817356, -72.999159));//Medford
+            mRonkonkoma.add(new LatLng(40.825656, -72.915841));//Yaphank
+            mRonkonkoma.add(new LatLng(40.919763, -72.6669));//Riverhead
+            mRonkonkoma.add(new LatLng(40.991761, -72.536009));//Mattituck
+            mRonkonkoma.add(new LatLng(41.066295, -72.427859));//Southold
+            mRonkonkoma.add(new LatLng(41.099722, -72.363611));//Greenport
 
-                    // Our GeoJSON only has one feature: a line string.
-                    if (!TextUtils.isEmpty(type) && type.equalsIgnoreCase("Point")) {
+            //Montauk Line
+            mMontaukLine.add(new LatLng(41.046793, -71.954452));// Montauk
+            mMontaukLine.add(new LatLng(40.98, -72.1325));//Amagansett
+            mMontaukLine.add(new LatLng(40.964936, -72.193461));//East Hampton
+            mMontaukLine.add(new LatLng(40.939163, -72.309646));//BridgeHampton
+            mMontaukLine.add(new LatLng(40.894779, -72.38975));//Southampton
+            mMontaukLine.add(new LatLng(40.876464, -72.524566));//Hampton Bays
+            mMontaukLine.add(new LatLng(40.830191, -72.650973));//Westhampton
+            mMontaukLine.add(new LatLng(40.821224, -72.704853));//Speonk
+            mMontaukLine.add(new LatLng(40.7989, -72.86454));//Mastic-Shirley
+            mMontaukLine.add(new LatLng(40.773717, -72.943769));//Bellport
+            mMontaukLine.add(new LatLng(40.761841, -73.015735));//Patchogue
+            mMontaukLine.add(new LatLng(40.740388, -73.086497));//Sayville
+            mMontaukLine.add(new LatLng(40.7434, -73.1324));//Oakdale
+            mMontaukLine.add(new LatLng(40.740476, -73.17));//Great River
+            mMontaukLine.add(new LatLng(40.736, -73.209));//Islip
+            mMontaukLine.add(new LatLng(40.72505, -73.253057));//Bayshore
+            mMontaukLine.add(new LatLng(40.700614, -73.32421)); //Babylon
 
-                        // Get the Coordinates and add them to the points list we created above.
-                        JSONArray coords = geometry.getJSONArray("coordinates");
-                        for (int lc = 0; lc < coords.length(); lc++) {
-                            JSONArray coord = coords.getJSONArray(lc);
-                            LatLng latLng = new LatLng(coord.getDouble(1), coord.getDouble(0));
-                            points.add(latLng);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                // If an error occurs loading in the GeoJSON file or adding the points to the list,
-                // we log the error.
-                Log.e(TAG, "Exception Loading GeoJSON: " + e.toString());
-            }
+            //Port Washington Line
+            mPortWashington.add(new LatLng(40.829349, -73.68733));//Port Washington
+            mPortWashington.add(new LatLng(40.810687, -73.695216));//Plandome Station
+            mPortWashington.add(new LatLng(40.79669, -73.6999996));//Manhasset
+            mPortWashington.add(new LatLng(40.787235, -73.725986));//Great Neck
+            mPortWashington.add(new LatLng(40.775, -73.740744));//Little Neck
+            mPortWashington.add(new LatLng(40.768, -73.7496));//Douglaston
+            mPortWashington.add(new LatLng(40.763105, -73.771804));//Bayside
+            mPortWashington.add(new LatLng(40.76139, -73.7905));//Auburndale
+            mPortWashington.add(new LatLng(40.761626, -73.801383));//Broadway Station
+            mPortWashington.add(new LatLng(40.762703, -73.81446));//Murray Hill
+            mPortWashington.add(new LatLng(40.757989, -73.831086));//Flusing-Main Street
+            mPortWashington.add(new LatLng(40.752516, -73.843725));// Mets Stadium- Willets Point
+            mPortWashington.add(new LatLng(40.746072, -73.903201));// Woodside
+            mPortWashington.add(new LatLng(40.750638, -73.993899));//Penn Station
+
+            //Long Beach Line
+            mLongBeach.add(new LatLng(40.699511, -73.808727)); //Jamaica
+            mLongBeach.add(new LatLng(40.691052, -73.765426)); // St.Albans
+            mLongBeach.add(new LatLng(40.65603, -73.6758)); //Lynbrook
+            mLongBeach.add(new LatLng(40.648272, -73.663915)); //Centre Avenue
+            mLongBeach.add(new LatLng(40.640938, -73.657067)); //East Rockaway
+            mLongBeach.add(new LatLng(40.634986, -73.654613)); //Oceanside
+            mLongBeach.add(new LatLng(40.600433, -73.655388)); //Island Park
+            mLongBeach.add(new LatLng(40.589368, -73.664854)); //Long Beach
+
+            //Penn Station Line
+            mPennLine.add(new LatLng(40.699511, -73.808727));//Jamaica
+            mPennLine.add(new LatLng(40.7096, -73.83066));// Kew Gardens
+            mPennLine.add(new LatLng(40.719483, -73.844883));//Forrest Hills
+            mPennLine.add(new LatLng(40.746072, -73.903201));//Woodside
+            mPennLine.add(new LatLng(40.750638, -73.993899));// Penn Station
+
+            //Atlantic Terminal Line
+            mAtlanticTerminal.add(new LatLng(40.699511, -73.808727));//Jamaica
+            mAtlanticTerminal.add(new LatLng(40.676053, -73.905925));//East New York
+            mAtlanticTerminal.add(new LatLng(40.67845, -73.9494));// Nostrand Avenue
+            mAtlanticTerminal.add(new LatLng(40.684226, -73.977234));//Atlantic Terminal
+
+            //West Hempstead
+            mWestHempstead.add(new LatLng(40.701944, -73.641667));// West Hempstead
+            mWestHempstead.add(new LatLng(40.694722, -73.646111));// Hempstead Gardens
+            mWestHempstead.add(new LatLng(40.685556, -73.652222));// Lakeview
+            mWestHempstead.add(new LatLng(40.675556, -73.668611));//Malverne
+            mWestHempstead.add(new LatLng(40.668278, -73.681417));// Westwood
+            mWestHempstead.add(new LatLng(40.661483, -73.704679));//Valley Stream
+
+            //Hempstead Line
+            mHempstead.add(new LatLng(40.713102, -73.625307));//Hempstead
+            mHempstead.add(new LatLng(40.721234, -73.629405));//Country Life Press
+            mHempstead.add(new LatLng(40.723136, -73.64007));//Garden City
+            mHempstead.add(new LatLng(40.722933, -73.662751));//Nassau Blvd
+            mHempstead.add(new LatLng(40.723006, -73.68114));//Stewart Manor
+            mHempstead.add(new LatLng(40.724622, -73.706398));//Floral Park
+
+            //Port Jefferson Line
+            mPortJefferson.add(new LatLng(40.934719, -73.053692));// Port Jefferson
+            mPortJefferson.add(new LatLng(40.920275, -73.128514));// Stony Brook
+            mPortJefferson.add(new LatLng(40.883272, -73.158153));// Saint James
+            mPortJefferson.add(new LatLng(40.856264, -73.199272));// Smithtown
+            mPortJefferson.add(new LatLng(40.883719, -73.255819));//Kings Park
+            mPortJefferson.add(new LatLng(40.880714, -73.3285));//Northport
+            mPortJefferson.add(new LatLng(40.868658, -73.362972));// Greenlawn
+            mPortJefferson.add(new LatLng(40.852692, -73.410639));//Huntington
+            mPortJefferson.add(new LatLng(40.835056, -73.451611));//Cold Spring Harbor
+            mPortJefferson.add(new LatLng(40.824892, -73.500492));//Syosset
+            mPortJefferson.add(new LatLng(40.767101, -73.528686));//Hicksville
+
+            //Oyster Bay Line
+            mOysterBay.add(new LatLng(40.874992, -73.531603));//Oyster Bay
+            mOysterBay.add(new LatLng(40.874251, -73.598678));//Locust Valley
+            mOysterBay.add(new LatLng(40.865189, -73.616976));// Glen Cove
+            mOysterBay.add(new LatLng(40.857862, -73.621461));//Glen Street
+            mOysterBay.add(new LatLng(40.852564, -73.625408));//Sea Cliff
+            mOysterBay.add(new LatLng(40.832284, -73.626128));// Glen Head
+            mOysterBay.add(new LatLng(40.815547, -73.626916));//Greenvale
+            mOysterBay.add(new LatLng(40.79072, -73.643267));//Roslyn
+            mOysterBay.add(new LatLng(40.771872, -73.641679));// Albertson
+            mOysterBay.add(new LatLng(40.75614, -73.639426));// East Williston
+            mOysterBay.add(new LatLng(40.740291, -73.641025)); //Mineola
+            mOysterBay.add(new LatLng(40.735164, -73.662523)); //Merillion Avenue
+            mOysterBay.add(new LatLng(40.730932, -73.680569)); //New Hyde Park
+            mOysterBay.add(new LatLng(40.724622, -73.706398)); //Floral Park
+            mOysterBay.add(new LatLng(40.717469, -73.73638)); //Queens Village
+            mOysterBay.add(new LatLng(40.7102, -73.7666)); //Hollis
+            mOysterBay.add(new LatLng(40.699511, -73.808727)); //Jamaica
+
+            //Far Rockaway
+            mFarRockaway.add(new LatLng(40.608610, -73.750792));//Far Rockaway
+            mFarRockaway.add(new LatLng(40.612291, -73.74431));//Inwood
+            mFarRockaway.add(new LatLng(40.615638, -73.736050));//Lawrence
+            mFarRockaway.add(new LatLng(40.622214, -73.727121));//Cedarhurst
+            mFarRockaway.add(new LatLng(40.631298, -73.713740));//Woodmere
+            mFarRockaway.add(new LatLng(40.636737, -73.705151));//Hewlett
+            mFarRockaway.add(new LatLng(40.649927, -73.701694));//Gibson
+            mFarRockaway.add(new LatLng(40.661483, -73.704679)); //Valley Stream
+
 
 
 
@@ -1122,6 +1275,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         @Override
         protected void onPostExecute(final List<LatLng> points) {
             super.onPostExecute(points);
+            pb.setVisibility(View.INVISIBLE);
             if(points.size()>0){
                 LatLng[] pointsArray = points.toArray(new LatLng[points.size()]);
 
@@ -1131,6 +1285,18 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                         .color(Color.parseColor("#F13C6E")));
 
             }
+            mMap.addPolyline(new PolylineOptions().addAll(mBabylon).color(Color.parseColor("#3bb2d0")));
+            mMap.addPolyline(new PolylineOptions().addAll(mMontaukLine).color(Color.parseColor("#FF4081")));
+            mMap.addPolyline(new PolylineOptions().addAll(mPennLine).color(Color.parseColor("#009688")));
+            mMap.addPolyline(new PolylineOptions().addAll(mAtlanticTerminal).color(Color.parseColor("#311B92")));
+            mMap.addPolyline(new PolylineOptions().addAll(mAtlanticTerminal).color(Color.parseColor("#E65100")));
+            mMap.addPolyline(new PolylineOptions().addAll(mLongBeach).color(Color.parseColor("#009688")));
+            mMap.addPolyline(new PolylineOptions().addAll(mRonkonkoma).color(Color.parseColor("#9C27B0")));
+            mMap.addPolyline(new PolylineOptions().addAll(mWestHempstead).color(Color.parseColor("#E040FB")));
+            mMap.addPolyline(new PolylineOptions().addAll(mHempstead).color(Color.parseColor("#01579B")));
+            mMap.addPolyline(new PolylineOptions().addAll(mPortJefferson).color(Color.parseColor("#FF5722")));
+            mMap.addPolyline(new PolylineOptions().addAll(mOysterBay).color(Color.parseColor("#00695C")));
+            mMap.addPolyline(new PolylineOptions().addAll(mFarRockaway).color(Color.parseColor("#64FFDA")));
 
         }
     }
