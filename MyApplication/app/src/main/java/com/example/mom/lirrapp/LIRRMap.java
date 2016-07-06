@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -32,6 +33,13 @@ import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -1066,19 +1074,49 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         @Override
         protected List<LatLng> doInBackground(Void... params) {
 
-            List<LatLng> waterLines = new ArrayList<>();
+            // Store the route LatLng points in a list so we can query them.
+            List<LatLng> points = new ArrayList<>();
 
-            waterLines.add(new LatLng(41.1778, -73.1871));//Bridgeport
-            waterLines.add(new LatLng(41.195303, -73.131523));//Stratford
-            waterLines.add(new LatLng(41.320284, -73.083565));//Derby-Shelton
-            waterLines.add(new LatLng(41.3442, -73.0799));//Asonia
-            waterLines.add(new LatLng(41.3953, -73.0725));//Seymour
-            waterLines.add(new LatLng(41.4407, -73.0631));//Beacon Falls
-            waterLines.add(new LatLng(41.492778, -73.052222));//Naugatuck
-            waterLines.add(new LatLng(41.5544, -73.047));//Waterbury
+            try {
+                // Load GeoJSON file from the assets folder.
+                InputStream inputStream = getAssets().open("map.geojson");
+                BufferedReader rd = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+                StringBuilder sb = new StringBuilder();
+                int cp;
+                while ((cp = rd.read()) != -1) {
+                    sb.append((char) cp);
+                }
+
+                inputStream.close();
+                // Parse JSON
+                JSONObject json = new JSONObject(sb.toString());
+                JSONArray features = json.getJSONArray("features");
+                JSONObject feature = features.getJSONObject(0);
+                JSONObject geometry = feature.getJSONObject("geometry");
+                if (geometry != null) {
+                    String type = geometry.getString("type");
+
+                    // Our GeoJSON only has one feature: a line string.
+                    if (!TextUtils.isEmpty(type) && type.equalsIgnoreCase("Point")) {
+
+                        // Get the Coordinates and add them to the points list we created above.
+                        JSONArray coords = geometry.getJSONArray("coordinates");
+                        for (int lc = 0; lc < coords.length(); lc++) {
+                            JSONArray coord = coords.getJSONArray(lc);
+                            LatLng latLng = new LatLng(coord.getDouble(1), coord.getDouble(0));
+                            points.add(latLng);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // If an error occurs loading in the GeoJSON file or adding the points to the list,
+                // we log the error.
+                Log.e(TAG, "Exception Loading GeoJSON: " + e.toString());
+            }
 
 
-            return waterLines;
+
+            return points;
         }
 
         @Override
@@ -1090,8 +1128,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 // Draw a polyline showing the route the marker will be taking.
                 mMap.addPolyline(new PolylineOptions()
                         .add(pointsArray)
-                        .color(Color.parseColor("#F13C6E"))
-                        .width(4));
+                        .color(Color.parseColor("#F13C6E")));
 
             }
 
