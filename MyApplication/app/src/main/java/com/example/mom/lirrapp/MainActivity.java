@@ -1,6 +1,7 @@
 package com.example.mom.lirrapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -15,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mom.lirrapp.Social.Twitter;
+import com.example.mom.lirrapp.Weather.Main;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -109,11 +112,31 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                items.setLatitude(lat);
-                items.setLongitude(lon);
-                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
-                intent.putExtra(Items.MY_ITEMS, items);
-                startActivity(intent);
+
+                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Which Train System?");
+                builder.setPositiveButton("LIRR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        items.setLatitude(lat);
+                        items.setLongitude(lon);
+                        Intent lirr= new Intent(MainActivity.this, LIRRMap.class);
+                        lirr.putExtra(Items.MY_ITEMS,items);
+                        startActivity(lirr);
+
+                    }
+                });
+                builder.setNegativeButton("Metro North", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+
+//                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
+//                intent.putExtra(Items.MY_ITEMS, items);
+//                startActivity(intent);
+                builder.show();
             }
         });
 

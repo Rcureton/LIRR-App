@@ -111,6 +111,7 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
         plotPoints();
         configureButton();
 
+
         if (checkPlayServices()) {
             buildGoogleApiClient();
             createLocationRequest();
