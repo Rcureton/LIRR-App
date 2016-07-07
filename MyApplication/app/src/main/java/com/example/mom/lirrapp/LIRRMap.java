@@ -119,27 +119,6 @@ public class LIRRMap extends AppCompatActivity implements GoogleApiClient.Connec
                 mapboxMap.setMyLocationEnabled(true);
                 new MarkersAsyncTask().execute();
 
-//
-//                //Queens and Brooklyn Train Lines
-//                cityLineMarkers(mapboxMap);
-//                cityLinePoly(mapboxMap);
-//                atlanticTerminalMarkers(mapboxMap);
-//                atlanticTerminalPolyline(mapboxMap);
-
-                // Metro North Lines
-////                hudsonLinePolyLine(mapboxMap);
-//                hudsonLineMarkers(mapboxMap);
-//                harlemLinePoly(mapboxMap);
-//                harlemLineMarkers(mapboxMap);
-//                newHavenLinePoly(mapboxMap);
-//                newHavenMarkers(mapboxMap);
-//                newCanaanPoly(mapboxMap);
-//                newCananMarkers(mapboxMap);
-//                danburyMarkers(mapboxMap);
-//                danburyPoly(mapboxMap);
-//                waterburyMarkers(mapboxMap);
-//                waterburyPoly(mapboxMap);
-
 
                 mapboxMap.setOnMapClickListener(new MapboxMap.OnMapClickListener() {
                     @Override

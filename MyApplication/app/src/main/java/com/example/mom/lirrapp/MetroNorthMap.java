@@ -61,6 +61,9 @@ public class MetroNorthMap extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metro_north_map);
+        mMapView = (MapView) findViewById(R.id.mapviewMetroNorth);
+        mMapView.onCreate(savedInstanceState);
+
         mblank = (TextView) findViewById(R.id.blank2Metro);
         pb = (ProgressBar) findViewById(R.id.pbMetro);
 
@@ -78,10 +81,15 @@ public class MetroNorthMap extends AppCompatActivity implements GoogleApiClient.
             }
         });
 
-        mMapView = (MapView) findViewById(R.id.mapviewMetroNorth);
-        mMapView.onCreate(savedInstanceState);
+
         plotPoints();
         configureButton();
+
+
+        if (checkPlayServices()) {
+            buildGoogleApiClient();
+            createLocationRequest();
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasSufficientPermissions()) {
