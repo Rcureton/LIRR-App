@@ -73,7 +73,8 @@
         </service>
 
         <activity android:name=".WeatherActivity" />
-        <activity android:name=".ScheduleActivity"></activity>
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".MetroNorthMap"></activity>
     </application>
 
 </manifest>

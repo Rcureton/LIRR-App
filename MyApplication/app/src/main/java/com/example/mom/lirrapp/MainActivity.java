@@ -1,6 +1,7 @@
 package com.example.mom.lirrapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,9 +13,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -22,10 +25,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mom.lirrapp.Social.Twitter;
+import com.example.mom.lirrapp.Weather.Main;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,6 +38,13 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
 import com.example.mom.lirrapp.Constants;
+import com.mukesh.permissions.AppPermissions;
+import com.squareup.picasso.Picasso;
+
+import java.util.Calendar;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -40,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
     TextView mTextview, mBlanktext;
+    ImageView mBackgroundImage;
     ImageButton mMonthlyPass, mAlerts, mTwitter, mTrainMap, mWeather;
     double lon;
     double lat;
@@ -52,8 +65,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mBackgroundImage= (ImageView)findViewById(R.id.backgroundImage);
         mTextview = (TextView) findViewById(R.id.textView);
         mBlanktext = (TextView) findViewById(R.id.blankText);
         mMonthlyPass = (ImageButton) findViewById(R.id.monthlyCard);
@@ -62,7 +78,19 @@ public class MainActivity extends AppCompatActivity
         mWeather = (ImageButton) findViewById(R.id.schedule);
         mTrainMap = (ImageButton) findViewById(R.id.mapImageButton);
 
+        Calendar calendar=Calendar.getInstance();
+        int month= calendar.get(Calendar.MONTH);
+            mBackgroundImage.setImageResource(getMonth(month));
+
+
+//        Picasso.with(MainActivity.this).load("https://www.governor.ny.gov/sites/governor.ny.gov/files/thumbnails/image/MSGPennStationExterior_Rendering_original.jpg").into(mBackgroundImage);
+
+
         final Items items = new Items();
+
+        AppPermissions runtimePermission = new AppPermissions(MainActivity.this);
+        runtimePermission.hasPermission("permission");
+
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -85,11 +113,34 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                items.setLatitude(lat);
-                items.setLongitude(lon);
-                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
-                intent.putExtra(Items.MY_ITEMS, items);
-                startActivity(intent);
+                FragmentManager fragmentManager= getSupportFragmentManager();
+                ChooseMapFragment chooseMapFragment= ChooseMapFragment.newInstance("Choose Map");
+                chooseMapFragment.show(getFragmentManager(),"choose_map_layout");
+
+//                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+//                builder.setTitle("Which Train System?");
+//                builder.setPositiveButton("LIRR", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        items.setLatitude(lat);
+//                        items.setLongitude(lon);
+//                        Intent lirr= new Intent(MainActivity.this, LIRRMap.class);
+//                        lirr.putExtra(Items.MY_ITEMS,items);
+//                        startActivity(lirr);
+//
+//                    }
+//                });
+//                builder.setNegativeButton("Metro North", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
+
+//                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
+//                intent.putExtra(Items.MY_ITEMS, items);
+//                startActivity(intent);
+//                builder.show();
             }
         });
 
@@ -122,15 +173,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -359,5 +401,36 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.i(TAG, "Connection failed" + connectionResult.getErrorMessage());
+    }
+
+    private int getMonth(int month){
+        switch (month){
+            case 0:
+                return R.drawable.january;
+            case 1:
+                return R.drawable.february;
+            case 2:
+                return R.drawable.march;
+            case 3:
+                return R.drawable.april;
+            case 4:
+                return R.drawable.may;
+            case 5:
+                return R.drawable.june;
+            case 6:
+                return R.drawable.july;
+            case 7:
+                return R.drawable.august;
+            case 8:
+                return R.drawable.september;
+            case 9:
+                return R.drawable.october;
+            case 10:
+                return R.drawable.november;
+            case 11:
+                return R.drawable.december;
+            default:
+                return R.drawable.seattle;
+        }
     }
 }

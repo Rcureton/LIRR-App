@@ -127,7 +127,7 @@ public class WeatherActivity extends AppCompatActivity {
             final_image_Call = background_call + mWeatherIcon + ".png";
 //            Picasso.with(WeatherActivity.this).load(final_image_Call).into(mBackground);
 
-            mBackground.setImageResource(getImage(wDescription));
+            mBackground.setImageResource(getImage(mTown));
 
 
         }
@@ -208,6 +208,8 @@ public class WeatherActivity extends AppCompatActivity {
                     return R.drawable.overcast;
                 case "overcast clouds":
                     return R.drawable.overcast;
+                case "Seattle":
+                    return R.drawable.seattle;
                 default:
                     return 0;
 
