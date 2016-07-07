@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.mom.lirrapp.MetroNorthMap">
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapviewMetroNorth"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        mapbox:style_url="@string/mapbox_type"
+        mapbox:access_token="pk.eyJ1IjoicmN1cmV0b24iLCJhIjoiY2lvOTBrY3d1MDJ6a3cza2o3bWN3Y3JpNSJ9.851ElXzI1p-CjIKhjGv2MA"
+        mapbox:center_latitude="40.7528"
+        mapbox:center_longitude="-73.976522"
+        mapbox:zoom="12"
+        mapbox:tilt="10"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/mapButtonMetro"
+        android:paddingBottom="10dp"
+        android:src="@drawable/ic_perm_scan_wifi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:id="@+id/blank2Metro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/pbMetro"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ProgressBar>
+
+</RelativeLayout>

@@ -13,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -112,31 +113,34 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+                FragmentManager fragmentManager= getSupportFragmentManager();
+                ChooseMapFragment chooseMapFragment= ChooseMapFragment.newInstance("Choose Map");
+                chooseMapFragment.show(getFragmentManager(),"choose_map_layout");
 
-                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Which Train System?");
-                builder.setPositiveButton("LIRR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        items.setLatitude(lat);
-                        items.setLongitude(lon);
-                        Intent lirr= new Intent(MainActivity.this, LIRRMap.class);
-                        lirr.putExtra(Items.MY_ITEMS,items);
-                        startActivity(lirr);
-
-                    }
-                });
-                builder.setNegativeButton("Metro North", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
+//                AlertDialog.Builder builder= new AlertDialog.Builder(MainActivity.this);
+//                builder.setTitle("Which Train System?");
+//                builder.setPositiveButton("LIRR", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        items.setLatitude(lat);
+//                        items.setLongitude(lon);
+//                        Intent lirr= new Intent(MainActivity.this, LIRRMap.class);
+//                        lirr.putExtra(Items.MY_ITEMS,items);
+//                        startActivity(lirr);
+//
+//                    }
+//                });
+//                builder.setNegativeButton("Metro North", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//
+//                    }
+//                });
 
 //                Intent intent = new Intent(MainActivity.this, LIRRMap.class);
 //                intent.putExtra(Items.MY_ITEMS, items);
 //                startActivity(intent);
-                builder.show();
+//                builder.show();
             }
         });
 
