@@ -3,6 +3,7 @@ package com.example.mom.lirrapp;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.mom.lirrapp.customAdapters.ScheduleSpinnerAdapter;
 import com.example.mom.lirrapp.customAdapters.TrainStation;
+import com.example.mom.lirrapp.lirr_api.LIRR_Manager;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -30,6 +32,7 @@ public class ScheduleActivity extends AppCompatActivity {
     Spinner mDepartSpinner,mArriveSpinner;
     String mSelectedDepartStation=null,mSelectedArrivalStation=null;
     ScheduleSpinnerAdapter mScheduleSpinnerAdapter;
+    private static final String TAG =ScheduleActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +74,24 @@ public class ScheduleActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ScheduleAsyncTask scheduleAsyncTask = new ScheduleAsyncTask();
-                scheduleAsyncTask.execute();
+                String departFrom = mSelectedDepartStation;//mDepart.getText().toString();
+                String arrivingStation = mSelectedArrivalStation;//mArrive.getText().toString();
+                LIRR_Manager lirrManager = LIRR_Manager.getInstance();
+                lirrManager.getTrainSchedule(departFrom,arrivingStation)
+                        .subscribe(lirrScheduleClass -> {
+                            String startStation = lirrScheduleClass.getSTARTSTATION();
+
+                            String endStation = lirrScheduleClass.getENDSTATION();
+                            Log.d(TAG,"startStation:"+startStation+" endStation:"+endStation);
+                       });
+
+                //ScheduleAsyncTask scheduleAsyncTask = new ScheduleAsyncTask();
+                //scheduleAsyncTask.execute();
 
             }
         });
+
+
 
 
 
@@ -105,6 +121,7 @@ public class ScheduleActivity extends AppCompatActivity {
         mDepart.setAdapter(adapter);
         mArrive.setThreshold(1);
         mArrive.setAdapter(adapter);
+
 
 
     }

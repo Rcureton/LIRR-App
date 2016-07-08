@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 
 public class Constants {
-    private static String A = "ZGE0ZTM3YjcwZmQ3YmJjZjA3ZjhhNzIwMjM4MjUyM2M="; // Put this in an external Gradle file when you get a chance -- I named this 'A' because it's less obvious haha
+    public static String A = "ZGE0ZTM3YjcwZmQ3YmJjZjA3ZjhhNzIwMjM4MjUyM2M="; // Put this in an external Gradle file when you get a chance -- I named this 'A' because it's less obvious haha
     public static final String BASE_URL = "http://api.openweathermap.org/data/2.5/weather?";
     public static final String background_call = "http://openweathermap.org/img/w/";
 
