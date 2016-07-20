@@ -30,24 +30,31 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.google.transit:gtfs-realtime-bindings:0.0.4'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.mukesh:permissions:1.0.3'
-    compile 'com.google.android.gms:play-services:9.2.0'
-    compile 'com.google.firebase:firebase-core:9.0.2'
-    compile 'com.google.firebase:firebase-messaging:9.0.0'
-    compile 'com.google.android.gms:play-services-tagmanager:9.2.0'
-    compile 'codelight.studios.android:weather-downloader:0.1'
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.6.2'
-    compile 'org.glassfish:javax.annotation:10.0-b28'
-    compile 'com.jakewharton:butterknife:8.1.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile('com.mapbox.mapboxsdk:mapbox-android-sdk:4.0.1@aar') {
         transitive = true
     }
-    apply plugin: 'com.google.gms.google-services'
+
+
+    compile project(path: ':backend', configuration: 'android-endpoints')
+    compile project(path: ':backend_mobile', configuration: 'android-endpoints')
+    compile group: 'com.google.appengine', name: 'appengine-api-1.0-sdk', version: '1.9.40'
+
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.android.support:appcompat-v7:24.1.0'
+    compile 'com.android.support:design:24.1.0'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.mukesh:permissions:1.0.3'
+    compile 'com.google.android.gms:play-services:9.2.1'
+    compile 'com.google.firebase:firebase-core:9.0.2'
+    compile 'com.google.firebase:firebase-messaging:9.0.0'
+    compile 'com.google.android.gms:play-services-tagmanager:9.2.1'
+    compile 'codelight.studios.android:weather-downloader:0.1'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.jakewharton:butterknife:8.1.0'
+    compile 'com.google.android.gms:play-services-gcm:9.2.1'
+    compile 'com.google.android.gms:play-services-ads:9.2.1'
+    compile 'com.google.android.gms:play-services-auth:9.2.1'
 }
+apply plugin: 'com.google.gms.google-services'
