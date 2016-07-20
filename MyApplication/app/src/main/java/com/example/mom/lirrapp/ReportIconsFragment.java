@@ -1,9 +1,11 @@
 package com.example.mom.lirrapp;
 
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +44,15 @@ public class ReportIconsFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 policeMessageUpstream();
+//                Intent intent= new Intent(getActivity(), getActivity().getClass());
+//                Log.d("FRAGMENT WORKS","Words");
+//                startActivity(intent);
+                getActivity().finish();
+
             }
         });
+
+
         return fragment;
     }
 
@@ -53,7 +62,26 @@ public class ReportIconsFragment extends DialogFragment {
 
 
         FloatingActionButton trafficButton = (FloatingActionButton) view.findViewById(R.id.trafficIcon);
-        FloatingActionButton issueButton = (FloatingActionButton) view.findViewById(R.id.issueIcon);
+        final FloatingActionButton issueButton = (FloatingActionButton) view.findViewById(R.id.issueIcon);
+
+        issueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                issueButtonUpstream();
+                Intent intent= new Intent(getActivity(), getActivity().getClass());
+                startActivity(intent);
+
+            }
+        });
+
+        trafficButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trafficIssueUpstream();
+                Intent intent= new Intent(getActivity(), getActivity().getClass());
+                startActivity(intent);
+            }
+        });
 
     }
 

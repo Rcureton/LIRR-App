@@ -2,47 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/trainTitle"
-        android:text="Choose Train System"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:textSize="35sp"
-        android:textColor="@color/colorPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/trainlineLogos"
         android:orientation="vertical"
-        android:layout_below="@id/trainTitle"
-        android:background="@android:color/transparent"
-        android:layout_centerInParent="true"
         android:paddingTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="275dp">
 
         <ImageButton
             android:id="@+id/lirr_logo"
             android:background="@android:color/transparent"
             android:src="@drawable/lirr_logo_official"
             android:paddingTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false" />
 
         <ImageButton
             android:id="@+id/metro_north_logo"
             android:background="@android:color/transparent"
             android:src="@drawable/metro_north_logo"
             android:paddingTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false" />
         <ImageButton
             android:id="@+id/njTransit"
             android:paddingTop="10dp"
             android:src="@drawable/nj_transit_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false" />
 
 
     </LinearLayout>
